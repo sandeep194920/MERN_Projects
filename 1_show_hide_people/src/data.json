@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "description": "I'm John Doe, and I'm 25 years old. I work for Google as a Backend Engineer.",
+    "image": "https://mui.com/static/images/avatar/2.jpg"
+  },
+  {
+    "id": "2",
+    "description": "I'm Siddhart. I joined facebook as a lead developer 4 years ago. I'm now 28 years old.",
+    "image": "https://images.pexels.com/photos/845457/pexels-photo-845457.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "3",
+    "description": "My name is Sarah, 30 years old. I run a company where I give advise to people on their tax savings.",
+    "image": "https://images.pexels.com/photos/845457/pexels-photo-845457.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "4",
+    "description": "I'm Susan. I joined Uber as a software developer, and I recently switched to security team.",
+    "image": "https://media.istockphoto.com/photos/smiling-female-architect-sitting-at-her-office-desk-picture-id1287459398?b=1&k=20&m=1287459398&s=612x612&w=0&h=eSnkAxJbWs35HZNvZmOrs2_bGbIc-Ug94-5hmqnINoM="
+  },
+  {
+    "id": "5",
+    "description": "I'm Aravind, a news reporter. Journalism is my passion and getting you the right news is my job.",
+    "image": "https://images.pexels.com/photos/819530/pexels-photo-819530.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "6",
+    "description": "I'm Peter. I joined facebook as a lead developer 6 years ago. I'm now 30 years old.",
+    "image": "https://images.pexels.com/photos/901424/pexels-photo-901424.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "7",
+    "description": "I'm Mary, and I'm a teacher. I like teaching kids and making them learn any concept very easily",
+    "image": "https://images.pexels.com/photos/920377/pexels-photo-920377.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  }
+]
