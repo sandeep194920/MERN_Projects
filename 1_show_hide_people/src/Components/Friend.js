@@ -1,5 +1,4 @@
-import { Typography, Paper, Grid, Avatar, Box } from '@mui/material'
-import { Container } from '@mui/system'
+import { Typography, Paper, Grid, Avatar } from '@mui/material'
 
 export const Friend = ({ description, image }) => {
   return (
