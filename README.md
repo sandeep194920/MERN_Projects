@@ -1,10 +1,10 @@
 # Deployed Apps
 
-### useState Projects
+#### useState Project
 
 1. [Show Hide People](https://show-hide-people.netlify.app/)
 
-### How to deploy to Netlify
+#### How to deploy to Netlify
 
 - Each folder in this repo is a react app that we have deployed in this page
 - `cd project_folder`. Example, `cd 1_show_hide_people`
