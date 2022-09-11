@@ -1,0 +1,19 @@
+/* we are not using this header here. We are instead using the one in defined in makeStyles */
+/* We could use this as well but if we need access to theme prop of MUI then using makeStyles is better */
+.header {
+  /* We are using makeStyles - CSS in JS method */
+}
+
+/* We could have also used this in makeStyles but just wanted to show different ways of styling */
+.heroContainer {
+  background-image: linear-gradient(
+      rgba(106, 100, 100, 0.102),
+      rgba(57, 55, 55, 0.7)
+    ),
+    url('../../assets/hero.jpg');
+  padding: 3rem 2rem;
+  height: 20rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
