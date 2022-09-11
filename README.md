@@ -4,7 +4,7 @@
 
 1. <a href="https://show-hide-people.netlify.app/" target="_blank">Show and hide people</a>
 
-#### How to deploy to Netlify
+### How to deploy to Netlify
 
 - Each folder in this repo is a react app that we have deployed in this page
 - `cd project_folder`. Example, `cd 1_show_hide_people`
