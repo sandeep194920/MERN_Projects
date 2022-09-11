@@ -2,7 +2,7 @@
 
 ### useState Projects
 
-1. [Show and hide people](https://show-hide-people.netlify.app/){target="\_blank"}
+1. [Show and hide people](https://show-hide-people.netlify.app/ target="\_blank")
 
 #### How to deploy to Netlify
 
