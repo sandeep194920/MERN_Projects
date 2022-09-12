@@ -15,7 +15,7 @@
       rgba(106, 100, 100, 0.102),
       rgba(57, 55, 55, 0.7)
     ),
-    url('../assets/hero.jpg');
+    url('../../assets/hero.jpg');
   padding: 3rem 2rem;
   height: 20rem;
   background-position: 10% 53%;
