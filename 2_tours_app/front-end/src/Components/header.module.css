@@ -1,3 +1,8 @@
+:root {
+  --sub-img-bg: rgb(253, 253, 253);
+  --sub-img-bx-shd: 0px 7px 20px -3px rgba(148, 146, 146, 0.94);
+}
+
 /* we are not using this header here. We are instead using the one in defined in makeStyles */
 /* We could use this as well but if we need access to theme prop of MUI then using makeStyles is better */
 .header {
@@ -10,10 +15,31 @@
       rgba(106, 100, 100, 0.102),
       rgba(57, 55, 55, 0.7)
     ),
-    url('../../assets/hero.jpg');
+    url('../assets/hero.jpg');
   padding: 3rem 2rem;
   height: 20rem;
-  background-position: center;
+  background-position: 10% 53%;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.hero_sub_img {
+  width: 100%;
+  height: 10rem;
+  background: var(--sub-img-bg);
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
+.image_box:hover {
+  border-radius: 10px;
+  transform: scale(1);
+  box-shadow: var(--sub-img-bx-shd);
+  transition: box-shadow ease-in-out 0.3s;
+}
+
+.headerText {
+  font-family: Helvetica, Arial, FreeSans, sans-serif;
+  line-height: 56px;
+  font-weight: 700;
 }
