@@ -38,20 +38,41 @@ const useStyles = makeStyles((theme) => ({
 
 function Tours() {
   const classes = useStyles()
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
   const [tours, setTours] = useState([])
 
   const URL = `http://localhost:5000`
   const getTours = async () => {
-    const data = await fetch(URL)
-    const { tours } = await data.json()
-    setTours(tours)
+    try {
+      const data = await fetch(URL)
+      const { tours } = await data.json()
+      setTours(tours)
+    } catch (error) {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
     getTours()
   }, [])
 
-  return (
+  const removeCard = (removableID) => {
+    const updatedTours = tours.filter((tour) => tour.id !== removableID)
+    setTours(updatedTours)
+  }
+
+  if (loading) {
+    return <h4>Loading........</h4>
+  }
+
+  if (error) {
+    return <h4>Something went wrong.....</h4>
+  }
+
+  return tours.length > 0 ? (
     <Box className={classes.toursContainer}>
       <Box className={classes.headingContainer}>
         <Typography color="primary" variant="h4" component="h4">
@@ -64,19 +85,30 @@ function Tours() {
         <Grid item>
           <Grid direction="row" container spacing={10} justifyContent="center">
             {/* image card */}
-            {!tours.length > 0 ? (
-              <h1>Loading</h1>
-            ) : (
-              tours.map((tour) => {
-                console.log('The tour is', tour)
-                // image  needs to be modified so we destructure everything and then modify image like this
-                return <Tour {...{ ...tour, image: `${URL}${tour.image}` }} />
-              })
-            )}
+            {tours.length > 0 &&
+              tours.map((tour) => (
+                <Tour
+                  key={tour.id}
+                  {...{ ...tour, image: `${URL}${tour.image}` }}
+                  remove={removeCard}
+                />
+              ))}
             {/*  */}
           </Grid>
         </Grid>
       </Grid>
+    </Box>
+  ) : (
+    <Box
+      sx={{
+        height: '40vh',
+        display: 'grid',
+        placeItems: 'center',
+      }}
+    >
+      <Button variant="contained" onClick={getTours}>
+        Show all trips
+      </Button>
     </Box>
   )
 }

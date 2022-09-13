@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Typography, Box, Paper, Grid, Button } from '@mui/material'
-import niagaraImg from '../../assets/backend/niagara_falls.jpg'
 import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles((theme) => ({
@@ -19,16 +18,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function Tour(props) {
-  const { name, image, description } = props
-  console.log('The props are', description)
-  console.log('The desc is', description)
+  const { id, name, image, description, remove } = props
   const classes = useStyles()
-  const propText = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione,
-  repellendus incidunt? Pariatur illo, officiis suscipit natus optio
-  tenetur debitis earum. At doloribus sequi, excepturi iusto
-  reprehenderit facilis, sed sint nemo atque quas reiciendis aut maiores
-  quo ipsam? Odit vitae sapiente fugiat deleniti exercitationem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, dolorum at ipsam quibusdam ea repellendus reprehenderit qui nobis sapiente consequatur commodi est quidem eveniet maxime, iste quasi inventore eos, architecto unde? Excepturi, quod cum accusantium quas vitae, enim a modi exercitationem accusamus tenetur dolores commodi necessitatibus ipsum ipsam itaque labore asperiores? Ab unde doloribus rem?`
-
   const [moreText, setMoreText] = useState(false)
 
   const expandText = () => {
@@ -38,22 +29,23 @@ function Tour(props) {
 
   return (
     <Grid item xs={11} md={6}>
-      <Paper className={classes.tourCard} elevation="4">
+      <Paper className={classes.tourCard} elevation={4}>
         <img src={image} alt="1" />
         <Typography textAlign={'center'} ml="1rem" mt="1rem" variant="h4">
           {name}
         </Typography>
         <Typography sx={{ padding: '1rem 0.4rem 0.5rem 0.7rem' }}>
           {moreText ? description : description.slice(0, 300)}{' '}
-          {/* Component ="subtitle1 will make typography inline" */}
-          <Box
+          {/* Component = span will make typography inline" */}
+          {/* component should be a valid HTML element. You can't use subtitle1 or body2. span is a valid one */}
+          <Typography
             sx={{ cursor: 'pointer', display: 'inline' }}
             onClick={expandText}
+            component={'span'}
+            color="blue"
           >
-            <Typography variant="subtitle1" component="subtitle1" color="blue">
-              {!moreText ? `Read More...` : 'Read Less'}
-            </Typography>
-          </Box>
+            {!moreText ? `Read More...` : 'Read Less'}
+          </Typography>
         </Typography>
         <Box
           sx={{
@@ -63,7 +55,7 @@ function Tour(props) {
             paddingBottom: '1rem',
           }}
         >
-          <Button variant="contained" color="danger">
+          <Button variant="contained" color="danger" onClick={() => remove(id)}>
             Not Interested
           </Button>
         </Box>
