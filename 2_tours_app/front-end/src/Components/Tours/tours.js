@@ -1,5 +1,5 @@
 import { Typography, Box, Paper, Grid, Button } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@mui/styles'
 import niagaraImg from '../../assets/backend/niagara_falls.jpg'
 import alappiImg from '../../assets/backend/alappi_falls.jpg'
@@ -38,7 +38,18 @@ const useStyles = makeStyles((theme) => ({
 
 function Tours() {
   const classes = useStyles()
-  console.log(classes)
+  const [tours, setTours] = useState([])
+
+  const URL = `http://localhost:5000`
+  const getTours = async () => {
+    const data = await fetch(URL)
+    const { tours } = await data.json()
+    setTours(tours)
+  }
+
+  useEffect(() => {
+    getTours()
+  }, [])
 
   return (
     <Box className={classes.toursContainer}>
@@ -50,126 +61,19 @@ function Tours() {
 
       {/* Tours */}
       <Grid container direction="column">
-        {/* each row is a grid item */}
         <Grid item>
           <Grid direction="row" container spacing={10} justifyContent="center">
             {/* image card */}
-            <Tour />
-            {/* image card */}
-            <Grid item xs={11} md={6}>
-              <Paper className={classes.tourCard} elevation="4">
-                <img src={niagaraImg} alt="1" />
-                <Typography
-                  textAlign={'center'}
-                  ml="1rem"
-                  mt="1rem"
-                  variant="h4"
-                >
-                  Niagara Falls
-                </Typography>
-                <Typography sx={{ padding: '1rem 0.4rem 0.5rem 0.7rem' }}>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Ratione, repellendus incidunt? Pariatur illo, officiis
-                  suscipit natus optio tenetur debitis earum. At doloribus
-                  sequi, excepturi iusto reprehenderit facilis, sed sint nemo
-                  atque quas reiciendis aut maiores quo ipsam? Odit vitae
-                  sapiente fugiat deleniti exercitationem?
-                </Typography>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    marginTop: '1rem',
-                    paddingBottom: '1rem',
-                  }}
-                >
-                  <Button variant="contained" color="danger">
-                    Not Interested
-                  </Button>
-                </Box>
-              </Paper>
-            </Grid>
-
-            {/* image card */}
-            <Grid item xs={11} md={6}>
-              <Paper className={classes.tourCard} elevation="4">
-                <img src={alappiImg} alt="1" />
-                <Typography
-                  textAlign={'center'}
-                  ml="1rem"
-                  mt="1rem"
-                  variant="h4"
-                >
-                  Alappi Falls
-                </Typography>
-                <Typography sx={{ padding: '1rem 0.4rem 0.5rem 0.7rem' }}>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Ratione, repellendus incidunt? Pariatur illo, officiis
-                  suscipit natus optio tenetur debitis earum. At doloribus
-                  sequi, excepturi iusto reprehenderit facilis, sed sint nemo
-                  atque quas reiciendis aut maiores quo ipsam? Odit vitae
-                  sapiente fugiat deleniti exercitationem?
-                </Typography>
-              </Paper>
-            </Grid>
-
-            {/* image card */}
-            <Grid item xs={11} md={6}>
-              <Paper className={classes.tourCard} elevation="4">
-                <img src={backwaterImg} alt="1" />
-                <Typography
-                  textAlign={'center'}
-                  ml="1rem"
-                  mt="1rem"
-                  variant="h4"
-                >
-                  Alappi Falls
-                </Typography>
-                <Typography sx={{ padding: '1rem 0.4rem 0.5rem 0.7rem' }}>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Ratione, repellendus incidunt? Pariatur illo, officiis
-                  suscipit natus optio tenetur debitis earum. At doloribus
-                  sequi, excepturi iusto reprehenderit facilis, sed sint nemo
-                  atque quas reiciendis aut maiores quo ipsam? Odit vitae
-                  sapiente fugiat deleniti exercitationem?
-                </Typography>
-              </Paper>
-            </Grid>
-
-            {/* image card */}
-            <Grid item xs={11} md={6}>
-              <Paper className={classes.tourCard} elevation="4">
-                <img src={alappiImg} alt="1" />
-                <Typography
-                  textAlign={'center'}
-                  ml="1rem"
-                  mt="1rem"
-                  variant="h4"
-                >
-                  Alappi Falls
-                </Typography>
-                <Typography sx={{ padding: '1rem 0.4rem 0.5rem 0.7rem' }}>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Ratione, repellendus incidunt? Pariatur illo, officiis
-                  suscipit natus optio tenetur debitis earum. At doloribus
-                  sequi, excepturi iusto reprehenderit facilis, sed sint nemo
-                  atque quas reiciendis aut maiores quo ipsam? Odit vitae
-                  sapiente fugiat deleniti exercitationem?
-                </Typography>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    marginTop: '1rem',
-                    paddingBottom: '1rem',
-                  }}
-                >
-                  <Button variant="contained" color="danger">
-                    Not Interested
-                  </Button>
-                </Box>
-              </Paper>
-            </Grid>
+            {!tours.length > 0 ? (
+              <h1>Loading</h1>
+            ) : (
+              tours.map((tour) => {
+                console.log('The tour is', tour)
+                // image  needs to be modified so we destructure everything and then modify image like this
+                return <Tour {...{ ...tour, image: `${URL}${tour.image}` }} />
+              })
+            )}
+            {/*  */}
           </Grid>
         </Grid>
       </Grid>

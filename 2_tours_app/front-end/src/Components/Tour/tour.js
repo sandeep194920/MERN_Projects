@@ -18,7 +18,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function Tour() {
+function Tour(props) {
+  const { name, image, description } = props
+  console.log('The props are', description)
+  console.log('The desc is', description)
   const classes = useStyles()
   const propText = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione,
   repellendus incidunt? Pariatur illo, officiis suscipit natus optio
@@ -36,12 +39,12 @@ function Tour() {
   return (
     <Grid item xs={11} md={6}>
       <Paper className={classes.tourCard} elevation="4">
-        <img src={niagaraImg} alt="1" />
+        <img src={image} alt="1" />
         <Typography textAlign={'center'} ml="1rem" mt="1rem" variant="h4">
-          Niagara Falls
+          {name}
         </Typography>
         <Typography sx={{ padding: '1rem 0.4rem 0.5rem 0.7rem' }}>
-          {moreText ? propText : propText.slice(0, 300)}{' '}
+          {moreText ? description : description.slice(0, 300)}{' '}
           {/* Component ="subtitle1 will make typography inline" */}
           <Box
             sx={{ cursor: 'pointer', display: 'inline' }}
