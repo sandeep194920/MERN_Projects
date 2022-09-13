@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: '2rem',
     [theme.breakpoints.down('sm')]: {
-      marginTop: 0,
+      marginTop: '-0.5rem',
     },
   },
 

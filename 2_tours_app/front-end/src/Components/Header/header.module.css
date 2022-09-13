@@ -15,10 +15,12 @@
       rgba(106, 100, 100, 0.102),
       rgba(57, 55, 55, 0.7)
     ),
-    url('../../assets/hero.jpg');
+    url('../../assets/backend/niagara_falls.jpg');
+
+  background-image: url('../../assets/backend/niagara_falls.jpg');
   padding: 3rem 2rem;
   height: 20rem;
-  background-position: 10% 53%;
+  background-position: 0% 5%;
   background-repeat: no-repeat;
   background-size: cover;
 }
