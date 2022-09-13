@@ -39,7 +39,7 @@ function Tours() {
   const [error, setError] = useState(false)
   const [tours, setTours] = useState([])
 
-  const URL = `http://localhost:5000`
+  const URL = `https://tours-app-2.herokuapp.com/`
   const getTours = async () => {
     try {
       const data = await fetch(URL)
