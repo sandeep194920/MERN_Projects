@@ -11,13 +11,7 @@
 
 /* We could have also used this in makeStyles but just wanted to show different ways of styling */
 .heroContainer {
-  background-image: linear-gradient(
-      rgba(106, 100, 100, 0.102),
-      rgba(57, 55, 55, 0.7)
-    ),
-    url('../../assets/backend/niagara_falls.jpg');
-
-  background-image: url('../../assets/backend/niagara_falls.jpg');
+  background-image: url('../../assets/hero.jpg');
   padding: 3rem 2rem;
   height: 20rem;
   background-position: 0% 5%;

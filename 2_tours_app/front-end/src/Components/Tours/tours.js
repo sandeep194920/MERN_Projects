@@ -1,9 +1,6 @@
 import { Typography, Box, Paper, Grid, Button } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@mui/styles'
-import niagaraImg from '../../assets/backend/niagara_falls.jpg'
-import alappiImg from '../../assets/backend/alappi_falls.jpg'
-import backwaterImg from '../../assets/backend/backwaters.jpg'
 import Tour from '../Tour/tour'
 
 // for make styles, the key is camel case and the value is like css value (not camel case)
@@ -83,7 +80,12 @@ function Tours() {
       {/* Tours */}
       <Grid container direction="column">
         <Grid item>
-          <Grid direction="row" container spacing={10} justifyContent="center">
+          <Grid
+            direction="row"
+            container
+            spacing={10}
+            justifyContent={tours.length < 2 ? 'center' : 'left'}
+          >
             {/* image card */}
             {tours.length > 0 &&
               tours.map((tour) => (
