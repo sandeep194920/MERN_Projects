@@ -1,4 +1,4 @@
-### Steps
+### Development Notes
 
 - Create the project with `npm init` and accept defaults
 - `npm install express nodemon`
