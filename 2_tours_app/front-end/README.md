@@ -1,5 +1,12 @@
 # Project details
 
+[Tours App](https://2-tours-app.netlify.app/)
+
+- This project shows the use of useEffect hook.
+- We learn how to use fetch api where we get tours from our backend (heroku url)
+- We also conditionally show the error or loading screen when applicable
+- MUI has system/core/material and so on. makeStyles got deprecated in version 5 but we still used in this project to explore different options. We will not use this in future projects
+
 ## What you will learn?
 
 #### How to create header component
@@ -61,6 +68,43 @@ We can use `component="subtitle1"` in typography which then makes it inline
     Read More...
   </Typography>
 </Typography>
+```
+
+#### How to center a button horizontally?
+
+Wrap the Button into a Box (it's a div) and define it as flex
+
+```js
+<Box
+  sx={{
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '1rem',
+    paddingBottom: '1rem',
+  }}
+>
+  <Button variant="contained" color="danger" onClick={() => remove(id)}>
+    Not Interested
+  </Button>
+</Box>
+```
+
+#### How to center a button vertically and horizontally?
+
+Wrap the Button in the Box and display grid. Place items center should do it.
+
+```js
+<Box
+  sx={{
+    height: '40vh',
+    display: 'grid',
+    placeItems: 'center',
+  }}
+>
+  <Button variant="contained" onClick={getTours}>
+    Show all tours
+  </Button>
+</Box>
 ```
 
 ##### Inspiration

@@ -109,7 +109,7 @@ function Tours() {
       }}
     >
       <Button variant="contained" onClick={getTours}>
-        Show all trips
+        Show all tours
       </Button>
     </Box>
   )
