@@ -127,7 +127,7 @@ function Header() {
                     alt="1"
                   />
                   <Typography ml="1rem" mb="0.5rem" variant="subtitle2">
-                    Jordan Deals
+                    Taj Mahal
                   </Typography>
                 </Box>
               </Grid>
@@ -148,7 +148,7 @@ function Header() {
                     alt="1"
                   />
                   <Typography ml="1rem" mb="0.5rem" variant="subtitle2">
-                    Jordan Deals
+                    Hanger Caves
                   </Typography>
                 </Box>
               </Grid>
@@ -169,7 +169,7 @@ function Header() {
                     alt="1"
                   />
                   <Typography ml="1rem" mb="0.5rem" variant="subtitle2">
-                    Jordan Deals
+                    Egypt Pyramid
                   </Typography>
                 </Box>
               </Grid>
@@ -190,7 +190,7 @@ function Header() {
                     alt="1"
                   />
                   <Typography ml="1rem" mb="0.5rem" variant="subtitle2">
-                    Jordan Deals
+                    Italian Fort
                   </Typography>
                 </Box>
               </Grid>

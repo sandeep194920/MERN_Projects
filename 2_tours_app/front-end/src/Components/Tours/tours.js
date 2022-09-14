@@ -1,4 +1,4 @@
-import { Typography, Box, Paper, Grid, Button } from '@mui/material'
+import { Typography, Box, Grid, Button } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@mui/styles'
 import Tour from '../Tour/tour'
@@ -54,6 +54,8 @@ function Tours() {
 
   useEffect(() => {
     getTours()
+    // the below line is added to avoid getTours to dependency array. We will add this after learning about useCallback hook
+    // eslint-disable-next-line
   }, [])
 
   const removeCard = (removableID) => {
