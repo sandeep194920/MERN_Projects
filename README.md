@@ -1,6 +1,6 @@
 ## Deployed Apps
 
-#### useState Project
+#### useState Projects
 
 1. [Show Hide People](https://1-show-hide-people-app.netlify.app/)
 2. [Reviews App](https://2-reviews-app.netlify.app/)
