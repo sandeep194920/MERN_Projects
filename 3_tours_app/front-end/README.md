@@ -1,13 +1,19 @@
 # Project details
 
-[Tours App](https://2-tours-app.netlify.app/)
+[Tours App](https://3-tours-app.netlify.app/)
 
-- This project shows the use of useEffect hook.
+- This project shows the use of useEffect hook
 - We learn how to use fetch api where we get tours from our backend (heroku url)
 - We also conditionally show the error or loading screen when applicable
 - MUI has system/core/material and so on. makeStyles got deprecated in version 5 but we still used in this project to explore different options. We will not use this in future projects
 
 ## What you will learn?
+
+1. How to create header component and images stacked in a row below it.
+2. Show and hide those stacked images when screen is shrinked.
+3. How contrast prop works in theming.
+4. How to add inline text using MUI typography.
+5. How to center button both veritically and horizontally.
 
 #### How to create header component
 
@@ -25,13 +31,13 @@ We could otherwise have done this in CSS file `src/Components/header.module.css`
 
 ###### Images Container
 
-- Created a Grid (container + item) inside main Grid container (as second grid item) in `src/Components/header.js`.
+- Created a Grid (container + item) inside main Grid container (as second grid item) in `src/Components/header.js`
 
 - Inside the above container + item Grid, create image card. Each image card is a grid item (we have this grid item because we can adjust xs, md, lg and so on sizes). Inside this, create Box that contains img and typography
 
 ###### Hide images when screen is shrinked
 
-- We have added subImageContainer class. This class will have breakpoints for each size like xl, md, sm and here, we set `display:none`.
+- We have added subImageContainer class. This class will have breakpoints for each size like xl, md, sm and here, we set `display:none`
 
 #### Add additional props to theme and contrastText prop
 

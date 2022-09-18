@@ -2,11 +2,12 @@
 
 [Show Hide People](https://show-hide-people.netlify.app/)
 
-A very simple responsive project to show and hide Friends. This project shows the use of useState hook. We are switching boolean value on button click and based on the value, we show/hide data.
+- A very simple responsive project to show and hide Friends.
+- This project shows the use of useState hook. We are switching boolean value on button click and based on the value, we show/hide data.
 
 ### What you will learn?
 
-1. How to use useState
+1. How to use useState.
 2. Material UI Container, Box, Grid usage
 
 ##### MUI Grid

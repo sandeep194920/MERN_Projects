@@ -6,7 +6,7 @@
 
 #### useEffect Projects
 
-2. [Tours App](https://2-tours-app.netlify.app/)
+3. [Tours App](https://3-tours-app.netlify.app/)
 
 #### How to deploy to Netlify
 
