@@ -1,6 +1,6 @@
 # Project details
 
-[Reviews App]
+[Reviews App](https://2-reviews-app.netlify.app/)
 
 - How to change state when a button is clicked
 - How to use Emotion CSS for styling (https://emotion.sh/docs/introduction).

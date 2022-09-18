@@ -2,7 +2,8 @@
 
 #### useState Project
 
-1. [Show Hide People](https://show-hide-people.netlify.app/)
+1. [Show Hide People](https://1-show-hide-people-app.netlify.app/)
+2. [Reviews App](https://2-reviews-app.netlify.app/)
 
 #### useEffect Projects
 
