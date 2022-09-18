@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.80ee15f4.css","mappings":"AAAA,iBAKE,qBAAsB,CACtB,gCAAoC,CAHpC,QAAS,CACT,SAGF","sources":["index.css"],"sourcesContent":["*,\n::after,\n::before {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  font-family: 'Open Sans', sans-serif;\n}\n"],"names":[],"sourceRoot":""}
