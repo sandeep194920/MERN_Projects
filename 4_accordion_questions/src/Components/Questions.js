@@ -1,6 +1,7 @@
 import { Grid, useTheme } from '@mui/material'
 import Question from './Question'
 import questionSet from '../data'
+import { useState } from 'react'
 
 function Questions() {
   const theme = useTheme()
@@ -9,6 +10,15 @@ function Questions() {
     container: {
       border: `1px solid ${theme.palette.primary.main}`,
     },
+  }
+
+  const [selected, setSelected] = useState(null)
+
+  const accordionHandler = (accoridonId) => {
+    if (selected === accoridonId) {
+      return setSelected(null)
+    }
+    setSelected(accoridonId)
   }
 
   return (
@@ -20,7 +30,14 @@ function Questions() {
     >
       {questionSet.map((quest) => {
         /* Each item below is the question */
-        return <Question key={quest.id} {...quest} />
+        return (
+          <Question
+            key={quest.id}
+            {...quest}
+            accordionHandler={accordionHandler}
+            showAccordion={selected === quest.id}
+          />
+        )
       })}
     </Grid>
   )

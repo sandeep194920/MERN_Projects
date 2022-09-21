@@ -12,19 +12,31 @@ function Faq() {
     headerSection: {
       background: theme.palette.primary.main,
       // display: 'grid', // since this is already a grid, this line is not necessary
-      placeItems: 'center',
       padding: '1rem',
     },
   }
   return (
     <Grid container sx={faqStyles.containerSection}>
-      <Grid container item xs={5} md={4} sx={faqStyles.headerSection}>
-        <Typography variant="h3" color="white">
-          FAQ Section
-          <Typography variant="h6" color="secondary.main">
-            Question and Answers about Login
-          </Typography>
-        </Typography>
+      <Grid
+        container
+        item
+        xs={5}
+        md={4}
+        sx={faqStyles.headerSection}
+        alignItems="center"
+      >
+        <Grid container justifyContent="center">
+          <Grid item>
+            <Typography variant="h3" color="white">
+              FAQ Section
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="h6" color="secondary.main">
+              Question and Answers about Login
+            </Typography>
+          </Grid>
+        </Grid>
       </Grid>
       <Grid container item xs={7} sx={faqStyles.questionSection}>
         {/* Questions  container*/}

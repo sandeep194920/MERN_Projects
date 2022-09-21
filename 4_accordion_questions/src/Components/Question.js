@@ -2,17 +2,19 @@ import React, { useState } from 'react'
 import { Grid, Typography, useTheme } from '@mui/material'
 import { AiOutlinePlus } from 'react-icons/ai'
 
-function Question({ id, question, answer }) {
+function Question({ id, question, answer, accordionHandler, showAccordion }) {
   const theme = useTheme()
   const questionStyle = {
     question: {
       background: theme.palette.background.default,
-      border: '0.5px solid black',
+      border: `0.5px solid ${theme.palette.primary.main}`,
       padding: '1rem 0',
       borderRadius: '5px',
     },
     showAnswer: {
       background: theme.palette.background.light,
+      border: `0.5px solid ${theme.palette.primary.main}`,
+      borderRadius: '0 0 3px 3px',
       padding: '1rem',
       border: '0.5px solid black',
       marginBottom: '1rem',
@@ -25,10 +27,10 @@ function Question({ id, question, answer }) {
     },
   }
 
-  const [showAnswer, setShowAnswer] = useState(false)
-
+  //   OLD implementation where all acccordions were expanding
+  //   const [showAnswer, setShowAnswer] = useState(false)
   const toggleHandler = (id) => {
-    setShowAnswer((answer) => !answer)
+    accordionHandler(id)
   }
 
   return (
@@ -44,9 +46,7 @@ function Question({ id, question, answer }) {
           sx={questionStyle.question}
         >
           <Grid item xs={10}>
-            <Typography variant="h6" component="subtitle1">
-              {question}
-            </Typography>
+            <Typography variant="h6">{question}</Typography>
           </Grid>
           <Grid item>
             <AiOutlinePlus
@@ -59,7 +59,13 @@ function Question({ id, question, answer }) {
         <Grid
           item
           xs={11}
-          sx={showAnswer ? questionStyle.showAnswer : questionStyle.hideAnswer}
+          //   OLD implementation where all acccordions were expanding
+          //   sx={showAnswer ? questionStyle.showAnswer : questionStyle.hideAnswer}
+
+          //   NEW implementation where only selected acccordion will expand
+          sx={
+            showAccordion ? questionStyle.showAnswer : questionStyle.hideAnswer
+          }
         >
           <Typography>{answer}</Typography>
         </Grid>
