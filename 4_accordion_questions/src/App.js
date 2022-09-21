@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import phoneImg from './images/phone.jpg'
+import Faq from './Components/Faq'
 
 let theme = createTheme({
   palette: {
@@ -15,10 +16,17 @@ let theme = createTheme({
 
     background: {
       default: '#F4EDE4',
+      paper: '#FDE2FF',
+      light: '#f6f1e9',
+      dark: '#f0e7db',
     },
   },
   typography: {
     h4: {
+      fontWeight: 'bold',
+    },
+    h6: {
+      fontSize: '1rem',
       fontWeight: 'bold',
     },
   },
@@ -81,6 +89,9 @@ function App() {
       <Box sx={styles.imgContainer}>
         <img src={phoneImg} alt="Think" />
       </Box>
+
+      {/* FAQ */}
+      <Faq />
     </ThemeProvider>
   )
 }
