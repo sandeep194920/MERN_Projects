@@ -1,13 +1,16 @@
 ## Deployed Apps
 
+These projects might not be in the order, but the order in which these were done were shown in each URL of the project. For example, Accordion was done after Tours app.
+
 #### useState Projects
 
 1. [Show Hide People](https://1-show-hide-people-app.netlify.app/)
 2. [Reviews App](https://2-reviews-app.netlify.app/)
+3. [Accordion](https://4-accordion-questions-app.netlify.app/)
 
 #### useEffect Projects
 
-3. [Tours App](https://3-tours-app.netlify.app/)
+4. [Tours App](https://3-tours-app.netlify.app/)
 
 #### How to deploy to Netlify
 
