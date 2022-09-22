@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Grid, Typography, useTheme } from '@mui/material'
-import { AiOutlinePlus } from 'react-icons/ai'
+import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai'
 
 function Question({ id, question, answer, accordionHandler, showAccordion }) {
   const theme = useTheme()
@@ -16,11 +16,10 @@ function Question({ id, question, answer, accordionHandler, showAccordion }) {
       border: `0.5px solid ${theme.palette.primary.main}`,
       borderRadius: '0 0 3px 3px',
       padding: '1rem',
-      border: '0.5px solid black',
       marginBottom: '1rem',
     },
     hideAnswer: {
-      display: 'none',
+      display: 'none', // we are not addition transition effect because transition doesn't work on display prop. We will try to add transition in some other project if possible
     },
     qIcon: {
       cursor: 'pointer',
@@ -43,16 +42,26 @@ function Question({ id, question, answer, accordionHandler, showAccordion }) {
           container
           justifyContent="space-around"
           alignItems="center"
-          sx={questionStyle.question}
+          sx={{ ...questionStyle.question, ...questionStyle.qIcon }} // added qIcon as we need cursor:pointer
+          onClick={() => toggleHandler(id)}
         >
           <Grid item xs={10}>
             <Typography variant="h6">{question}</Typography>
           </Grid>
           <Grid item>
-            <AiOutlinePlus
-              style={questionStyle.qIcon}
-              onClick={() => toggleHandler(id)}
-            />
+            {showAccordion ? (
+              <AiOutlineMinusCircle
+                style={questionStyle.qIcon}
+                onClick={() => toggleHandler(id)}
+                size={'1.4rem'}
+              />
+            ) : (
+              <AiOutlinePlusCircle
+                style={questionStyle.qIcon}
+                onClick={() => toggleHandler(id)}
+                size={'1.4rem'}
+              />
+            )}
           </Grid>
         </Grid>
         {/* Answer */}
