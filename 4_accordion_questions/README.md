@@ -110,3 +110,8 @@ const [selected, setSelected] = useState(null)
   <Typography>{answer}</Typography>
 </Grid>
 ```
+
+###### App Idea came from following apps
+
+For header and colors - [Slack](https://slack.com/)
+For accordion - [Netflix](https://www.netflix.com/ca/)
