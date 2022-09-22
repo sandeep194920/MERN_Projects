@@ -54,12 +54,14 @@ function Question({ id, question, answer, accordionHandler, showAccordion }) {
                 style={questionStyle.qIcon}
                 onClick={() => toggleHandler(id)}
                 size={'1.4rem'}
+                color={theme.palette.primary.main}
               />
             ) : (
               <AiOutlinePlusCircle
                 style={questionStyle.qIcon}
                 onClick={() => toggleHandler(id)}
                 size={'1.4rem'}
+                color={theme.palette.primary.main}
               />
             )}
           </Grid>
