@@ -1,4 +1,4 @@
-import { Grid, Typography, useTheme } from '@mui/material'
+import { Grid, Hidden, Typography, useTheme } from '@mui/material'
 import Questions from './Questions'
 
 function Faq() {
@@ -7,7 +7,7 @@ function Faq() {
     containerSection: {
       maxWidth: '80%',
       height: '50vh',
-      margin: '2rem auto',
+      margin: '6rem auto',
     },
     headerSection: {
       background: theme.palette.primary.main,
@@ -17,28 +17,30 @@ function Faq() {
   }
   return (
     <Grid container sx={faqStyles.containerSection}>
-      <Grid
-        container
-        item
-        xs={5}
-        md={4}
-        sx={faqStyles.headerSection}
-        alignItems="center"
-      >
-        <Grid container justifyContent="center">
-          <Grid item>
-            <Typography variant="h3" color="white">
-              FAQ Section
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography variant="h6" color="secondary.main">
-              Question and Answers about Login
-            </Typography>
+      <Hidden lgDown>
+        <Grid
+          container
+          item
+          xs={5}
+          md={4}
+          sx={faqStyles.headerSection}
+          alignItems="center"
+        >
+          <Grid container justifyContent="center">
+            <Grid item>
+              <Typography variant="h3" color="white">
+                FAQ Section
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="h6" color="secondary.main">
+                Question and Answers about Login
+              </Typography>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-      <Grid container item xs={7} sx={faqStyles.questionSection}>
+      </Hidden>
+      <Grid container item sm={12} lg={7} sx={faqStyles.questionSection}>
         {/* Questions  container*/}
         <Questions />
       </Grid>

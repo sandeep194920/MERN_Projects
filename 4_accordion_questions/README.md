@@ -11,6 +11,7 @@
 3. CSS transition can't be applied to display prop.
 4. How to do some transition in react.
 5. How to set open one accordion while closing everything else?
+6. How to use Hidden component of MUI?
 
 #### CSSBaseline
 
@@ -109,6 +110,14 @@ const [selected, setSelected] = useState(null)
 >
   <Typography>{answer}</Typography>
 </Grid>
+```
+
+#### How to use Hidden component of MUI?
+
+```js
+<Hidden lgDown>
+  // This hides anything present here when reached lower than large screen
+</Hidden>
 ```
 
 ###### App Idea came from following apps

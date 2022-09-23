@@ -9,6 +9,9 @@ function Questions() {
   const questionsStyle = {
     container: {
       border: `1px solid ${theme.palette.primary.main}`,
+      [theme.breakpoints.down('lg')]: {
+        border: 'none',
+      },
     },
   }
 
