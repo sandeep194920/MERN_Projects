@@ -1,6 +1,6 @@
 # Project details
 
-[Accordion](https://4-accordion-questions-app.netlify.app/)
+[Accordion App](https://4-accordion-questions-app.netlify.app/)
 
 - This project is about Accordion questions. Generally you will see this on a website in FAQs section
 
