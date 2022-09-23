@@ -12,11 +12,11 @@ function Header() {
       backgroundImage:
         'linear-gradient(to right top, #148669, #00908c, #0099b0, #009ed2, #12a0eb)',
       height: '50vh',
-      paddingTop: '6rem',
+      paddingTop: 10,
       clipPath: 'polygon(0 0, 100% 0, 100% 54%, 0 89%)',
     },
     menuHeadingContainer: {
-      marginTop: '-4rem',
+      marginTop: -12,
       heading: {
         paddingBottom: '1rem',
         borderBottom: `3px solid ${theme.palette.primary.main}`,
