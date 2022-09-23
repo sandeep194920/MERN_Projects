@@ -7,6 +7,7 @@
 1. How to use clipPath CSS property?
 2. How to use Gradient Colors?
 3. How to use columnSpacing and rowSpacing in MUI Grid?
+4. Hower + Active class changes the styling. How to stop that?
 
 #### ClipPath
 
@@ -61,4 +62,62 @@ Notice that, after discovering this columnSpacing, I could comment out the under
   </Grid>
 </Grid>
 // </Grid>
+```
+
+#### Hower + Active class changes the styling. How to stop that?
+
+- Let's explore the problem what I faced. I was showing active item (selected item) and other items differently
+
+```js
+<Typography
+  variant="h6"
+  sx={
+    category === selected
+      ? { ...menuStyles.menuItem, ...menuStyles.menuItem.active }
+      : menuStyles.menuItem
+  }
+>
+  {category}
+</Typography>
+```
+
+- When `selected === catgory` I add an active class and if not I add just menuItem class and remove active class
+
+```js
+menuItem: {
+    borderBottom: `2px solid ${theme.palette.primary.main}`,
+    padding: 1,
+    cursor: 'pointer',
+    textTransform: 'capitalize',
+    // When hovered
+    '&:hover': {
+    borderBottom: `2px solid ${theme.palette.primary.main}`,
+    color: theme.palette.primary.main,
+    borderRadius: '5px',
+    transition: 'all 0.3s',
+    },
+    active: {
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
+    borderRadius: '5px',
+    border: 'none',
+    },
+}
+```
+
+- The problem I faced here is, when I hover selected element (which also had active class), the text-color changed to primary. Since background also was same color, the text wasn't visible when active class is hovered(selected item)
+
+- To solve this issue, I just changed the color on active hovered element like this
+
+```js
+active: {
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
+    borderRadius: '5px',
+    border: 'none',
+    // added this hover class on active which actually sets back the color to white which gets overridden by menuItem:hover
+    '&:hover': {
+        color: 'white',
+    },
+},
 ```

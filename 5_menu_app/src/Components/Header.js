@@ -16,6 +16,7 @@ function Header() {
       clipPath: 'polygon(0 0, 100% 0, 100% 54%, 0 89%)',
     },
     menuHeadingContainer: {
+      margin: 'auto',
       marginTop: -12,
       heading: {
         paddingBottom: '1rem',

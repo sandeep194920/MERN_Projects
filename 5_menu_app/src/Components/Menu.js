@@ -1,70 +1,95 @@
-import React from 'react'
-import { Grid, Typography } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { Grid, Typography, Box } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 
 import menu from '../data'
 function Menu() {
   const theme = useTheme()
+
+  // we have multiple of these like breakfast, lunch, shakes, shakes, lunch, breakfast and we need them only once
+  const categoriesSet = new Set(menu.map((item) => item.category))
+
+  // converting set back to array as we need to iterate it
+  const categories = Array.from(categoriesSet)
+  categories.unshift('All') // adding this as first element in categories
+
+  const [selected, setSelected] = useState('All')
+  const [currentMenu, setCurrentMenu] = useState(menu)
+
   const menuStyles = {
     container: {
-      //   background: 'lightblue',
       marginTop: 6,
     },
     menuItem: {
       borderBottom: `2px solid ${theme.palette.primary.main}`,
       padding: 1,
       cursor: 'pointer',
+      textTransform: 'capitalize',
+
       '&:hover': {
-        backgroundColor: theme.palette.secondary.main,
-        color: 'white',
+        borderBottom: `2px solid ${theme.palette.primary.main}`,
+        color: theme.palette.primary.main,
         borderRadius: '5px',
-        border: 'none',
+        transition: 'all 0.3s',
       },
       active: {
         backgroundColor: theme.palette.primary.main,
         color: 'white',
         borderRadius: '5px',
         border: 'none',
+        '&:hover': {
+          color: 'white',
+        },
       },
     },
   }
 
-  const categoriesSet = new Set(menu.map((item) => item.category))
-
-  const categories = Array.from(categoriesSet)
+  useEffect(() => {
+    if (selected === 'All') {
+      setCurrentMenu(menu)
+    } else {
+      const filteredItems = menu.filter((item) => item.category === selected)
+      setCurrentMenu(filteredItems)
+    }
+  }, [selected])
 
   return (
-    <Grid
-      container
-      sx={menuStyles.container}
-      justifyContent="center"
-      alignItems="center"
-      columnSpacing={7} // refer README for more info on this
-    >
-      <Grid item>
-        <Typography variant="h6" sx={menuStyles.menuItem}>
-          All
-        </Typography>
+    <Box>
+      {/* Menu Item Tabs */}
+      <Grid
+        container
+        sx={menuStyles.container}
+        justifyContent="center"
+        alignItems="center"
+        columnSpacing={7} // refer README for more info on this
+      >
+        {categories.map((category) => (
+          <Grid item key={category} onClick={() => setSelected(category)}>
+            <Typography
+              variant="h6"
+              sx={
+                category === selected
+                  ? { ...menuStyles.menuItem, ...menuStyles.menuItem.active }
+                  : menuStyles.menuItem
+              }
+            >
+              {category}
+            </Typography>
+          </Grid>
+        ))}
       </Grid>
-      <Grid item>
-        <Typography
-          variant="h6"
-          sx={{ ...menuStyles.menuItem, ...menuStyles.menuItem.active }}
-        >
-          Breakfast
-        </Typography>
+
+      {/* Menu Items */}
+      <Grid container>
+        {currentMenu.map((item) => {
+          return (
+            <Grid item key={item.id}>
+              {item.title}
+            </Grid>
+          )
+        })}
       </Grid>
-      <Grid item>
-        <Typography variant="h6" sx={menuStyles.menuItem}>
-          Lunch
-        </Typography>
-      </Grid>
-      <Grid item>
-        <Typography variant="h6" sx={menuStyles.menuItem}>
-          Dinner
-        </Typography>
-      </Grid>
-    </Grid>
+    </Box>
   )
 }
 
