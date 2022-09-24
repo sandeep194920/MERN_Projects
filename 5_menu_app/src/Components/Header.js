@@ -5,9 +5,6 @@ import { useTheme } from '@mui/material/styles'
 function Header() {
   const theme = useTheme()
   const headerStyles = {
-    // backgroundColor: '#148669',
-    // backgroundImage:
-    //   'linear-gradient(to right top, #148669, #00908c, #0099b0, #009ed2, #12a0eb)',
     header: {
       backgroundImage:
         'linear-gradient(to right top, #148669, #00908c, #0099b0, #009ed2, #12a0eb)',

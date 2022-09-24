@@ -80,11 +80,24 @@ function Menu() {
       </Grid>
 
       {/* Menu Items */}
-      <Grid container>
+      <Grid
+        container
+        sx={{ background: 'lightblue', marginTop: 5 }}
+        justifyContent="center"
+        spacing={0}
+      >
         {currentMenu.map((item) => {
           return (
             <Grid item key={item.id}>
-              {item.title}
+              {/* single card */}
+              <Grid container>
+                {/* image */}
+                <Grid item>
+                  {/* <img src={item.img} alt={item.title} /> */}
+                </Grid>
+                {/* details */}
+                <Grid item></Grid>
+              </Grid>
             </Grid>
           )
         })}
