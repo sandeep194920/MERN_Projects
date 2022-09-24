@@ -10,11 +10,11 @@
 4. Hower + Active class changes the styling. How to stop that?
 5. How to display images in react when we use image links?
 
-#### 1. ClipPath
+### 1. ClipPath
 
 In this project, the header has a shape that can be achieved using this clip path css prop. You can get it's CSS here and turn it into Javascript [Clip Path Website](https://bennettfeely.com/clippy/)
 
-#### 2. Gradient Colors
+### 2. Gradient Colors
 
 You can generate beautiful gradients in these sites that can be applied for all the projects
 
@@ -22,7 +22,7 @@ You can generate beautiful gradients in these sites that can be applied for all 
 
 [To get pre-built gradients](https://cssgradient.io/gradient-backgrounds/)
 
-#### 3. ColumnSpacing in Grid
+### 3. ColumnSpacing in Grid
 
 While I was working in this project, I added spacing prop on the Grid container and it applied space on both x and y axes. To counter this I had to wrap my Grid in another Grid and did some adjustments.
 
@@ -65,7 +65,7 @@ Notice that, after discovering this columnSpacing, I could comment out the under
 // </Grid>
 ```
 
-#### 4. Hower + Active class changes the styling. How to stop that?
+### 4. Hower + Active class changes the styling. How to stop that?
 
 - Let's explore the problem what I faced. I was showing active item (selected item) and other items differently
 
@@ -123,7 +123,7 @@ active: {
 },
 ```
 
-#### 5. How to display images in react when we use image links?
+### 5. How to display images in react when we use image links?
 
 In this project, we are using `data.js` to get our data. In that, we have image link that's like this `./images/item-1.jpeg`
 
@@ -146,7 +146,7 @@ If you notice, the path starts with `./images` and in which ever folder you put 
 
 This need not be named images. You can name it anything. For example, let's say you have `public/assets/img/img-1.jpeg`. Then in your data.js (of course you can put this in any folder within src), you can give this image path and it will work.
 
-##### Gotchas: You cannot import an image if it's in public folder, but directly use it in`<img src='./images/img-1'>`
+#### Gotchas: You cannot import an image if it's in public folder, but directly use it in`<img src='./images/img-1'>`
 
 One gotcha is that, like we did in [3-Tours-App](https://github.com/sandeep194920/MERN_projects/blob/master/3_tours_app/front-end/src/Components/Header/header.js) we can't import images if we place in public folder. In this Tours app, it was possible to import because we placed our images inside src folder and not in public folder(public is outside src folder).
 
