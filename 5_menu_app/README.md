@@ -1,7 +1,9 @@
 # Project details
 
-This project is about displaying Menu Items based on the selected category. When `All` is selected, all the items are shown, and when `Breakfast` or `Lunch` or `Dinner` is selected, only those items are shown.</span>
-<br>
+[Menu App](https://5-menu-app.netlify.app/)
+
+- This project is about displaying Menu Items based on the selected category. When `All` is selected, all the items are shown, and when `Breakfast` or `Lunch` or `Dinner` is selected, only those items are shown.</span>
+  <br>
 
 ## What you will learn?
 
@@ -16,8 +18,6 @@ This project is about displaying Menu Items based on the selected category. When
 9. How to make first letter uppercase?
 
 ---
-
-<br>
 
 ### <span style="color:orange">1. How to use clipPath CSS property?</span>
 
