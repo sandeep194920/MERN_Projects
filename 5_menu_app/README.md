@@ -233,9 +233,7 @@ In this case <strong>Sometimes</strong> we can combine item and container like t
 
 $${\color{red}Welcome \space \color{lightblue}To \space \color{orange}Stackoverflow}$$
 
-### 7. How to keep image column and description column in same row in Grid container of MenuItem?
-
-<h3 style="color: red">How to keep image column and description column in same row in Grid container of MenuItem?</h3>
+### 7. ${\color{purple} How \space to \space keep \space image \space column \space and \space description \space column \space in \space same \space row \space in \space Grid container \space of \space MenuItem?}$
 
 We need to use `<Grid container wrap="nowrap">` to keep the items within the Grid container in same row without breaking each column into next line on shrinking the screen.
 
