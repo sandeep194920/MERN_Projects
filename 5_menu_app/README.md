@@ -161,7 +161,7 @@ import img from '../public/images/item-1.jpeg' // This is placed in public folde
 ;<img src="./images/item-1.jpeg" alt="this will work" />
 ```
 
-### 6. `<Grid item>` vs `<Grid container>` vs `<Grid container item>`
+### ${\color{orange} 6. \space `<Grid item>` \space vs \space `<Grid container>` \space vs \space `<Grid container item>`}
 
 `<Grid container></Grid>` is used as a container and inside that, each item can be wrapped by `<Grid item>`
 
@@ -231,9 +231,7 @@ In this case <strong>Sometimes</strong> we can combine item and container like t
 
 <strong>but keep in mind that this container item will be in the new line</strong>
 
-$${\color{red}Welcome \space \color{lightblue}To \space \color{orange}Stackoverflow}$$
-
-### 7. ${\color{purple} How \space to \space keep \space image \space column \space and \space description \space column \space in \space same \space row \space in \space Grid container \space of \space MenuItem?}$
+### ${\color{orange} 7. \space How \space to \space keep \space image \space column \space and \space description \space column \space in \space same \space row \space in \space Grid container \space of \space MenuItem?}$
 
 We need to use `<Grid container wrap="nowrap">` to keep the items within the Grid container in same row without breaking each column into next line on shrinking the screen.
 
