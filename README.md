@@ -11,6 +11,7 @@ These projects might not be in the order, but the order in which these were done
 #### useEffect Projects
 
 4. [Tours App](https://3-tours-app.netlify.app/)
+5. [Menu App](https://5-menu-app.netlify.app/)
 
 #### How to deploy to Netlify
 
