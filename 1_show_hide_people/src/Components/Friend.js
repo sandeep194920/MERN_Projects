@@ -4,7 +4,8 @@ export const Friend = ({ description, image }) => {
   return (
     <Grid item xs={12} md={6}>
       <Paper>
-        <Grid container alignItems="center">
+        {/* wrap = 'nowrap' keeps elements in card (image and text) in same row without putting into new line */}
+        <Grid container alignItems="center" wrap="nowrap">
           <Grid item>
             <Avatar
               alt="Remy Sharp"

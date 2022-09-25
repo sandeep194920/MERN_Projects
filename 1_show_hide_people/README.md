@@ -9,6 +9,7 @@
 
 1. How to use useState.
 2. Material UI Container, Box, Grid usage
+3. How to keep elements present in (Grid items) Grid container in same row?
 
 ##### MUI Grid
 
@@ -31,3 +32,19 @@ When you can't get the content in the grid to span the proper width, which happe
 ##### MUI Paper
 
 - Similar to card, but gives a nice elevation and can be used as an alternative to card where ever possible
+
+##### How to keep elements present in (Grid items) Grid container in same row?
+
+If we have a requirement where image (on left) and content (on right) must be in the same row in a card, then we can use `wrap="nowrap"` inside Grid container like this.
+
+```js
+// we are using wrap='nowrap' here to keep img avatar and typography on same row in all screen sizes
+<Grid container alignItems="center" wrap="nowrap">
+  <Grid item>
+    <Avatar />
+  </Grid>
+  <Grid item>
+    <Typography>{description}</Typography>
+  </Grid>
+</Grid>
+```
