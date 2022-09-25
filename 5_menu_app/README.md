@@ -9,6 +9,8 @@
 3. How to use columnSpacing and rowSpacing in MUI Grid?
 4. Hower + Active class changes the styling. How to stop that?
 5. How to display images in react when we use image links?
+6. `<Grid item>` vs `<Grid container>` vs `<Grid container item>`.
+7. How to keep image column and description column in same row in Grid container of MenuItem?
 
 ### 1. ClipPath
 
@@ -158,3 +160,79 @@ import img from '../public/images/item-1.jpeg' // This is placed in public folde
 //but the below will work. Not importing but using this. This is the technique we generally use when we place our images directly inside our react app and want to use the image link from data file to display, this is the way to go
 ;<img src="./images/item-1.jpeg" alt="this will work" />
 ```
+
+### 6. `<Grid item>` vs `<Grid container>` vs `<Grid container item>`
+
+`<Grid container></Grid>` is used as a container and inside that, each item can be wrapped by `<Grid item>`
+
+<strong>For example</strong>
+
+```js
+<Grid container>
+  <Grid item>
+    <Typography>Item 1</Typography>
+  </Grid>
+  <Grid item>
+    <Typography>Item 2</Typography>
+  </Grid>
+  <Grid item>
+    <Typography>Item 3</Typography>
+  </Grid>
+  <Grid item>
+    <Typography>Item 4</Typography>
+  </Grid>
+<Grid>
+```
+
+Each Typography is wrapped under `<Grid item>` because, on Grid item, we can specify breakpoints like xs, md and say how much space it needs to consume.
+
+```js
+<Grid item xs={8} md={6}>
+  <Typography>Item 1</Typography>
+</Grid>
+```
+
+##### Now what is `<Grid container item></Grid>`
+
+Some times you have a setup like this
+
+```js
+<Grid container>
+
+  <Grid item> // This is an item and inside that we again have a container that holds items
+
+    <Grid container direction='column'>
+      <Grid item>
+        <Typography>Item 1</Typography>
+      </Grid>
+
+    </Grid>
+
+  </Grid>
+
+<Grid>
+```
+
+In this case <strong>Sometimes</strong> we can combine item and container like this
+
+```js
+<Grid container>
+
+  <Grid item> // This is an item and inside that we again have a container that holds items
+
+    <Grid container item direction='column'> //combined
+        <Typography>Item 1</Typography>
+    </Grid>
+
+  </Grid>
+
+<Grid>
+```
+
+<strong>but keep in mind that this container item will be in the new line</strong>
+
+### 7. How to keep image column and description column in same row in Grid container of MenuItem?
+
+We need to use `<Grid container wrap="nowrap">` to keep the items within the Grid container in same row without breaking each column into next line on shrinking the screen.
+
+The same problem was solved in this way in [1-show-hide-people README](https://github.com/sandeep194920/MERN_projects/tree/master/1_show_hide_people#how-to-keep-elements-present-in-grid-items-grid-container-in-same-row)
