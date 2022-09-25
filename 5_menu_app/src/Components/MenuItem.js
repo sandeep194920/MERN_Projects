@@ -7,6 +7,7 @@ function MenuItem(props) {
     imageContainer: {
       width: 170,
       height: 150,
+      border: (theme) => `2px solid ${theme.palette.secondary.main}`,
       '& img': {
         width: '100%',
         height: '100%',
@@ -17,6 +18,12 @@ function MenuItem(props) {
       pb: 1,
       borderBottom: (theme) => `1px solid ${theme.palette.primary.main}`,
       height: 'fit-content',
+    },
+    desc: {
+      pt: 1,
+      '&:first-letter': {
+        textTransform: 'uppercase',
+      },
     },
   }
 
@@ -39,10 +46,15 @@ function MenuItem(props) {
             alignItems="center"
             sx={menuItemStyles.itemHeading}
           >
-            <Grid item>{title}</Grid>
-            <Grid item>${price}</Grid>
+            <Grid item sx={{ textTransform: 'capitalize' }}>
+              <Typography variant="h6">{title}</Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="h6">${price}</Typography>
+            </Grid>
           </Grid>
-          <Grid item sx={{ pt: 1 }}>
+          {/* adding menuStyles.desc to grid item also works. You can also add it to underlying typography */}
+          <Grid item sx={menuItemStyles.desc}>
             <Typography>{desc}</Typography>
           </Grid>
         </Grid>

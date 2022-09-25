@@ -13,6 +13,7 @@ This project is about displaying Menu Items based on the selected category. When
 6. `<Grid item>` vs `<Grid container>` vs `<Grid container item>`.
 7. How to keep image column and description column in same row in Grid container of MenuItem?
 8. How to use theme prop in sx?
+9. How to make first letter uppercase?
 
 ---
 
@@ -283,5 +284,38 @@ sx = {{
 ```
 
 By doing this, you don't have to import theme in your component.
+
+---
+
+### 9. How to make first letter uppercase?
+
+<br>
+
+You can define your `sx` like this
+
+```js
+desc: {
+    pt: 1,
+    '&:first-letter': {
+      textTransform: 'uppercase',
+    },
+},
+```
+
+Also, this `sx` can also be defined on the `<Grid item>` enclosing typography and need not be on typography itself (this works as well).
+
+```js
+<Grid item sx={menuItemStyles.desc}>
+  <Typography>{desc}</Typography>
+</Grid>
+```
+
+This also works
+
+```js
+<Grid item>
+  <Typography sx={menuItemStyles.desc}>{desc}</Typography>
+</Grid>
+```
 
 ---
