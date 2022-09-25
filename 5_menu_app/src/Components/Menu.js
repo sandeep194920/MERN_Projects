@@ -3,6 +3,7 @@ import { Grid, Typography, Box } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 
 import menu from '../data'
+import MenuItem from './MenuItem'
 function Menu() {
   const theme = useTheme()
 
@@ -40,6 +41,13 @@ function Menu() {
         '&:hover': {
           color: 'white',
         },
+      },
+    },
+    imageContainer: {
+      '& img': {
+        border: `4px solid ${theme.palette.primary.main}`,
+        width: '10rem',
+        height: '8rem',
       },
     },
   }
@@ -80,27 +88,13 @@ function Menu() {
       </Grid>
 
       {/* Menu Items */}
-      <Grid
-        container
-        sx={{ background: 'lightblue', marginTop: 5 }}
-        justifyContent="center"
-        spacing={0}
-      >
-        {currentMenu.map((item) => {
-          return (
-            <Grid item key={item.id}>
-              {/* single card */}
-              <Grid container>
-                {/* image */}
-                <Grid item>
-                  {/* <img src={item.img} alt={item.title} /> */}
-                </Grid>
-                {/* details */}
-                <Grid item></Grid>
-              </Grid>
-            </Grid>
-          )
-        })}
+      <Grid container sx={{ mt: 2 }} spacing={7} justifyContent="center">
+        <MenuItem />
+        <MenuItem />
+        <MenuItem />
+        <MenuItem />
+        <MenuItem />
+        <MenuItem />
       </Grid>
     </Box>
   )

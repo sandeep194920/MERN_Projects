@@ -2,6 +2,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Header from './Components/Header'
 import CssBaseline from '@mui/material/CssBaseline'
 import Menu from './Components/Menu'
+import MenuItem from './Components/MenuItem'
 
 const theme = createTheme({
   palette: {
@@ -32,6 +33,7 @@ function App() {
       <CssBaseline />
       <Header />
       <Menu />
+      {/* <MenuItem /> */}
     </ThemeProvider>
   )
 }
