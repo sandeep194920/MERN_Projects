@@ -1,6 +1,7 @@
 # Project details
 
-- This project is about displaying Menu Items based on the selected category. When `All` is selected, all the items are shown, and when `Breakfast` or `Lunch` or `Dinner` is selected, only those items are shown.
+<span style="color : lightgreen;">This project is about displaying Menu Items based on the selected category. When `All` is selected, all the items are shown, and when `Breakfast` or `Lunch` or `Dinner` is selected, only those items are shown.</span>
+<br>
 
 ## What you will learn?
 
@@ -11,12 +12,23 @@
 5. How to display images in react when we use image links?
 6. `<Grid item>` vs `<Grid container>` vs `<Grid container item>`.
 7. How to keep image column and description column in same row in Grid container of MenuItem?
+8. How to use theme prop in sx?
 
-### 1. ClipPath
+---
+
+<br>
+
+### <span style="color:orange">1. How to use clipPath CSS property?</span>
+
+<br>
 
 In this project, the header has a shape that can be achieved using this clip path css prop. You can get it's CSS here and turn it into Javascript [Clip Path Website](https://bennettfeely.com/clippy/)
 
-### 2. Gradient Colors
+---
+
+### <span style="color:orange">2. Gradient Colors</span>
+
+<br>
 
 You can generate beautiful gradients in these sites that can be applied for all the projects
 
@@ -24,7 +36,11 @@ You can generate beautiful gradients in these sites that can be applied for all 
 
 [To get pre-built gradients](https://cssgradient.io/gradient-backgrounds/)
 
-### 3. ColumnSpacing in Grid
+---
+
+### <span style="color:orange">3. ColumnSpacing in Grid</span>
+
+<br>
 
 While I was working in this project, I added spacing prop on the Grid container and it applied space on both x and y axes. To counter this I had to wrap my Grid in another Grid and did some adjustments.
 
@@ -67,7 +83,11 @@ Notice that, after discovering this columnSpacing, I could comment out the under
 // </Grid>
 ```
 
-### 4. Hower + Active class changes the styling. How to stop that?
+---
+
+### <span style="color:orange">4. Hower + Active class changes the styling. How to stop that?</span>
+
+<br>
 
 - Let's explore the problem what I faced. I was showing active item (selected item) and other items differently
 
@@ -125,7 +145,11 @@ active: {
 },
 ```
 
-### 5. How to display images in react when we use image links?
+---
+
+### <span style="color:orange">5. How to display images in react when we use image links?</span>
+
+<br>
 
 In this project, we are using `data.js` to get our data. In that, we have image link that's like this `./images/item-1.jpeg`
 
@@ -161,7 +185,11 @@ import img from '../public/images/item-1.jpeg' // This is placed in public folde
 ;<img src="./images/item-1.jpeg" alt="this will work" />
 ```
 
-### 6. `<Grid item>` vs `<Grid container>` vs `<Grid container item>`
+---
+
+### <span style="color:orange">6. `<Grid item>` vs `<Grid container>` vs `<Grid container item>`</span>
+
+<br>
 
 `<Grid container></Grid>` is used as a container and inside that, each item can be wrapped by `<Grid item>`
 
@@ -231,8 +259,25 @@ In this case <strong>Sometimes</strong> we can combine item and container like t
 
 <strong>but keep in mind that this container item will be in the new line</strong>
 
-### 7. How to keep image column and description column in same row in Grid container of MenuItem?
+---
 
+### <span style="color:orange">7. How to keep image column and description column in same row in Grid container of MenuItem?</span>
+
+<br>
 We need to use `<Grid container wrap="nowrap">` to keep the items within the Grid container in same row without breaking each column into next line on shrinking the screen.
 
 The same problem was solved in this way in [1-show-hide-people README](https://github.com/sandeep194920/MERN_projects/tree/master/1_show_hide_people#how-to-keep-elements-present-in-grid-items-grid-container-in-same-row)
+
+### <span style="color:orange">8. How to use theme prop in sx?</span>
+
+<br>
+
+You can use it like this
+
+```js
+sx = {{
+      background: (theme) => theme.palette.primary.main,
+}},
+```
+
+By doing this, you don't have to import theme in your component.
