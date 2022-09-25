@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Grid, Typography, Box } from '@mui/material'
+import { Grid, Typography, Box, Container } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 
 import menu from '../data'
@@ -88,14 +88,13 @@ function Menu() {
       </Grid>
 
       {/* Menu Items */}
-      <Grid container sx={{ mt: 2 }} spacing={7} justifyContent="center">
-        <MenuItem />
-        <MenuItem />
-        <MenuItem />
-        <MenuItem />
-        <MenuItem />
-        <MenuItem />
-      </Grid>
+      <Container>
+        <Grid container sx={{ mt: 2 }} spacing={10}>
+          {currentMenu.map((menu) => (
+            <MenuItem key={menu.id} {...menu} />
+          ))}
+        </Grid>
+      </Container>
     </Box>
   )
 }

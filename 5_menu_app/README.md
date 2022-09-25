@@ -1,6 +1,6 @@
 # Project details
 
-<span style="color : lightgreen;">This project is about displaying Menu Items based on the selected category. When `All` is selected, all the items are shown, and when `Breakfast` or `Lunch` or `Dinner` is selected, only those items are shown.</span>
+This project is about displaying Menu Items based on the selected category. When `All` is selected, all the items are shown, and when `Breakfast` or `Lunch` or `Dinner` is selected, only those items are shown.</span>
 <br>
 
 ## What you will learn?
@@ -268,6 +268,8 @@ We need to use `<Grid container wrap="nowrap">` to keep the items within the Gri
 
 The same problem was solved in this way in [1-show-hide-people README](https://github.com/sandeep194920/MERN_projects/tree/master/1_show_hide_people#how-to-keep-elements-present-in-grid-items-grid-container-in-same-row)
 
+---
+
 ### <span style="color:orange">8. How to use theme prop in sx?</span>
 
 <br>
@@ -281,3 +283,5 @@ sx = {{
 ```
 
 By doing this, you don't have to import theme in your component.
+
+---

@@ -1,11 +1,9 @@
 import React from 'react'
-import { Grid, Typography, Box, Paper } from '@mui/material'
+import { Grid, Typography, Box } from '@mui/material'
 
-function MenuItem() {
+function MenuItem(props) {
+  const { title, img, price, desc } = props
   const menuItemStyles = {
-    container: {
-      //   backgroundColor: 'lightblue',
-    },
     imageContainer: {
       width: 170,
       height: 150,
@@ -14,37 +12,41 @@ function MenuItem() {
         height: '100%',
       },
     },
+    itemHeading: {
+      mr: 2,
+      pb: 1,
+      borderBottom: (theme) => `1px solid ${theme.palette.primary.main}`,
+      height: 'fit-content',
+    },
   }
 
   return (
-    <Grid
-      item
-      xs={12}
-      sm={10}
-      md={11}
-      lg={5}
-      //   sx={{ backgroundColor: 'lightblue' }}
-    >
-      {/* Paper adds nice shadow effect */}
-      <Paper>
-        {/* Card */}
-        {/* added nowrap to keep image column and description column in same row. Refer to readme for mode details */}
-        <Grid container wrap="nowrap">
-          <Grid item>
-            <Box sx={menuItemStyles.imageContainer}>
-              <img src="./images/item-1.jpeg" alt="item1" />
-            </Box>
+    // <Grid item xs={12} sm={10} md={11} lg={5}>
+    <Grid item sm={12} md={6}>
+      {/* Card */}
+      {/* added nowrap to keep image column and description column in same row. Refer to readme for mode details */}
+      <Grid container wrap="nowrap" columnSpacing={1}>
+        <Grid item>
+          <Box sx={menuItemStyles.imageContainer}>
+            <img src={img} alt="item1" />
+          </Box>
+        </Grid>
+        <Grid item>
+          <Grid
+            container
+            item
+            justifyContent="space-between"
+            alignItems="center"
+            sx={menuItemStyles.itemHeading}
+          >
+            <Grid item>{title}</Grid>
+            <Grid item>${price}</Grid>
           </Grid>
-          <Grid item>
-            <Typography>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis
-              obcaecati excepturi nihil, quidem adipisci saepe atque eos qui
-              dignissimos dolorem. quos
-            </Typography>
+          <Grid item sx={{ pt: 1 }}>
+            <Typography>{desc}</Typography>
           </Grid>
         </Grid>
-      </Paper>
+      </Grid>
     </Grid>
   )
 }
