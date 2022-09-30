@@ -4,13 +4,13 @@ These projects might not be in the order, but the order in which these were done
 
 #### useState Projects
 
-1. [Show Hide People](https://1-show-hide-people-app.netlify.app/) `Unit testing done`
+1. [Show Hide People](https://1-show-hide-people-app.netlify.app/) `Unit Tests implemented`
 2. [Reviews App](https://2-reviews-app.netlify.app/)
 3. [Accordion](https://4-accordion-questions-app.netlify.app/)
 
 #### useEffect Projects
 
-4. [Tours App](https://3-tours-app.netlify.app/)
+4. [Tours App](https://3-tours-app.netlify.app/) `Express API implemented`
 5. [Menu App](https://5-menu-app.netlify.app/)
 
 #### How to deploy to Netlify
