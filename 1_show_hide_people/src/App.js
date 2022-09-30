@@ -31,7 +31,7 @@ function App() {
         </Typography>
         <Grid container spacing={3}>
           {showFriends &&
-            data.map((person) => <Friend id={person.id} {...person} />)}
+            data.map((person) => <Friend key={person.id} {...person} />)}
         </Grid>
         <Box sx={{ display: 'flex', justifyContent: 'center', marginY: 5 }}>
           <Button
