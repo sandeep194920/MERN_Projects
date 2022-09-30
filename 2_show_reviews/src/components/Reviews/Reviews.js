@@ -44,10 +44,10 @@ function Reviews() {
             <FaQuoteRight color="white" />
           </div>
         </div>
-        <h4>{people[personIndex].name}</h4>
+        <h4 data-testid="name">{people[personIndex].name}</h4>
         <h6>{people[personIndex].job}</h6>
         <br />
-        <p>{people[personIndex].description}</p>
+        <p data-testid="desc">{people[personIndex].description}</p>
         <div css={reviewStyles.buttonContainer}>
           <BsArrowLeftCircle
             onClick={() => reviewHandler('left')}
