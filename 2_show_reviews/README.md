@@ -44,3 +44,19 @@ getMultipleElementsFoundError (node_modules/@testing-library/dom/dist/query-help
 The problem here we have is, we display some random text from the `data.js` and we don't know which description from this `data.js` will be displayed
 
 So we get all the description values from `data.js` in an array and check if our desc, got by `data-testid`, [exists in this array](https://jestjs.io/docs/expect#tocontainitem)
+
+```js
+test('description - p tag is present in review card', () => {
+  // screen.getByTestId('desc') gives html element. textContent gets actual text within this html
+  const desc = screen.getByTestId('desc').textContent
+
+  // now we will get desc for sure as we have described it ourself in the Reviews component. Sine no role for paragraph, let's test if rendered desc is actually one of the 'description's in data we are importing
+
+  // https://jestjs.io/docs/expect#tocontainitem
+
+  const descriptions = data.map((item) => item.description)
+
+  console.log(desc)
+  expect(descriptions).toContain(desc)
+})
+```

@@ -9,7 +9,7 @@ Some projects will have unit tests implemented to it in React Testing Library an
 ### useState Projects
 
 1. [Show Hide People](https://1-show-hide-people-app.netlify.app/) `Unit Tests implemented`
-2. [Reviews App](https://2-reviews-app.netlify.app/)
+2. [Reviews App](https://2-reviews-app.netlify.app/) `Unit Tests implemented`
 3. [Accordion](https://4-accordion-questions-app.netlify.app/)
 
 ### useEffect Projects
