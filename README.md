@@ -1,4 +1,4 @@
-This repo contains React projects (with Material UI, except for a few projects) done topic wise. Each react hook will be that topic, based on which these projects are arranged.
+This repo contains `React projects` (with `Material UI`, except for a few projects) done topic wise. Each react hook will be that topic, based on which these projects are arranged.
 
 Each project will be in its own folder which will have a detailed README that describes what we will learn, some core concepts and challenges we faced during the project.
 
