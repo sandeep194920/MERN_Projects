@@ -10,6 +10,7 @@
 1. How to use useState.
 2. Material UI Container, Box, Grid usage
 3. How to keep elements present in (Grid items) Grid container in same row?
+4. How to write unit tests?
 
 ##### MUI Grid
 
@@ -48,3 +49,12 @@ If we have a requirement where image (on left) and content (on right) must be in
   </Grid>
 </Grid>
 ```
+
+##### Unit Tests
+
+We are writing unit tests here for to test
+
+- If heading is rendered to the UI
+- If correct number of friend cards are being displayed or not initially
+- When the Show Friends button is clicked, the cards are hidden and also the button text changes
+- When this button is clicked again the friend cards are displayed again or not
