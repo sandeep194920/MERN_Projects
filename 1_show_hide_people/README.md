@@ -58,3 +58,5 @@ We are writing unit tests here for to test
 - If correct number of friend cards are being displayed or not initially
 - When the Show Friends button is clicked, the cards are hidden and also the button text changes
 - When this button is clicked again the friend cards are displayed again or not
+
+You can run `npm test` and press `a` to run all the tests
