@@ -11,6 +11,7 @@
 2. Material UI Container, Box, Grid usage
 3. How to keep elements present in (Grid items) Grid container in same row?
 4. How to write unit tests?
+5. How to deploy to Netlify?
 
 ##### MUI Grid
 
@@ -60,3 +61,16 @@ We are writing unit tests here for to test
 - When this button is clicked again the friend cards are displayed again or not
 
 You can run `npm test` and press `a` to run all the tests
+
+##### How to deploy to Netlify
+
+- Each folder in this repo is a react app that we have deployed in this page
+- `cd project_folder`. Example, `cd 1_show_hide_people`
+- `npm run build`
+- Make sure /build is removed in .gitignore. Otherwise this cannot be pushed to git
+- git add, commit and push this build
+- Go to [Netlify site](https://app.netlify.com/start) and choose Github
+- Select MERN_Projects
+- Base directory - project/build. Example, `1_show_hide_people/build` or `2_tours_app/front-end/build`
+- Build command - `npm install`
+- Click on Deploy Site
