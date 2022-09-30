@@ -4,7 +4,7 @@ These projects might not be in the order, but the order in which these were done
 
 #### useState Projects
 
-1. [Show Hide People](https://1-show-hide-people-app.netlify.app/)
+1. [Show Hide People](https://1-show-hide-people-app.netlify.app/) `Unit testing done`
 2. [Reviews App](https://2-reviews-app.netlify.app/)
 3. [Accordion](https://4-accordion-questions-app.netlify.app/)
 
