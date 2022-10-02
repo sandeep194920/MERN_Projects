@@ -11,7 +11,12 @@
 2. Material UI Container, Box, Grid usage
 3. How to keep elements present in (Grid items) Grid container in same row?
 4. How to write unit tests?
+
+- What is src/setupTests.js file?
+
 5. How to deploy to Netlify?
+
+#### MUI Concepts
 
 ##### MUI Grid
 
@@ -51,7 +56,7 @@ If we have a requirement where image (on left) and content (on right) must be in
 </Grid>
 ```
 
-##### Unit Tests
+#### Unit Tests
 
 We are writing unit tests here for to test
 
@@ -61,6 +66,25 @@ We are writing unit tests here for to test
 - When this button is clicked again the friend cards are displayed again or not
 
 You can run `npm test` and press `a` to run all the tests
+
+##### What is `src/setupTests.js` file?
+
+This is a file that helps when we are writing tests. This file contains one single line of code
+
+```js
+import '@testing-library/jest-dom'
+```
+
+Techincally we don't need this file and we can import this line in all our test files, but if it exists at `src/setupTests.js` then we don't need to import in each test file.
+
+- Why do we need this `import '@testing-library/jest-dom'` line in the first place?
+
+It allows you to do things like:
+`expect(element).toHaveTextContent(/react/i)`
+
+`toHaveTextContent` method is actully provided by `@testing-library/jest-dom` and without this import it doesn't work.
+
+[Learn more about other methods provided by `@testing-library/jest-dom`](https://github.com/testing-library/jest-dom)
 
 ##### How to deploy to Netlify
 
