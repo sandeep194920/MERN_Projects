@@ -16,6 +16,8 @@
 
 5. How to deploy to Netlify?
 
+---
+
 #### MUI Concepts
 
 ##### MUI Grid
@@ -56,6 +58,8 @@ If we have a requirement where image (on left) and content (on right) must be in
 </Grid>
 ```
 
+---
+
 #### Unit Tests
 
 We are writing unit tests here for to test
@@ -86,7 +90,9 @@ It allows you to do things like:
 
 [Learn more about other methods provided by `@testing-library/jest-dom`](https://github.com/testing-library/jest-dom)
 
-##### How to deploy to Netlify
+---
+
+#### How to deploy to Netlify
 
 - Each folder in this repo is a react app that we have deployed in this page
 - `cd project_folder`. Example, `cd 1_show_hide_people`
