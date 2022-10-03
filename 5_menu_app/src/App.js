@@ -1,7 +1,7 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import Header from './Components/Header'
+import Header from './Components/Header/Header'
 import CssBaseline from '@mui/material/CssBaseline'
-import Menu from './Components/Menu'
+import Menu from './Components/Menu/Menu'
 
 const theme = createTheme({
   palette: {

@@ -29,7 +29,7 @@ function MenuItem(props) {
 
   return (
     // <Grid item xs={12} sm={10} md={11} lg={5}>
-    <Grid item sm={12} md={6}>
+    <Grid data-testid="menu-item" item sm={12} md={6}>
       {/* Card */}
       {/* added nowrap to keep image column and description column in same row. Refer to readme for mode details */}
       <Grid container wrap="nowrap" columnSpacing={1}>
@@ -47,7 +47,9 @@ function MenuItem(props) {
             sx={menuItemStyles.itemHeading}
           >
             <Grid item sx={{ textTransform: 'capitalize' }}>
-              <Typography variant="h6">{title}</Typography>
+              <Typography data-testid="menu-title" variant="h6">
+                {title}
+              </Typography>
             </Grid>
             <Grid item>
               <Typography variant="h6">${price}</Typography>

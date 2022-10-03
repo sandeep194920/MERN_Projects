@@ -16,6 +16,8 @@
 7. How to keep image column and description column in same row in Grid container of MenuItem?
 8. How to use theme prop in sx?
 9. How to make first letter uppercase?
+10. UNIT TEST: How to get text content from HTML array elements when we do `getAllByRole`?
+11. UNIT TEST: How to test `<Menu/>`?
 
 ---
 
@@ -319,3 +321,63 @@ This also works
 ```
 
 ---
+
+### 10. UNIT TEST: How to get text content from HTML array elements when we do `getAllByRole`?
+
+<br>
+
+In `5_menu_app/src/Components/Menu/Menu.test.js` we are testing whether we are getting the right menu tabs (categories). So to test this we do
+
+```js
+const menuTabs = within(categories).getAllByRole('heading', { level: 6 })
+expect(menuTabs).toHaveLength(4)
+```
+
+While this is good and we know we are getting 4 elements, we might also want to know what elements we are getting (text content of each element to be specific)
+
+`getAllByRole('heading', { level: 6 })` gives us the array of HTML nodes. To get the text content, we can do `.textContent` on each item. So we can do like this
+
+```js
+const actualMenuitems = within(categories)
+  .getAllByRole('heading', { level: 6 })
+  .map((item) => item.textContent.toLocaleLowerCase())
+
+console.log(actualMenuItems) //  [ 'all', 'breakfast', 'lunch', 'shakes' ]
+```
+
+We need to know if this actualMenuItems is what we are expecting. So let's get expected menu items like this
+
+```js
+const expectedMenuItems = [
+  'all',
+  ...new Set(data.map((item) => item.category)), // this line will give array of duplicate items and then, when we put in Set, it will be unique.
+]
+```
+
+Now we can compare both these arrays using
+
+```js
+expect(actualMenuItems).toEqual(expectedMenuItems)
+```
+
+---
+
+### 11. UNIT TEST: How to test `<Menu/>`?
+
+<br>
+
+**We can do an integration test to test**
+
+- When `all` category selected then we should show all items
+- When `breakfast` or any other category is selected we should show only those items that belong to that category
+  - I am doing this way as shown below. First I render `<Menu\>` which renders all `<MenuItem>` components in a `map`
+  - Since `<MenuItem>` is rendered as child of `<Menu\>`, any `data-testid` defined in `<MenuItem>` is also rendered when `<Menu\>` is rendered. See below we are doing `screen.getAllByTestId('menu-item')` and this `menu-item` test ID is present in `Menu Item` component. So we can track how many items are rendered. That's the idea.
+
+```js
+test(`'All' category selected`, () => {
+  render (<Menu\>)
+  // By default 'all' categories are selected
+  const allItems = screen.getAllByTestId('menu-item')
+  expect(allItems.length).toEqual(expectedData['all'].length) // you could also do .toEqual(data.length)
+})
+```

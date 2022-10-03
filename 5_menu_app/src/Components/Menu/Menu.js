@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Grid, Typography, Box, Container } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 
-import menu from '../data'
-import MenuItem from './MenuItem'
+import menu from '../../data'
+import MenuItem from '../MenuItem/MenuItem'
 function Menu() {
   const theme = useTheme()
 
@@ -13,6 +13,12 @@ function Menu() {
   // converting set back to array as we need to iterate it
   const categories = Array.from(categoriesSet)
   categories.unshift('All') // adding this as first element in categories
+
+  /*
+  The above could also be done as
+  const categoriesSet = new Set(menu.map((item) => item.category))
+  const categories = ['All',...categoriesSet]
+*/
 
   const [selected, setSelected] = useState('All')
   const [currentMenu, setCurrentMenu] = useState(menu)
@@ -65,6 +71,7 @@ function Menu() {
     <Box>
       {/* Menu Item Tabs */}
       <Grid
+        data-testid="categories"
         container
         sx={menuStyles.container}
         justifyContent="center"
