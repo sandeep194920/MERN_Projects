@@ -18,6 +18,7 @@
 9. How to make first letter uppercase?
 10. UNIT TEST: How to get text content from HTML array elements when we do `getAllByRole`?
 11. UNIT TEST: How to test `<Menu/>`?
+12. UNIT TEST: How to get code coverage for unit tests?
 
 ---
 
@@ -380,4 +381,99 @@ test(`'All' category selected`, () => {
   const allItems = screen.getAllByTestId('menu-item')
   expect(allItems.length).toEqual(expectedData['all'].length) // you could also do .toEqual(data.length)
 })
+```
+
+---
+
+### 12. UNIT TEST: How to get code coverage for unit tests?
+
+<br>
+
+When we run `npm run test` or `npm test` we get this result
+
+```js
+ PASS  src/Components/Header/Header.test.js
+ PASS  src/Components/Menu/Menu.test.js
+
+Test Suites: 2 passed, 2 total
+Tests:       7 passed, 7 total
+Snapshots:   0 total
+Time:        2.564 s, estimated 3 s
+Ran all test suites.
+
+Watch Usage: Press w to show more.
+```
+
+In this we get to know
+
+- How many tests suites ran, how many passed
+- How many tests ran, how many passed
+- Total time
+
+What if we need more info like
+
+- Files that were tested
+- Code coverage - Which all `.js` files are not tested and some more data, then we can run this below
+
+```js
+'CI=true npm test -- --env=jsdom --coverage'
+```
+
+[Found this here - StackOverflow](https://stackoverflow.com/a/61386453/10824697)
+
+This creates a folder called `coverage` in our project's top level. This folder includes much more details about the tests
+
+Let's put this to our `package.json` file, under scripts
+
+```json
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:coverage": "CI=true npm test -- --env=jsdom --coverage",
+    "eject": "react-scripts eject"
+  },
+```
+
+Now we can run our test coverage like this
+
+```js
+npm run test:coverage
+```
+
+sample output
+
+```js
+❯ npm run test:coverage
+
+> 5_menu_app@0.1.0 test:coverage /Users/sandeepamarnath/Coding/React_Projects/5_menu_app
+> CI=true npm test -- --env=jsdom --coverage
+
+
+> 5_menu_app@0.1.0 test /Users/sandeepamarnath/Coding/React_Projects/5_menu_app
+> react-scripts test "--env=jsdom" "--coverage"
+
+PASS src/Components/Header/Header.test.js
+PASS src/Components/Menu/Menu.test.js
+-------------------------|---------|----------|---------|---------|-------------------
+File                     | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-------------------------|---------|----------|---------|---------|-------------------
+All files                |   87.09 |      100 |    92.3 |   85.71 |
+ src                     |      20 |      100 |       0 |      20 |
+  App.js                 |       0 |      100 |       0 |       0 | 6-27
+  data.js                |     100 |      100 |     100 |     100 |
+  index.js               |       0 |      100 |     100 |       0 | 6-7
+ src/Components/Header   |     100 |      100 |     100 |     100 |
+  Header.js              |     100 |      100 |     100 |     100 |
+ src/Components/Menu     |     100 |      100 |     100 |     100 |
+  Menu.js                |     100 |      100 |     100 |     100 |
+ src/Components/MenuItem |     100 |      100 |     100 |     100 |
+  MenuItem.js            |     100 |      100 |     100 |     100 |
+-------------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 2 passed, 2 total
+Tests:       7 passed, 7 total
+Snapshots:   0 total
+Time:        3.893 s
+Ran all test suites.
 ```

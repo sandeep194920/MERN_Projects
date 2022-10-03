@@ -35,7 +35,6 @@ describe('integration test - correct menu items are displayed when each category
     }
   })
   expectedData['all'] = [...Object.values(expectedData)].flat()
-  console.log(expectedData)
   beforeEach(() => {
     // this will also render child components of Menu which is <MenuItem/> 9 times (9 items). Hence we can test how many items it renders
     render(<Menu />)
