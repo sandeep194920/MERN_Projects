@@ -15,4 +15,4 @@ Some projects will have unit tests implemented to it in React Testing Library an
 ### useEffect Projects
 
 4. [Tours App](https://3-tours-app.netlify.app/) `Express API implemented`
-5. [Menu App](https://5-menu-app.netlify.app/)
+5. [Menu App](https://5-menu-app.netlify.app/) `Unit Tests implemented`
