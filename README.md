@@ -2,7 +2,7 @@ This repo contains `React projects` (with `Material UI`, except for a few projec
 
 Each project will be in its own folder and will have a detailed README that describes the concepts we learn, and some challenges we face during the project.
 
-Some projects will have unit tests implemented to it in `React Testing Library` and we may occassionally use `Express`, and `MonogDB` to build our backend. In such projects, there will be tag/s that indicate these implementations. For example, in `1. Show Hide People` we implemented unit tests, so there's a tag next to it to specify that.
+Some projects will have unit tests implemented to it in `React Testing Library` and we may occassionally use `Express`, and `MonogDB` to build our backend. In such projects, there will be tag/s that indicate these implementations. For example, in `1. Show Hide People` we implement unit tests, so there's a tag next to it to specify that.
 
 ## Deployed Apps
 
