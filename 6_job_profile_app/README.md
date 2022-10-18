@@ -1,5 +1,7 @@
 # Project details
 
+[Job Profile App](https://6-job-profile-app.netlify.app/)
+
 - How to underline text using pseudo selector?
 - How to align grid items (rowSpacing shouldn't affect the heading)
 - How to use `<Grid item container direction = 'row'/>` to put it's child items in same row
