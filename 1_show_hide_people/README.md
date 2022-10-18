@@ -10,11 +10,12 @@
 1. How to use useState.
 2. Material UI Container, Box, Grid usage
 3. How to keep elements present in (Grid items) Grid container in same row?
-4. How to write unit tests?
+4. How to center elements?
+5. How to write unit tests?
 
 - What is src/setupTests.js file?
 
-5. How to deploy to Netlify?
+6. How to deploy to Netlify?
 
 ---
 
@@ -56,6 +57,19 @@ If we have a requirement where image (on left) and content (on right) must be in
     <Typography>{description}</Typography>
   </Grid>
 </Grid>
+```
+
+---
+
+#### How to center elements?
+
+In this we center button.
+
+```js
+<Box sx={{ display: 'flex', justifyContent: 'center', marginY: 5 }}>
+  // centering the button
+  <Button>{showFriends ? 'Hide friends' : 'Show friends'}</Button>
+</Box>
 ```
 
 ---

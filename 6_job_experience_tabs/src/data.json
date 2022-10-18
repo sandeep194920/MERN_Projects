@@ -1,0 +1,49 @@
+[
+  {
+    "name": "Sandeep Amarnath",
+    "position": "Full Stack Web Developer",
+    "duration": "December 2015 - Present",
+    "responsibilities": [
+      "Discuss options with clients to make sure websites meet their needs as well as the needs of their customers.",
+      "Develop websites for variety of companies while maintaining consistent feel and brand awareness.",
+      "Provide technical support to high-level users.",
+      "Demonstrated the ability to work diligently under pressure to meet deadlines",
+      "Designed custom graphics",
+      "Updated website content on a daily basis"
+    ]
+  },
+  {
+    "name": "Johnny Walter",
+    "position": "System Admin",
+    "duration": "June 2017 - July 2019",
+    "responsibilities": [
+      "Research and analyze resources available in the market",
+      "Assemble all software and hardware required",
+      "Data entry and management of game database assets",
+      "Produce prototypes, oversee testing and implement changes",
+      "Create customized software",
+      "Iterate, polish and balance player progression and experience",
+      "Tuning and balance of game data",
+      "Oversee quality assurance process and implement changes"
+    ]
+  },
+  {
+    "name": "Susan Disausa",
+    "position": "Cloud architect",
+    "duration": "February 2018 - June 2019",
+    "responsibilities": [
+      "Developing, designing, deploying, migrating, integrating, and configuring an Azure infrastructure",
+      "Determining workloads requirements",
+      "Running workloads securely on Azure",
+      "Implementing Azure authentication and securing data",
+      "Designing a business continuity strategy",
+      "Create a well-informed cloud strategy and manage the adaption process",
+      "Regularly evaluate cloud applications, hardware, and software",
+      "Develop and organize cloud systems",
+      "Work closely with IT security to monitor the company's cloud privacy",
+      "Respond to technical issues in a professional and timely manner",
+      "Offer guidance in infrastructure movement techniques including bulk application transfers into the cloud",
+      "Identify the top cloud architecture solutions to successfully meet the strategic needs of the company"
+    ]
+  }
+]

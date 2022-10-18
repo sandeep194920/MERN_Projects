@@ -6,7 +6,23 @@
 - How to use `Emotion CSS` for styling (https://emotion.sh/docs/introduction).
 - We chose `Emotion CSS` this because MUI uses this as a key styling option. So in this project, we will learn how to use this emotion in isolation without MUI. This will help our future projects with MUI
 - How to set linear colors for background by using backgroundImage prop
+- How to use pseudo selector
 - How to write unit tests
+
+### How to use pseduo selector
+
+```js
+ '&:before': {
+      content: '" "', // THIS IS IMPORTANT. content : ' ' wont work
+      width: '100%',
+      height: '100%',
+      background: colors.linearBackground(),
+      position: 'absolute', // to support that effect for image
+      top: '-0.3rem',
+      right: '-0.4rem',
+      borderRadius: '50%',
+    },
+```
 
 ### How to write unit tests
 
