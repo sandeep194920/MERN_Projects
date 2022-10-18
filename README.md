@@ -1,8 +1,8 @@
 This repo contains `React projects` (with `Material UI`, except for a few projects) done topic wise. Each react hook will be that topic, based on which these projects are arranged.
 
-Each project will be in its own folder which will have a detailed README that describes what we will learn, some core concepts and challenges we faced during the project.
+Each project will be in its own folder and will have a detailed README that describes the concepts we learn, and some challenges we face during the project.
 
-Some projects will have unit tests implemented to it in React Testing Library and we may occassionally use Express, MonogDB as well to build our backend. In such projects, there will be tag/s that indicate these implementations in the project.
+Some projects will have unit tests implemented to it in `React Testing Library` and we may occassionally use `Express`, and `MonogDB` to build our backend. In such projects, there will be tag/s that indicate these implementations. For example, in `1. Show Hide People` we implemented unit tests, so there's a tag next to it to specify that.
 
 ## Deployed Apps
 
