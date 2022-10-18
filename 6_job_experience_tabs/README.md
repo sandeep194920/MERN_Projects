@@ -6,8 +6,6 @@
 
 ### How to underline text using pseudo selector?
 
-### How to align grid items (rowSpacing shouldn't affect the heading)
-
 This can be done in two ways
 
 - using css prop `text-decoration: underline;` [refer w3school](https://www.w3schools.com/cssref/pr_text_text-decoration.asp)
@@ -81,7 +79,9 @@ I had this problem where, if I need a `Grid` parent to be **both item and contai
 If I did `<Grid item container/>` then the child `<Grid item>` will come in columns even after adding `direction = row` like this
 `<Grid item container direction = 'row'/>`. In this case, **if we need children of parent `<Grid item container/>` to be in same row then add sx and sm props to children `<Grid item/>`**
 
-#### Without xs on `<Grid item>`
+##### Without xs on `<Grid item>`
+
+![image info](./ImagesForReadme/GridContainerRowProblem.png)
 
 ```js
 <Grid item container>
@@ -97,9 +97,9 @@ If I did `<Grid item container/>` then the child `<Grid item>` will come in colu
 </Grid>
 ```
 
-![image info](./ImagesForReadme/GridContainerRowProblem.png)
+##### With xs on `<Grid item xs={0.6}>`
 
-#### With xs on `<Grid item xs={0.6}>`
+![image info](./ImagesForReadme/GridRowSpacingRowSolution.png)
 
 ```js
 <Grid item container>
@@ -114,5 +114,3 @@ If I did `<Grid item container/>` then the child `<Grid item>` will come in colu
   </Grid>
 </Grid>
 ```
-
-![image info](./ImagesForReadme/GridRowSpacingRowSolution.png)
