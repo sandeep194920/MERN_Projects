@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Typography, Box, Grid, Button } from '@mui/material'
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight'
 import employees from '../../data.json'
 
 function Content() {
@@ -122,7 +122,10 @@ function Content() {
               return (
                 <Grid key={role} item container alignItems="center">
                   <Grid item xs={0.5}>
-                    <FormatListBulletedIcon fontSize="small" />
+                    <KeyboardDoubleArrowRightIcon
+                      // fontSize="small"
+                      color="primary"
+                    />
                   </Grid>
                   <Grid item xs={11}>
                     <Typography>{role}</Typography>
