@@ -11,6 +11,7 @@
 - How to use CSS variables
 - How to use CSS modules
 - section vs article. When to use one over another?
+- How to move an element horizontally using keyframe animation?
 
 ### How to install TypeScript create-react-app
 
@@ -80,3 +81,28 @@ function App() {
 ---
 
 ### section vs article. When to use one over another?
+
+---
+
+### How to move an element horizontally using keyframe animation?
+
+```css
+.right {
+  position: relative;
+  animation: moveRight 2s normal;
+}
+
+/*Specify the moveRight animation using keyframes*/
+
+@keyframes moveRight {
+  0% {
+    left: 300px;
+  }
+  100% {
+    left: 700px;
+    opacity: 0;
+  }
+}
+```
+
+---

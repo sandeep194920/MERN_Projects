@@ -8,50 +8,54 @@ function Reviews() {
         Perspiciatis blanditiis rerum, delectus laborum adipisci aliquid,
         omnis fugiat, corrupti asperiores dolorem magni? Animi, obcaecati`,
     },
-    // {
-    //   reviewId: 1,
-    //   data: `1. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    //     Perspiciatis blanditiis rerum, delectus laborum adipisci aliquid,
-    //     omnis fugiat, corrupti asperiores dolorem magni? Animi, obcaecati`,
-    // },
-    // {
-    //   reviewId: 2,
-    //   data: `1. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    //     Perspiciatis blanditiis rerum, delectus laborum adipisci aliquid,
-    //     omnis fugiat, corrupti asperiores dolorem magni? Animi, obcaecati`,
-    // },
+    {
+      reviewId: 1,
+      data: `1. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Perspiciatis blanditiis rerum, delectus laborum adipisci aliquid,
+        omnis fugiat, corrupti asperiores dolorem magni? Animi, obcaecati`,
+    },
+    {
+      reviewId: 2,
+      data: `1. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Perspiciatis blanditiis rerum, delectus laborum adipisci aliquid,
+        omnis fugiat, corrupti asperiores dolorem magni? Animi, obcaecati`,
+    },
   ]
   const [move, setMove] = useState<string | null>(null)
+  const [active, setActive] = useState(1)
 
   const rightHandler = () => {
-    console.log('righthandler')
+    /* 
+    Two things to be done when right btn is clicked
+      * Remove left style (if already exists) and set right style, so that when right btn is clicked, the card moves right
+      * Also, we need to set the next card to active so that, the next card shows up on screen hiding all inactive cards 
+    */
+
+    // move card to right
     setMove('right')
+    // set next card to active. So when right is clicked, the card behind this must become active
+    setActive((prev) => prev - 1)
   }
 
   const leftHandler = () => {
-    console.log('left')
     setMove('left')
+    setActive((prev) => prev + 1)
   }
 
   let reviewContainerStyle = [styles.reviewContainer]
 
-  //   useEffect(()=>{
-
-  //   },[])
   console.log(reviewContainerStyle.join(' '))
   if (move === 'right') {
+    // remove left style and add right one to move this card to right
     reviewContainerStyle = reviewContainerStyle.filter(
       (style) => style !== styles.left
     )
     reviewContainerStyle.push(styles.right)
-    console.log('moving right')
-    console.log(reviewContainerStyle)
   } else if (move === 'left') {
     reviewContainerStyle = reviewContainerStyle.filter(
       (style) => style !== styles.right
     )
     reviewContainerStyle.push(styles.left)
-    console.log('moving left')
   }
 
   return (
@@ -60,7 +64,11 @@ function Reviews() {
         {reviews.map((review) => {
           return (
             <article
-              className={reviewContainerStyle.join(' ')}
+              className={[
+                `${reviewContainerStyle.join(' ')} ${
+                  review.reviewId === active && styles.active
+                }`,
+              ].join(' ')}
               key={review.reviewId}
             >
               {review.data}
