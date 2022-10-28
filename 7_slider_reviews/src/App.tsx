@@ -1,18 +1,10 @@
-import React from 'react'
-import styles from './App.module.css'
-import Reviews from './Components/Reviews/Reviews'
+// Both of these Sliders work the same way
+
+import Slider from './SliderUsingUseEffect'
+// import Slider from './SliderUsingHandlerFunctions'
 
 function App() {
-  return (
-    <div className={styles.appContainer}>
-      <nav className={styles.nav}>
-        <h1>Slider Review</h1>
-      </nav>
-      <section>
-        <Reviews />
-      </section>
-    </div>
-  )
+  return <Slider />
 }
 
 export default App

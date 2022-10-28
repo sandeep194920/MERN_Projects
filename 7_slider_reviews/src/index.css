@@ -1,25 +1,138 @@
-:root {
-  --main-bg: rgb(247, 250, 250);
-  --primary: rgb(13, 13, 13);
-  --primary: #0c252f;
-  --secondary: rgb(242, 255, 0);
-  --primary-text: rgb(255, 255, 255);
-}
-
-* {
-  padding: 0;
+/* Global styles */
+*,
+::after,
+::before {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--main-bg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: var(--clr-grey-10);
+  color: var(--clr-grey-1);
+  line-height: 1.5;
+  font-size: 0.875rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+h4 {
+  font-size: 0.875rem;
+}
+p {
+  margin-bottom: 1.25rem;
+  color: var(--clr-grey-5);
+}
+@media screen and (min-width: 800px) {
+  h1 {
+    font-size: 4rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 1.75rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  body {
+    font-size: 1rem;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1;
+  }
+}
+
+/* Slider */
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.title span {
+  font-size: 0.85em;
+  /* color: coral; */
+  margin-right: 1rem;
+  font-weight: 700;
+}
+
+.person-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 2rem;
+}
+
+.section-center {
+  margin: 0 auto;
+  margin-top: 4rem;
+  width: 80vw;
+  /* have to have a height */
+  height: 450px;
+  max-width: 800px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  background-color: aqua;
+  /*This is the property that hides the next and previous slides. This cuts everything onm right and left and just displays the center one*/
+  /* overflow: hidden; */
+}
+
+article {
+  position: absolute;
+  /* background-color: rgb(17, 23, 23); */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  /* transition: 1s; */ /* Either you can add transition here or to individual (.next, .prev,.active)*/
+}
+
+article.nextSlide {
+  transform: translate(100%);
+  transition: 1s; /* Either you can add transition here or to parent (article) */
+  opacity: 0.75; /* you can see the next slide on uncommenting this */
+}
+
+article.activeSlide {
+  transform: translateX(0);
+  /* background-color: blueviolet; */
+  opacity: 1;
+  transition: 1s;
+}
+
+article.prevSlide {
+  transition: 1s;
+  transform: translateX(-100%);
+  opacity: 0.75; /* you can see the prev slide on uncommenting this */
 }
