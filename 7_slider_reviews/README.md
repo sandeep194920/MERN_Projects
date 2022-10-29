@@ -1,8 +1,17 @@
 # Project details
 
+- How to create a create-react-app project with TypeScript?
 - High level project steps
 - How to center an image
 - Automatic slides without button click (How useEffect cleanup function works)?
+
+### How to create a create-react-app project with TypeScript?
+
+If you are in a parent folder and run this command `npx create-react-app my-app --template typescript` then a child folder called `my-app` will be created and inside that the project files will exist.
+
+## If you directly want the project files to exist inside your parent folder and don't want a new child folder (my-app), then run `npx create-react-app . --template typescript`
+
+---
 
 ### High level project steps
 
