@@ -1,8 +1,8 @@
-https://codepen.io/sandeepamarnath/pen/jOKOQGb
-
 # Project details
 
 - High level project steps
+- How to center an image
+- Automatic slides without button click (How useEffect cleanup function works)?
 
 ### High level project steps
 
@@ -50,3 +50,83 @@ https://codepen.io/sandeepamarnath/pen/jOKOQGb
 - We can handle the left and right buttons using handler functions or useEffects. In this project, we will see both the approaches. You have 2 implementations for same functionality (one commented out).
   - `7_slider_reviews/src/SliderUsingUseEffect.tsx`
   - `7_slider_reviews/src/SliderUsingHandlerFunctions.tsx`
+
+---
+
+### How to center an image
+
+Just like text centering, with `text-align:center`, we could also do the same for images. [Refer my codepen example here](https://codepen.io/sandeepamarnath/pen/jOKOQGb)
+
+---
+
+### Automatic slides without button click (How useEffect cleanup function works)?
+
+We have implemented automatic slides where, after 4 seconds, the slides moves to right by itself if we don't click the right button. We do this using `useEffect with a cleanup function`
+
+So, let's understand how this works in two steps
+
+- How `useEffect cleanup` function works?
+- How did we implement this automatic slides using `useEffect cleanup`?
+
+#### How `useEffect cleanup` function works?
+
+[See this demo to understand](https://codesandbox.io/s/agitated-gianmarco-nmm586?file=/src/App.js)
+
+```jsx
+export default function App() {
+  const [val, setVal] = useState(9)
+  useEffect(() => {
+    console.log('Running useEffect')
+    return () => {
+      console.log('cleaning up previous effect')
+    }
+  }, [val])
+
+  return (
+    <div className="App">
+      <h1>Value - {val}</h1>
+      <button onClick={() => setVal((pre) => pre + 1)}>+</button>
+    </div>
+  )
+}
+```
+
+- When app loads initially, the useEffect is run so it prints `Running useEffect`. BUT (when app loads initially) the cleanup function WILL NOT RUN, hence you don't see console log `cleaning up previous effect`
+- When `+` button is clicked, val changes (and val is a depenedency in our useEffect) so useEffect runs again. This time, the cleanup function runs first before the `Running useEffect` and cleansup the previous `useEffect` residues, and THEN RUNS `Running useEffect`.
+- Also, the cleanup function runs once the component is unmounted (some other component is shown on the screen)
+- So to summarize this, the cleanup function runs in two cases
+  - Doesn't run first time when page loads, but runs next time when useEffect is triggered to cleanup the previously run useEffect
+  - It also runs when the component is removed from the DOM / unmounted (when some other component is shown on screen)
+
+Ok, with this understanding, let's now look at how to implement this auto slider
+
+#### How did we implement this automatic slides using `useEffect cleanup`?
+
+```js
+// automatically move slides after 4 seconds (4000ms) if right btn are is clicked
+
+useEffect(() => {
+  // UseEffect MAIN CODE
+  const interval = setInterval(() => {
+    setActivePerson((prev) => {
+      if (prev === 0) return people.length - 1
+      return prev - 1
+    })
+  }, 4000)
+
+  // CLEANUP FUNCTION
+  return () => {
+    clearInterval(interval)
+  }
+}, [activePerson])
+```
+
+We have two parts in our `useEffect` -> `MAIN CODE` and a `CLEANUP FUNCTION`.
+
+- First time the page loads, we know the `cleanup` is not run, only the `main code` runs. Hence a new `interval` due to setInterval is created
+- After 4 seconds, the code within setInterval exectues, thus
+  - Active slide is moved to right
+  - `activePerson` state is updated which will trigger this `useEffect` hook again
+- Now we have `useEffect` hook triggered again, this time the `cleanup` function runs first hence removes the previously completed interval. After the `cleanup` function is done, the `main code` is run setting a new `interval`, and after 4s the `activePerson` is updated again making the hook to re-run
+- Let's say, the useEffect hook runs again, cleans up previous `interval` and `main code` is run, waited for 2 seconds thinking that, after 2 more seconds, I can update the `activePerson` which will move the slide to right. But during the 3rd second, the user manually click the right button.
+  - On manually clicking right button, the `activePerson` got updated, thus this `useEffect` re-ran again at 3rd second. The `cleanup` function is ran, and that clears the active `interval` (from previous `useEffect` call) which had run for only 3 seconds, thus not letting it to complete 4 seconds, and then the `main code` is run which will create a new interval again (it didn't let old interval to complete which had finished 3 seconds).

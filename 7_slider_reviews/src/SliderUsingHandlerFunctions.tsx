@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import people from './data'
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import { FaQuoteRight } from 'react-icons/fa'
 
 function SliderUsingHandlerFunctions() {
   const [activePerson, setActivePerson] = useState(0)
@@ -19,13 +21,23 @@ function SliderUsingHandlerFunctions() {
       return prev - 1
     })
   }
+  // automatically move slides after 4 seconds (4000ms) if right btn are is clicked
+  useEffect(() => {
+    const interval = setInterval(() => {
+      rightHandler()
+    }, 4000)
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [activePerson])
 
   return (
     <section className="section">
       <div className="title">
-        <span>
-          <h2>Reviews</h2>
-        </span>
+        <h2>
+          <span> / </span> reviews
+        </h2>
       </div>
 
       <div className="section-center">
@@ -49,16 +61,19 @@ function SliderUsingHandlerFunctions() {
               <img src={image} alt={name} className="person-img" />
               <h4>{name}</h4>
               <p className="title">{title}</p>
-              <p>{quote}</p>
+              <div className="quote">
+                <p>{quote}</p>
+                <FaQuoteRight className="quoteIcon" />
+              </div>
             </article>
           )
         })}
-      </div>
-      <div>
-        <button onClick={leftHandler}>Left</button>
-      </div>
-      <div>
-        <button onClick={rightHandler}>Right</button>
+        <button className="prevBtn" onClick={leftHandler}>
+          <FiChevronLeft />
+        </button>
+        <button className="nextBtn" onClick={rightHandler}>
+          <FiChevronRight />
+        </button>
       </div>
     </section>
   )
