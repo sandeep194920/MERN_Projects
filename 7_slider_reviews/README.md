@@ -1,5 +1,7 @@
 # Project details
 
+[Slider Reviews App](https://7-review-slider.netlify.app/)
+
 - How to create a create-react-app project with TypeScript?
 - High level project steps
 - How to center an image
