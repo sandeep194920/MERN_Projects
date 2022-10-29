@@ -11,7 +11,7 @@
 
 If you are in a parent folder and run this command `npx create-react-app my-app --template typescript` then a child folder called `my-app` will be created and inside that the project files will exist.
 
-## If you directly want the project files to exist inside your parent folder and don't want a new child folder (my-app), then run `npx create-react-app . --template typescript`
+If you directly want the project files to exist inside your parent folder and don't want a new child folder (my-app), then run `npx create-react-app . --template typescript`
 
 ---
 
