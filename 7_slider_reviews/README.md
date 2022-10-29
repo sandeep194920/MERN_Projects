@@ -6,6 +6,7 @@
 - High level project steps
 - How to center an image
 - Automatic slides without button click (How useEffect cleanup function works)?
+- Why to use `rebase` over `merge` when merging main branch into feature branch?
 
 ### How to create a create-react-app project with TypeScript?
 
@@ -141,3 +142,9 @@ We have two parts in our `useEffect` -> `MAIN CODE` and a `CLEANUP FUNCTION`.
 - Now we have `useEffect` hook triggered again, this time the `cleanup` function runs first hence removes the previously completed interval. After the `cleanup` function is done, the `main code` is run setting a new `interval`, and after 4s the `activePerson` is updated again making the hook to re-run
 - Let's say, the useEffect hook runs again, cleans up previous `interval` and `main code` is run, waited for 2 seconds thinking that, after 2 more seconds, I can update the `activePerson` which will move the slide to right. But during the 3rd second, the user manually click the right button.
   - On manually clicking right button, the `activePerson` got updated, thus this `useEffect` re-ran again at 3rd second. The `cleanup` function is ran, and that clears the active `interval` (from previous `useEffect` call) which had run for only 3 seconds, thus not letting it to complete 4 seconds, and then the `main code` is run which will create a new interval again (it didn't let old interval to complete which had finished 3 seconds).
+
+---
+
+### Why to use `rebase` over `merge` when merging main branch into feature branch?
+
+I was using `git merge master` into my feature branch, but rebase would be better because of [this reason](https://stackoverflow.com/a/64319712/10824697)
