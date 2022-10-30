@@ -18,3 +18,4 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 5. [Menu App](https://5-menu-app.netlify.app/) &nbsp; `Unit Tests implemented`
 6. [Job Profile App](https://6-job-profile-app.netlify.app/)
 7. [Slider Reviews App](https://7-review-slider.netlify.app/) &nbsp; `Typescript` &nbsp; `useEffect cleanup function` &nbsp; `CSS only`
+8. [Text Generator](https://8-text-generator.netlify.app/) &nbsp; `useEffect cleanup function` &nbsp; `CSS only` &nbsp; `html form`
