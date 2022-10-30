@@ -7,6 +7,7 @@
 - How to center an image
 - Automatic slides without button click (How useEffect cleanup function works)?
 - Why to use `rebase` over `merge` when merging main branch into feature branch?
+- `section` vs `article`
 
 ### How to create a create-react-app project with TypeScript?
 
@@ -148,3 +149,12 @@ We have two parts in our `useEffect` -> `MAIN CODE` and a `CLEANUP FUNCTION`.
 ### Why to use `rebase` over `merge` when merging main branch into feature branch?
 
 I was using `git merge master` into my feature branch, but rebase would be better because of [this reason](https://stackoverflow.com/a/64319712/10824697)
+
+---
+
+### `section` vs `article`
+
+[Watch this](https://www.youtube.com/watch?v=EqAXsyhcLQg&ab_channel=SergiyPrygara)
+
+- article is independent piece of content
+- section is used inside content genearally to further divide content into seperate areas

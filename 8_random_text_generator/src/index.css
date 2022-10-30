@@ -1,0 +1,120 @@
+*,
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Roboto', sans-serif;
+  background-color: azure;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+:root {
+  --slant: 'Courgette', cursive;
+  --primary-colour: rgb(1, 40, 42);
+  --warning-color: red;
+  --btn-select: rgb(25, 66, 73);
+  --secondary-colour: white;
+  --copy-btn: rgb(139, 142, 146);
+  --copied: green;
+}
+
+h3 {
+  margin-right: 1.3rem;
+}
+
+article nav {
+  background-color: var(--primary-colour);
+  color: var(--secondary-colour);
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+.section-center {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+  align-items: center;
+}
+
+.section-center button {
+  margin-left: 2rem;
+  background-color: var(--primary-colour);
+  background: #000;
+  color: var(--secondary-colour);
+  border-radius: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  border: none;
+}
+
+.section-center .copy-btn {
+  background-color: var(--copy-btn);
+}
+
+.section-center .copied {
+  background-color: var(--copied);
+}
+
+.section-center input {
+  width: 5rem;
+  height: 2rem;
+  outline: var(--primary-colour);
+  font-size: 1rem;
+}
+
+.text-container {
+  max-width: 70vw;
+  margin: 0 auto;
+  line-height: 1.5rem;
+}
+
+.text-container p::selection {
+  color: var(--secondary-colour);
+  background-color: var(--primary-colour);
+}
+
+.text-container p {
+  margin-bottom: 2rem;
+}
+
+/* show/hide button container */
+
+.show-hide {
+  margin-left: 4rem;
+}
+
+.show-hide button {
+  margin-left: unset;
+  border-radius: 0;
+  padding: 3px 12px;
+  background-color: transparent;
+  border: 1px solid var(--primary-colour);
+  color: var(--primary-colour);
+}
+
+.show-hide .selected {
+  color: var(--secondary-colour);
+  background-color: var(--btn-select);
+}
+
+.message {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--warning-color);
+  word-spacing: 2px;
+}
