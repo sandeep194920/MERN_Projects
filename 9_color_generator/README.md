@@ -1,5 +1,7 @@
 # Project details
 
+[Color Generator](https://9-colour-generator.netlify.app/)
+
 - When to use type vs interface (**TODO**)
 - How to get and use interface of some unknown object?
 - Try, catch and finally (we haven't used finally in our app but just did some research on that so adding it here)
