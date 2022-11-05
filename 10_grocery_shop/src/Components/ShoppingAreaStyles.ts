@@ -29,7 +29,6 @@ const styles = {
   },
 
   errorText: {
-    color: 'red',
     ...center,
   },
 
@@ -40,6 +39,12 @@ const styles = {
 
   item: {
     ...verticalSpacing,
+  },
+  icon: {
+    cursor: 'pointer',
+  },
+  iconDisabled: {
+    cursor: 'not-allowed',
   },
 }
 
