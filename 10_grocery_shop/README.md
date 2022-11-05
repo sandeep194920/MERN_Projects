@@ -1,46 +1,64 @@
-# Getting Started with Create React App
+# Project details
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Remove this - Tags - CRUD on UI, unique ids, better defenition of styles in mui, localstorage
 
-## Available Scripts
+- How to generate unique IDs in react (useId vs nanoid)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+### How to generate unique IDs in react
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[useId hook introduced in react 18](https://reactjs.org/docs/hooks-reference.html#useid)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+`useId` can be used to generate unique Ids. This is helpful when mapping the data where we can use this useId as key prop.
 
-### `npm test`
+This works best when we are defining ids on html form, for example, on input field.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Note from react docs](https://reactjs.org/docs/hooks-reference.html#useid): useId is not for generating keys in a list. Keys should be generated from your data.
 
-### `npm run build`
+Hence doing something like this is not good as we are generating multiple useId() calls which is bad for performance
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```js
+  const [items, setItems] = useState<[] | Item[]>([
+    { id: useId(), name: 'Apples' },
+    { id: useId(), name: 'Oranges' },
+    { id: useId(), name: 'Eggs' },
+  ])
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Instead, we can do this
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```js
+  const id = useId()
+  const [items, setItems] = useState<[] | Item[]>([
+    { id: `${id}-0001`, name: 'Apples' },
+    { id: `${id}-0002`, name: 'Oranges' },
+    { id: `${id}-0003`, name: 'Eggs' },
+  ])
+```
 
-### `npm run eject`
+But while adding the elements dynamically, here's what I did
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```js
+const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault()
+  if (item === '') {
+    setError(true)
+    return
+  }
+  const itemId = `${id}-${item}` // This line causes same key if name is same
+  const newItem = { id: itemId, name: item }
+  // setItems([...items, newItem]) // first way to declare state without using previous state
+  setItems((prevItems) => [...prevItems, newItem]) // second way to declare state using previous state
+}
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+But we have a problem here as well. For two elements having same content, we still get same key because of line **const itemId = `${id}-${item}`** above.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![use ID issue](./readme_images/use-id-error.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+So let's use nano-id package for now until we get to know some better approach of using this useId for this usecase.
 
-## Learn More
+[Use nanoId like this](https://stackoverflow.com/a/65962066/10824697)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![nano ID solves this issue](./readme_images/nano-id-solves.png)
