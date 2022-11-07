@@ -1,5 +1,9 @@
 # Project details
 
+[Grocery Store](https://10-grocery-store.netlify.app/)
+
+## Details
+
 This project is a good `CRUD` exercise where we have `add, remove, update delete` functionality. We will learn many things here like
 
 We have two implementations here
@@ -10,13 +14,14 @@ We have two implementations here
 Initially I worked on `ShoppingArea.tsx`, but then realized I could do better in a few places. I learned from these mistakes and from John's (Udemy) implementation and improved my code in `ImprovedShoppingArea.tsx`.
 Here's all the things we learn in this project.
 
-Remove this - Tags - CRUD on UI, unique ids, better defenition of styles in mui, localstorage, alert, object setState based on prev state, cleanup function, conditionally add styles
+## Things we can learn
 
 - How to generate unique IDs in react (useId vs nanoid)
 - How to set and retrieve Objects from local storage
 - How to set alert programmatically based on different conditions on CRUD
 - How to set state for an object based on previous state
 - CRUD Functionality
+- How to add an object to existing style object based on different conditions
 
 ---
 
@@ -223,4 +228,20 @@ setItems(itemsAfterEdit)
 ```js
 const updatedItems = items.filter((item) => item.id !== id)
 setItems(updatedItems)
+```
+
+---
+
+### How to add an object to existing style object based on different conditions
+
+```js
+<Typography sx={{ ...styles.alertText, ...(alert.type && styles[alert.type]) }}>
+  {alert.msg}
+</Typography>
+```
+
+You can see that we have common style `alertText`. `alert.type` can be `succcess` or `danger`. So we need to add `alert['success']` or `alert['danger']` based on condition, so we can do this
+
+```js
+sx={{ ...styles.alertText, ...(alert.type && styles[alert.type]) }}>
 ```
