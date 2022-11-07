@@ -1,4 +1,3 @@
-import React from 'react'
 import { ThemeProvider } from '@mui/material/styles'
 import theme from './GlobalStyles/theme'
 // import ShoppingArea from './Components/ShoppingArea'

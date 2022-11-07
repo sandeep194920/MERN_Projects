@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import people from './data'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { FaQuoteRight } from 'react-icons/fa'
