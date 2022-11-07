@@ -13,75 +13,109 @@ import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { nanoid } from 'nanoid'
 
+/* Define Constants*/
+const CANT_BE_EMPTY_ERROR = `Items can't be empty. Please enter an item`
+const ADDED = `Item added successfullly`
+const REMOVED = `Item removed successfully`
+const CLEARED = `All items cleared`
+const UPDATED = `Item updated successfully`
+
+/* Define Interfaces */
 interface Item {
   id: string
   name: string
 }
 
+interface Alert {
+  show: boolean
+  msg?: string
+  type?: 'danger' | 'success' // type could be either of these two values
+}
+
+/* Define initial values */
 const initialItems = [
   { id: nanoid(), name: 'Apple' },
   { id: nanoid(), name: 'Orange' },
   { id: nanoid(), name: 'Banana' },
 ]
 
-function ShoppingArea() {
-  // const id = useId()
+// get local storage items if available. Else, get our defined items (initialItems)
+const getLocalStorageItems = () => {
+  let items = []
+  if (localStorage.getItem('locallyStoredItems')) {
+    items = JSON.parse(localStorage.getItem('locallyStoredItems') || '[]')
+  } else {
+    items = initialItems
+  }
+  return items
+}
+
+function ImprovedShoppingArea() {
+  /* Define State values */
   const [item, setItem] = useState('')
-  const [alert, setAlert] = useState({
-    added: false,
-    removed: false,
-    error: false,
-    updated: false,
+  const [alert, setAlert] = useState<Alert>({
+    show: false,
   })
+  // to know if editing or not
   const [editMode, setEditMode] = useState(false)
+  // to know which item is currently editted
   const [editId, setEditId] = useState<null | string>(null)
-
-  // WE ARE NOT TAKING THE APPROACH OF USEID - PLEASE SEE README
-
-  // const [items, setItems] = useState<[] | Item[]>([
-  //   { id: `${id}-0001`, name: 'Apples' },
-  //   { id: `${id}-0002`, name: 'Oranges' },
-  //   { id: `${id}-0003`, name: 'Eggs' },
-  // ])
-
-  // Without localstorage
-  // const [items, setItems] = useState<[] | Item[]>([
-  //   { id: nanoid(), name: 'Apples' },
-  //   { id: nanoid(), name: 'Oranges' },
-  //   { id: nanoid(), name: 'Eggs' },
-  // ])
-
   // With localstorage
-  const [items, setItems] = useState<[] | Item[]>(
-    localStorage.getItem('storedItems')
-      ? JSON.parse(localStorage.getItem('storedItems') || '[]')
-      : initialItems // if storedItems are not present in localstorage then initialItems are read
-  )
+  const [items, setItems] = useState<[] | Item[]>(getLocalStorageItems())
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  /* Define utility functions (functions that can be used in other functions) */
 
-    if (item === '') {
-      setAlert({ ...alert, error: true, added: false, removed: false })
-      return
-    }
-    // WE ARE NOT TAKING THE APPROACH OF USEID - PLEASE SEE README
-    //const itemId = `${id}-${item}` // This line causes same key if name is same
-
-    const newItem = { id: nanoid(), name: item }
-    setItem('')
-
-    // setItems([...items, newItem]) // first way to declare state without using previous state
-    setItems((prevItems) => [...prevItems, newItem]) // second way to declare state using previous state
-    setAlert({
-      ...alert,
-      error: false,
-      added: true,
-      removed: false,
-      updated: false,
-    })
+  const showAlert = (
+    show: boolean = true,
+    msg?: string,
+    type?: Alert['type']
+  ) => {
+    setAlert((prevAlert) => ({
+      ...prevAlert,
+      show,
+      msg,
+      type,
+    }))
   }
 
+  const capitalize = (str: string) => {
+    return `${str[0].toUpperCase()}${str.slice(1)}`
+  }
+
+  /* Define handler functions */
+
+  // when user clicks on ADD or EDIT button
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    // validate the input
+    if (item === '') {
+      showAlert(true, CANT_BE_EMPTY_ERROR, 'danger')
+      return
+    }
+    // edit mode
+    if (editMode) {
+      // edit the current item and set edit mode to false
+      const itemsAfterEdit = items.map((myItem) => {
+        if (myItem.id === editId) {
+          myItem = { ...myItem, name: capitalize(item) }
+        }
+        return myItem
+      })
+      setItems(itemsAfterEdit)
+      setEditMode(false)
+      showAlert(true, UPDATED, 'success')
+      // add mode
+    } else {
+      // this is hit when we are not editing. When we add an item
+      const newItem = { id: nanoid(), name: capitalize(item) }
+      setItems((prevItems) => [...prevItems, newItem])
+      showAlert(true, ADDED, 'success')
+    }
+    // setting the input back to '' after edit or add
+    setItem('')
+  }
+
+  // when user clicks on edit on any item
   const editHandler = (id: string) => {
     setEditMode(true)
     const itemToUpdate = items.find((item) => item.id === id)
@@ -91,107 +125,52 @@ function ShoppingArea() {
     }
   }
 
-  const submitHandlerOnEdit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if (item === '') {
-      setAlert({
-        ...alert,
-        error: true,
-        added: false,
-        removed: false,
-        updated: false,
-      })
-      return
-    }
-    setEditMode(false)
-    const updatedItems = items.map((updatedItem) => {
-      if (updatedItem.id === editId) {
-        updatedItem.name = item
-      }
-      return updatedItem
-    })
-    setAlert({ ...alert })
-    setItems(updatedItems)
-    setItem('')
-    setAlert({
-      ...alert,
-      error: false,
-      added: false,
-      removed: false,
-      updated: true,
-    })
-  }
-
+  // when user clicks on delete icon
   const deleteHandler = (id: string) => {
     // when editting the product, the delete should not work
     if (editMode) return
     const updatedItems = items.filter((item) => item.id !== id)
+    // setting items after removal of selected item
     setItems(updatedItems)
-    localStorage.setItem('storedItems', JSON.stringify(updatedItems))
-    setAlert({
-      ...alert,
-      error: false,
-      added: false,
-      removed: true,
-      updated: false,
-    })
+    showAlert(true, REMOVED, 'danger')
   }
 
+  // when user clears all the items by clicking clear btn
+  const clearHandler = () => {
+    setItems([])
+    showAlert(true, CLEARED, 'success')
+  }
+
+  /* Defining UseEffects*/
+
+  // to updated local storage if items change
   useEffect(() => {
     // if items change anywhere - in handleSubmit/ deleteHandler/ submitHandlerOnEdit we need to update our local storage as well and make it equal to our items state
-    localStorage.setItem('storedItems', JSON.stringify(items))
+    localStorage.setItem('locallyStoredItems', JSON.stringify(items))
   }, [items])
 
+  // alert should disappear after 3 seconds
   useEffect(() => {
-    // we need alert to be disappeared after 3 sec
     const timeOut = setTimeout(() => {
-      setAlert((prev) => ({
-        ...prev,
-        show: false,
-        added: false,
-        removed: false,
-        error: false,
-        updated: false,
-      }))
+      showAlert(false)
     }, 3000)
     return () => clearTimeout(timeOut)
-  }, [items, alert])
+  }, [alert])
 
-  let alertJSX
-
-  if (alert.added) {
-    alertJSX = (
-      <Typography variant="h6" color="green" sx={styles.alertText}>
-        Item added
-      </Typography>
-    )
-  } else if (alert.error) {
-    alertJSX = (
-      <Typography variant="h6" color="error" sx={styles.alertText}>
-        Item cannot be empty
-      </Typography>
-    )
-  } else if (alert.removed) {
-    alertJSX = (
-      <Typography variant="h6" color="green" sx={styles.alertText}>
-        Item removed
-      </Typography>
-    )
-  } else if (alert.updated) {
-    alertJSX = (
-      <Typography variant="h6" color="green" sx={styles.alertText}>
-        Item updated
-      </Typography>
-    )
-  }
   return (
     <Container>
       <Paper sx={styles.container} elevation={8}>
         <Typography sx={styles.heading} variant="h4" component="h3">
           Grocery Store
         </Typography>
-        {alertJSX}
-        <form onSubmit={editMode ? submitHandlerOnEdit : handleSubmit}>
+        {alert.show && (
+          <Typography
+            sx={{ ...styles.alertText, ...(alert.type && styles[alert.type]) }}
+          >
+            {alert.msg}
+          </Typography>
+        )}
+        <form onSubmit={submitHandler}>
           <Grid container alignItems="center" justifyContent="space-evenly">
             <Grid item>
               <TextField
@@ -247,7 +226,7 @@ function ShoppingArea() {
         </Box>
         {items.length > 0 && !editMode && (
           <Grid container justifyContent="center">
-            <Button onClick={() => setItems([])}>Clear Items</Button>
+            <Button onClick={clearHandler}>Clear Items</Button>
           </Grid>
         )}
       </Paper>
@@ -255,4 +234,4 @@ function ShoppingArea() {
   )
 }
 
-export default ShoppingArea
+export default ImprovedShoppingArea

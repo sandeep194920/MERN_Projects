@@ -3,10 +3,10 @@ import { createTheme } from '@mui/material/styles'
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#541653',
+      main: '#206F74',
     },
     secondary: {
-      main: '#F4EDE4',
+      main: '#FFF',
     },
     /* This will be overridden by MUICssBaseline style in components key below*/
     // background: {
@@ -28,7 +28,8 @@ const theme = createTheme({
         //         #541653 95%
         //   );
             
-            background:${theme.palette.primary.dark};
+            background:#000
+            ;
 
           }
         `,

@@ -10,7 +10,7 @@ interface ShoppingStyles {
 }
 
 // style snippets that can be reused
-const center = {
+const centerText = {
   marginBottom: '1rem',
   textAlign: 'center',
 }
@@ -26,15 +26,17 @@ const styles = {
     margin: 'auto',
     marginTop: '25vh',
     padding: '2rem',
+    // border: (theme: ShoppingStyles) =>
+    // `1px solid ${theme.palette.primary.main}`,
   },
 
-  errorText: {
-    ...center,
+  alertText: {
+    ...centerText,
   },
 
   heading: {
     color: (theme: ShoppingStyles) => theme.palette.primary.main,
-    ...center,
+    ...centerText,
   },
 
   item: {
@@ -45,6 +47,13 @@ const styles = {
   },
   iconDisabled: {
     cursor: 'not-allowed',
+  },
+  // alert
+  danger: {
+    color: 'red',
+  },
+  success: {
+    color: 'green',
   },
 }
 
