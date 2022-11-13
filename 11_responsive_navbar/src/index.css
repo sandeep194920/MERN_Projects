@@ -1,0 +1,180 @@
+:root {
+  --navbar-clr: black;
+  --link-clr: #b8996f;
+  --social-icon-clr: white;
+  --hover-clr: #059cdc;
+  --hover-bg-clr: #d4c2a9;
+  --logo-width-height: 8rem;
+}
+
+*,
+html {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+nav {
+  /* background-image: linear-gradient(to right, #f05c01, #f59e00); */
+  background-color: var(--navbar-clr);
+  justify-content: space-around;
+  box-shadow: 0px 0px 2px 0px black;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.logo img {
+  width: var(--logo-width-height);
+  height: var(--logo-width-height);
+}
+
+.nav-items,
+.icon-container {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+@media screen and (max-width: 776px) {
+  .nav-items,
+  .icon-container {
+    display: none;
+  }
+}
+
+li {
+  cursor: pointer;
+}
+.nav-items li {
+  margin-right: 2.3rem;
+  font-size: 1.1rem;
+}
+.small-screen-nav li a,
+.nav-items li a {
+  color: var(--link-clr);
+  text-decoration: none;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.nav-items li a:hover,
+.small-screen-nav li a:hover {
+  color: var(--hover-clr);
+}
+
+.nav-items li:hover {
+  transform: scale(1.2);
+  transition: all 0.2s;
+}
+
+.small-screen-nav li:hover {
+  background-color: var(--navbar-clr);
+  font-size: 1.2rem;
+  transition: all 0.2s;
+}
+
+.icon-container {
+  width: 10rem;
+}
+
+.icon {
+  font-size: 1.4rem;
+  color: var(--social-icon-clr);
+  transition: all 0.2s;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+  color: var(--hover-clr);
+}
+
+@media screen and (min-width: 776px) {
+  .menu-icon {
+    display: none;
+    font-size: 1.8rem;
+  }
+}
+
+.menu-icon:hover {
+  transform: rotate(90deg);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+/* SMALL SCREEN NAVBAR*/
+
+/* div container - parent - show*/
+.small-screen-nav-shown,
+.small-screen-nav-hidden {
+  overflow: hidden;
+  transition: height 0.5s;
+}
+/* div container - parent - show*/
+.small-screen-nav-shown {
+  /* We won't use display none but we will use height 0 */
+  /* we can comment this hardcoded height as we will use height from useRef dynamically */
+  height: 10rem;
+}
+/* div container - parent - hide*/
+.small-screen-nav-hidden {
+  /* We won't use display none but we will use height 0 */
+  height: 0;
+}
+
+/* div container - child */
+.small-screen-nav-hidden ul,
+.small-screen-nav-shown ul {
+  padding-left: 2rem;
+  list-style: none;
+  /*  overflow: hidden; should be present - the max height of container is shown until the items are present. Content is only shown unitl height of this or parent container  */
+  overflow: hidden;
+  background-color: var(--navbar-clr);
+}
+
+/* on large screen, we don't want to show small-scren */
+@media screen and (min-width: 776px) {
+  .small-screen-nav-shown {
+    display: none;
+  }
+}
+
+.small-screen-nav-shown ul li,
+.small-screen-nav-hidden ul li {
+  padding: 0.5rem;
+}
+
+.small-screen-nav-shown ul li a,
+.small-screen-nav-hidden ul li a {
+  text-decoration: none;
+  /* making a tag as display block because, when we click anywhere in that row, it should trigger the click on link */
+  display: block;
+  color: var(--link-clr);
+}
+
+.small-screen-nav-shown li:hover {
+  background-color: var(--hover-bg-clr);
+}
+
+.small-screen-nav-shown li:hover a {
+  color: var(--hover-clr);
+}
+
+.small-screen-nav-shown li a:hover {
+  color: var(--hover-clr);
+}
