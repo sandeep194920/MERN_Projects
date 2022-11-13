@@ -26,7 +26,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 11. [Navbar]() &nbsp; `CSS only` &nbsp; `Animation effect` &nbsp; `svg-logo used` &nbsp;
 
-## Tools we can use
+## Handy Tools
 
 1. [To get tints and shades of a selected colour](https://maketintsandshades.com/)
 2. [Free logos in svg and png](https://myfreelogomaker.com/)
