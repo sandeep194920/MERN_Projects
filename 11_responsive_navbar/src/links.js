@@ -24,41 +24,6 @@ const links = [
     url: '/profile',
     text: 'Profile',
   },
-  {
-    id: 6,
-    url: '/profile',
-    text: 'Profile',
-  },
-  {
-    id: 7,
-    url: '/profile',
-    text: 'Profile',
-  },
-  {
-    id: 8,
-    url: '/profile',
-    text: 'Profile',
-  },
-  //   {
-  //     id: 9,
-  //     url: '/profile',
-  //     text: 'Profile',
-  //   },
-  //   {
-  //     id: 10,
-  //     url: '/profile',
-  //     text: 'Profile',
-  //   },
-  //   {
-  //     id: 11,
-  //     url: '/profile',
-  //     text: 'Profile',
-  //   },
-  //   {
-  //     id: 12,
-  //     url: '/profile',
-  //     text: 'Hello',
-  //   },
 ]
 
 export default links

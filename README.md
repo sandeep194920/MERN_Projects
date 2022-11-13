@@ -22,6 +22,10 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 9. [Color Generator](https://9-colour-generator.netlify.app/) &nbsp; `Typescript` &nbsp; `useEffect cleanup function` &nbsp; `CSS Grid` &nbsp; `html form`
 10. [Grocery Store](https://10-grocery-store.netlify.app/) &nbsp; `CRUD Functionality` &nbsp; `LocalStorage` &nbsp; `Typescript` &nbsp; `useEffect cleanup function` &nbsp; `Unique IDs` &nbsp; `Better styling structure in MUI` &nbsp; `Alert` &nbsp; `Conditional styling`
 
+### UseRef Project
+
+11. [Navbar]() &nbsp; `CSS only` &nbsp; `Animation effect` &nbsp; `svg-logo used` &nbsp;
+
 ## Tools we can use
 
 1. [To get tints and shades of a selected colour](https://maketintsandshades.com/)

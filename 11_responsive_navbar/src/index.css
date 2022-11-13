@@ -3,6 +3,7 @@
   --link-clr: #b8996f;
   --social-icon-clr: white;
   --hover-clr: #059cdc;
+  --hover-bg-clr: #d4c2a9;
   --logo-width-height: 8rem;
 }
 
@@ -70,7 +71,6 @@ li {
   color: var(--link-clr);
   text-decoration: none;
   font-size: 1.1rem;
-  text-transform: uppercase;
   letter-spacing: 1px;
 }
 
@@ -122,14 +122,13 @@ li {
 /* div container - parent - show*/
 .small-screen-nav-shown,
 .small-screen-nav-hidden {
-  /* bg will be removed here. just to demo parent and child, we have it here */
-  background-color: rgb(7, 198, 84);
   overflow: hidden;
   transition: height 0.5s;
 }
 /* div container - parent - show*/
 .small-screen-nav-shown {
   /* We won't use display none but we will use height 0 */
+  /* we can comment this hardcoded height as we will use height from useRef dynamically */
   height: 10rem;
 }
 /* div container - parent - hide*/
@@ -141,15 +140,18 @@ li {
 /* div container - child */
 .small-screen-nav-hidden ul,
 .small-screen-nav-shown ul {
-  /* we will remove width - this is just to demo parent div and child ul. If this is removed, parent div will not be visible which is green color */
-  width: 80%;
   padding-left: 2rem;
   list-style: none;
   /*  overflow: hidden; should be present - the max height of container is shown until the items are present. Content is only shown unitl height of this or parent container  */
   overflow: hidden;
   background-color: var(--navbar-clr);
-  /* bg will be removed here. just to demo parent and child, we have it here */
-  background-color: rgb(85, 7, 163);
+}
+
+/* on large screen, we don't want to show small-scren */
+@media screen and (min-width: 776px) {
+  .small-screen-nav-shown {
+    display: none;
+  }
 }
 
 .small-screen-nav-shown ul li,
@@ -160,11 +162,17 @@ li {
 .small-screen-nav-shown ul li a,
 .small-screen-nav-hidden ul li a {
   text-decoration: none;
+  /* making a tag as display block because, when we click anywhere in that row, it should trigger the click on link */
+  display: block;
   color: var(--link-clr);
 }
 
 .small-screen-nav-shown li:hover {
-  background-color: var(--social-icon-clr);
+  background-color: var(--hover-bg-clr);
+}
+
+.small-screen-nav-shown li:hover a {
+  color: var(--hover-clr);
 }
 
 .small-screen-nav-shown li a:hover {
