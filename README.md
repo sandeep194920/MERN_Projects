@@ -24,7 +24,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 ### useRef Project
 
-11. [Navbar]() &nbsp; `CSS only` &nbsp; `Animation effect` &nbsp; `svg-logo used` &nbsp;
+11. [Responsive Navbar](https://11-responsive-navbar.netlify.app/) &nbsp; `CSS only` &nbsp; `Animation effect` &nbsp; `svg-logo used` &nbsp;
 
 ## Handy Tools
 
