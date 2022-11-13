@@ -117,7 +117,7 @@ Wrap the Button in the Box and display grid. Place items center should do it.
 ### 6. How to add images in React? (<em>From the future. This is added after doing 5_menu_app</em>)
 
 In this project, we are using images (below header) and these images are not from backend. These are present in `src/assets`. Notice, in this project we are importing images from `src/assets/near_hero` in `src/Components/Header/header.js`. We can import this way as we have put our images inside src folder.
-If we are using some kind of json file where each image is a value of a key that needs to be displayed while iterating, then please refer to [5-Menu-App](https://github.com/sandeep194920/MERN_projects/tree/master/5_menu_app#5-how-to-display-images-in-react-when-we-use-image-links)
+If we are using some kind of json file where each image is a value of a key that needs to be displayed while iterating, then please refer to [5-Menu-App](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/05_menu_app#5-how-to-display-images-in-react-when-we-use-image-links)
 
 #### Inspiration
 
