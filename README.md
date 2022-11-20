@@ -33,3 +33,4 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 3. [Ready made Gradient backgrounds](https://uigradients.com/)
 4. [Generate Photos of peoples' faces](https://generated.photos/)
 5. [Images for background](https://unsplash.com/)
+6. [Box shadow css generator](https://cssgenerator.org/box-shadow-css-generator.htmls)
