@@ -1,0 +1,239 @@
+:root {
+  --color-bg: aliceblue;
+  --color-primary: #decc80;
+  --hover-color: rgb(69, 224, 255);
+  --modal-bg-color: rgba(0, 0, 0, 0.4);
+  --cancel: red;
+  --color-dark: #000;
+  --color-light: white;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* MAIN */
+
+/* open sidebar button */
+.sidebar-toggle {
+  position: fixed;
+  top: 2rem;
+  left: 3rem;
+  color: var(--color-dark);
+  background: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  font-size: 2rem;
+  animation: bounce 2s ease-in-out infinite;
+  margin: 4rem;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* center content on page */
+main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* open modal button */
+.btn {
+  text-transform: uppercase;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  padding: 0.375rem 0.75rem;
+  /* display: inline-block; */
+  font-size: 0.875rem;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius);
+  /* margin: 0.5rem; */
+  border: transparent;
+  letter-spacing: 0.1rem;
+}
+
+/* MODAL */
+
+.modal {
+  /* to place at fixed position and center it's content */
+  position: fixed;
+  /* top:0 is very important. Without this it won't work*/
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background-color: var(--modal-bg-color);
+  visibility: hidden; /*modal is currently hidden*/
+  z-index: -1; /*placing it underneath other elements*/
+  /* Since we have already used display and set to grid, 
+  we can't use display none, so using visibiltiy hidden */
+}
+
+/* show modal */
+.show-modal {
+  visibility: visible;
+  z-index: 1;
+}
+
+.modal .container {
+  background-color: var(--color-bg);
+  width: 50%;
+  max-height: 20rem;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.modal-content {
+  max-height: 90%;
+  overflow: scroll;
+}
+
+.modal-content h3 {
+  text-align: center;
+}
+
+.modal-btn-container {
+  text-align: center;
+}
+
+.modal-btn-container button {
+  background-color: var(--cancel);
+  padding: 0.7rem 1.2rem;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  background-color: var(--color-dark);
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: 30rem;
+  box-shadow: 8px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  transform: translate(-100%);
+  transition: all 0.4s;
+}
+
+.show-sidebar {
+  transform: translate(0);
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+.sidebar-header img {
+  width: 20rem;
+  height: 10rem;
+}
+
+.close-btn {
+  color: var(--cancel);
+  border-color: transparent;
+  background: transparent;
+  font-size: 1.75rem;
+  cursor: pointer;
+}
+
+/* sidebar links */
+.links a {
+  text-decoration: none;
+  color: var(--color-primary);
+  display: block;
+  transition: all 0.4s;
+}
+
+.links a div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+li {
+  list-style: none;
+  font-size: 1.5rem;
+  transition: all 0.3s;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.links li:hover {
+  /* this color will not change the underlying element color, so we need to add color to underlying elements individually */
+  color: var(--hover-color);
+  background-color: rgb(85, 83, 83);
+}
+
+/* applying color to individual elements like below on hover on li */
+.links li:hover a,
+.links li:hover .icon {
+  color: var(--hover-color);
+}
+
+.icon {
+  font-size: 1.6rem;
+  color: var(--color-primary);
+  margin-right: 1rem;
+}
+
+/* Social icons */
+.social-links {
+  display: flex;
+  width: 60%;
+  margin: 5rem auto;
+  margin-left: 2rem;
+  justify-content: space-between;
+}
+
+.social-links li {
+  cursor: pointer;
+}
+
+.social-links a {
+  text-decoration: none;
+  color: var(--hover-color);
+  transition: all 0.4s;
+}
+
+.social-links li a:hover {
+  /* this color will not change the underlying element color, so we need to add color to underlying elements individually */
+  color: var(--color-primary);
+}

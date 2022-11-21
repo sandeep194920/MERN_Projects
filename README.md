@@ -26,6 +26,10 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 11. [Responsive Navbar](https://11-responsive-navbar.netlify.app/) &nbsp; `CSS only` &nbsp; `Animation effect` &nbsp; `svg-logo used` &nbsp;
 
+### useContext Projects
+
+12. [Sidebar & Modal]() &nbsp; `CSS only` &nbsp; `Animation effect - adding and removing class` &nbsp; `custom hook`
+
 ## Handy Tools
 
 1. [To get tints and shades of a selected colour](https://maketintsandshades.com/)
@@ -33,3 +37,4 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 3. [Ready made Gradient backgrounds](https://uigradients.com/)
 4. [Generate Photos of peoples' faces](https://generated.photos/)
 5. [Images for background](https://unsplash.com/)
+6. [Box shadow css generator](https://cssgenerator.org/box-shadow-css-generator.htmls)
