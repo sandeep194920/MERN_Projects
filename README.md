@@ -28,7 +28,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 ### useContext Projects
 
-12. [Sidebar & Modal]() &nbsp; `CSS only` &nbsp; `Animation effect - adding and removing class` &nbsp; `custom hook`
+12. [Sidebar & Modal](https://12-sidebar-modal-app.netlify.app/) &nbsp; `CSS only` &nbsp; `Animation effect - adding and removing class` &nbsp; `custom hook`
 
 ## Handy Tools
 

@@ -1,5 +1,7 @@
 # Project details
 
+[Sidebar & Modal](https://12-sidebar-modal-app.netlify.app/)
+
 ## Details
 
 This project is about displaying/hiding sidebar and modal. This sidebar will be useful when designing navbar for small screens. We will also learn about how to use context to avoid prop drilling and we will also use custom hook to export useContext
