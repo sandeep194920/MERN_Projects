@@ -6,56 +6,13 @@ This project is about displaying/hiding sidebar and modal. This sidebar will be 
 
 ## Things we can learn
 
-- How to display link (li) items in sidebar especially when it contains an icon and `<a href=/>` tag
 - How to design Modal
 - How to design Sidebar
+- How to display link (li) items in sidebar especially when it contains an icon and `<a href=/>` tag
 - How to have a react component in some file and use it in some other file
-
----
-
-### How to display link (li) items in sidebar especially when it contains an icon and `<a href=/>` tag
-
-![Link with icon](./readmeImages/link_with_icon.png)
-
-```jsx
-<div className="links">
-  <ul>
-    <li>
-      <a href="#/">
-        <div>
-          <AiFillHome className="icon" />
-          Home
-        </div>
-      </a>
-    </li>
-  </ul>
-</div>
-```
-
-enclosed `a` in a div as we need that div to be flex so that we can align items perfectly to center. Also we neeed `a` tag to be a block element so that we can click anywhere in the row and that element will be clicked. Also, when we hover on that row, all elements (icon and `a` tag) must change it's color. So the CSS will be like this
-
-```css
-.links a div {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding: 1rem;
-}
-
-li:hover {
-  /* this color will not change the underlying element color, so we need to add color to underlying elements individually */
-  color: var(--hover-clr);
-  background-color: rgb(85, 83, 83);
-}
-
-/* applying color to individual elements like below on hover on li */
-li:hover a,
-li:hover .icon {
-  color: var(--hover-clr);
-}
-```
-
-![row-hover](./readmeImages/row_hover.png)
+- Without context API
+- How to use context api
+- How to use useContext to consume above created context values
 
 ---
 
@@ -305,6 +262,52 @@ li {
 
 ---
 
+### How to display link (li) items in sidebar especially when it contains an icon and `<a href=/>` tag
+
+![Link with icon](./readmeImages/link_with_icon.png)
+
+```jsx
+<div className="links">
+  <ul>
+    <li>
+      <a href="#/">
+        <div>
+          <AiFillHome className="icon" />
+          Home
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
+```
+
+enclosed `a` in a div as we need that div to be flex so that we can align items perfectly to center. Also we neeed `a` tag to be a block element so that we can click anywhere in the row and that element will be clicked. Also, when we hover on that row, all elements (icon and `a` tag) must change it's color. So the CSS will be like this
+
+```css
+.links a div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+li:hover {
+  /* this color will not change the underlying element color, so we need to add color to underlying elements individually */
+  color: var(--hover-clr);
+  background-color: rgb(85, 83, 83);
+}
+
+/* applying color to individual elements like below on hover on li */
+li:hover a,
+li:hover .icon {
+  color: var(--hover-clr);
+}
+```
+
+![row-hover](./readmeImages/row_hover.png)
+
+---
+
 ### How to have a react component in some file and use it in some other file
 
 In `links.js` we have react icon component like this
@@ -340,3 +343,184 @@ I can then use it in my JSX like this in another component
 ```
 
 ---
+
+### Without context API
+
+If we don't use context api, useContext hook then we need to do prop drilling like this
+
+**APP**
+
+```js
+function App() {
+  const [showSidebar, setShowSidebar] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+  return (
+    <>
+      <HomePage setShowModal={setShowModal} setShowSidebar={setShowSidebar} />
+      <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+      <Modal showModal={showModal} setShowModal={setShowModal} />
+    </>
+  )
+}
+```
+
+**HOMEPAGE**
+
+```js
+function HomePage({ setShowSidebar, setShowModal }) {
+  return (
+    <main>
+      <button className="sidebar-toggle" onClick={() => setShowSidebar(true)}>
+        <FaBars />
+      </button>
+      <button onClick={() => setShowModal(true)} className="btn">
+        show modal
+      </button>
+    </main>
+  )
+}
+```
+
+**MODAL**
+
+```js
+function Modal({ showModal, setShowModal }) {
+  return (
+    <section className={`${showModal ? 'modal show-modal' : 'modal'}`}>
+      <article className="container">
+        <div className="modal-content">
+          <h3>Modal</h3>
+          <p>Lorem ipsum dolor sit amet consectetur,</p>
+          <p>Aliquid aspernatur deserunt qui. Lorem</p>
+        </div>
+        <div className="modal-btn-container">
+          <button onClick={() => setShowModal(false)}>Close</button>
+        </div>
+      </article>
+    </section>
+  )
+}
+```
+
+**SIDEBAR**
+
+```js
+function Sidebar({ showSidebar, setShowSidebar }) {
+  return (
+    <aside className={`${showSidebar ? 'sidebar show-sidebar' : 'sidebar'}`}>
+      {/* SIDEBAR HEADER */}
+      <div className="sidebar-header">
+        {/* enclosing image in div so that img doesn't move to a little right side which is strange*/}
+        <div>
+          <img src="./svg/Color logo - no background.svg" alt="Logo" />
+        </div>
+        <button onClick={() => setShowSidebar(false)} className="close-btn">
+          <FaTimes />
+        </button>
+      </div>
+      {/* SIDEBAR LINKS */}
+      {/* SIDEBAR SOCIAL LINKS */}
+      <article className="links">
+        <ul>
+          {links.map((link) => {
+            const { id, url, text, icon } = link
+            return (
+              <li key={id}>
+                <a href={url}>
+                  <div>
+                    {icon}
+                    {text}
+                  </div>
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      </article>
+      <ul className="social-links">
+        {social.map((link) => {
+          const { id, url, icon } = link
+          return (
+            <li key={id}>
+              <a href={url}>
+                <div>{icon}</div>
+              </a>
+            </li>
+          )
+        })}
+      </ul>
+    </aside>
+  )
+}
+```
+
+By using context API, we don't need to pass the props to children component.
+
+---
+
+### How to use context api
+
+- Creat a js file for creating this context
+- Define CreateContext which gives you
+  Provider and Consumer. We don't use Consuemer (we used to use in old react version but not now). We will wrap whole app in Provider and it provides values which we can use in any app
+- useContext can be used and we can pass this context so we can consume the values in any component
+
+`context.js`
+
+```jsx
+import React, { createContext } from 'react'
+
+const AppContext = createContext()
+
+// we will wrap our whole app in AppProvider
+export const AppProvider = ({ children }) => {
+  return <AppContext.Provider value="5">{children}</AppContext.Provider>
+}
+
+export { AppContext } // we will pass this into useContext to use value
+```
+
+`index.js`
+
+```jsx
+root.render(
+  <AppProvider>
+    <App />
+  </AppProvider>
+)
+```
+
+---
+
+### How to use useContext to consume above created context values
+
+- We can use useContext in any app in two ways. One way is to use `useContext` directly in any component we want and pass above created context like this
+
+```jsx
+function Sidebar() {
+  const val = useContext(AppContext)
+  console.log('The val is', val) // gives 5
+
+  return <></>
+}
+```
+
+In this setup, we will have to import `useContext` from react and also import `AppContext` from `context.js`. To avoid this, we can use custom hook (a function that starts with `use` so that we can use `useContext` inside this function) and then export our `useContext` from this custom hook. With this, we can use this hook and get values in any component.
+
+`context.js`
+
+```jsx
+const useGlobalContext = () => {
+  return useContext(AppContext)
+}
+```
+
+We can use this in Sidebar like this
+
+```js
+function Sidebar() {
+  const val = useGlobalContext()
+  console.log('The val is', val)
+  return <></>
+}
+```

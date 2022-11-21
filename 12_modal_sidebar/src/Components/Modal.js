@@ -1,8 +1,10 @@
 import React from 'react'
+import { useGlobalContext } from '../context'
 
-function Modal({ setIsModalOpen }) {
+function Modal() {
+  const { closeModal, showModal } = useGlobalContext()
   return (
-    <section className="modal">
+    <section className={`${showModal ? 'modal show-modal' : 'modal'}`}>
       <article className="container">
         <div className="modal-content">
           <h3>Modal</h3>
@@ -23,7 +25,7 @@ function Modal({ setIsModalOpen }) {
           </p>
         </div>
         <div className="modal-btn-container">
-          <button onClick={() => setIsModalOpen(false)}>Close</button>
+          <button onClick={closeModal}>Close</button>
         </div>
       </article>
     </section>
