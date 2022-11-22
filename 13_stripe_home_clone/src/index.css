@@ -1,0 +1,150 @@
+body {
+  margin: 0;
+  font-family: Sohne-war -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#gradient-canvas {
+  width: 100%;
+  height: 100%;
+  --gradient-color-1: #f20854;
+  --gradient-color-2: #6ec3f4;
+  --gradient-color-3: #ffb857;
+  --gradient-color-4: #ba52ee;
+  --gradient-color-5: #be5cc0;
+  --gradient-color-5: #d89997;
+
+  clip-path: polygon(0 0, 100% 0, 100% 40%, 0% 100%);
+}
+
+.gradient-background {
+  position: absolute;
+  top: 0;
+  z-index: -2;
+}
+
+nav h1 {
+  font-size: 80px;
+  line-height: 6rem;
+  position: absolute;
+  top: 12rem;
+  left: 20rem;
+  color: #171717;
+}
+
+nav h1 {
+  font-size: 80px;
+  line-height: 6rem;
+  position: absolute;
+  top: 12rem;
+  left: 20rem;
+  color: #171717;
+}
+
+.title-container {
+  position: absolute;
+  color: #425466;
+  top: 35rem;
+  max-width: 25%;
+  left: 20rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.2px;
+  line-height: 2rem;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-transform: capitalize;
+  justify-content: space-between;
+  max-width: 60%;
+  margin: -0.3rem auto;
+  font-weight: 700;
+}
+.logo {
+  font-size: 1.5rem;
+  text-transform: lowercase;
+}
+
+.navbar-container ul {
+  list-style: none;
+  display: flex;
+}
+
+.navbar-container ul li {
+  margin-right: 2rem;
+}
+
+.title-container p {
+  margin-bottom: 3rem;
+}
+
+/* Buttons */
+
+.navbar-container button,
+.title-container button {
+  border-color: transparent;
+  padding: 0.2rem 1rem;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.navbar-container button {
+  background-color: transparent;
+  color: white;
+  background-color: hsla(0, 0%, 100%, 0.2);
+  font-weight: 600;
+}
+
+.title-container .btn-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 63%;
+}
+
+.btn-container .start {
+  background-color: #0a2540;
+  padding: 0.5rem 1.3rem;
+  color: white;
+  font-weight: 500;
+}
+
+.btn-container .start:hover {
+  background-color: #6d7c8c;
+}
+
+.btn-container .contact {
+  background-color: transparent;
+}
+
+button .icon {
+  margin-left: 0.3rem;
+}
+
+/* 8px 5px 50px 8px rgba(149,143,142,0.88) */
+.phone-img,
+.stripe-img {
+  position: absolute;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.phone-img {
+  top: 10rem;
+  right: 33rem;
+  box-shadow: 8px 5px 50px 8px rgba(149, 143, 142, 0.88);
+  border-radius: 50px;
+}
+
+.stripe-img {
+  top: 6rem;
+  right: 0rem;
+  width: 45rem;
+  z-index: -1;
+}

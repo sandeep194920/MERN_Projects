@@ -37,4 +37,6 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 3. [Ready made Gradient backgrounds](https://uigradients.com/)
 4. [Generate Photos of peoples' faces](https://generated.photos/)
 5. [Images for background](https://unsplash.com/)
-6. [Box shadow css generator](https://cssgenerator.org/box-shadow-css-generator.htmls)
+6. [Box shadow css generator](https://html-css-js.com/css/generator/box-shadow/)
+7. [Create gradient videos for background like stripe](<(https://codesandbox.io/s/bxnsx?file=/src/App.js:0-617)>) - [Refer stripe.com](https://stripe.com/en-ca)
+8. [Clip Image](https://bennettfeely.com/clippy/)
