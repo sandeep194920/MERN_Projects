@@ -127,24 +127,24 @@ button .icon {
   margin-left: 0.3rem;
 }
 
-/* 8px 5px 50px 8px rgba(149,143,142,0.88) */
-.phone-img,
-.stripe-img {
+.image-container {
+  white-space: nowrap;
   position: absolute;
-  background-color: transparent;
-  border-color: transparent;
+  top: 7rem;
+  left: calc(100vw - 35vw);
 }
 
-.phone-img {
-  top: 10rem;
-  right: 33rem;
+.iphone-img {
   box-shadow: 8px 5px 50px 8px rgba(149, 143, 142, 0.88);
   border-radius: 50px;
+  z-index: 2;
+  position: absolute;
+  left: -7rem;
+  top: 3rem;
 }
 
 .stripe-img {
-  top: 6rem;
-  right: 0rem;
+  right: 5rem;
   width: 45rem;
-  z-index: -1;
+  border-radius: 10px;
 }

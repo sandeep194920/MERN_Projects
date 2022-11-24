@@ -77,10 +77,24 @@ function Navbar() {
           )}
         </button>
       </div>
-      <div className="phone-img">
-        <img src="./images/iphone.svg" alt="iphone" />
+
+      <div className="image-container">
+        {/* <div className="stripe-img-container">
+          <img
+            className="stripe-img"
+            src="./images/stripe_img.png"
+            alt="stripe"
+          />
+        </div> */}
       </div>
-      <img className="stripe-img" src="./images/stripe_img.png" alt="stripe" />
+      <div className="image-container">
+        <img className="iphone-img" src="./images/iphone.svg" alt="iphone" />
+        <img
+          className="stripe-img"
+          src="./images/stripe_img.png"
+          alt="stripe"
+        />
+      </div>
     </nav>
   )
 }
