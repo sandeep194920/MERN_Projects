@@ -79,15 +79,6 @@ function Navbar() {
       </div>
 
       <div className="image-container">
-        {/* <div className="stripe-img-container">
-          <img
-            className="stripe-img"
-            src="./images/stripe_img.png"
-            alt="stripe"
-          />
-        </div> */}
-      </div>
-      <div className="image-container">
         <img className="iphone-img" src="./images/iphone.svg" alt="iphone" />
         <img
           className="stripe-img"
