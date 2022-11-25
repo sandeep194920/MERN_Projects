@@ -1,7 +1,11 @@
-import Navbar from './Navbar'
+import Header from './Header'
+import Navbar from './Header/Navbar'
 
 function App() {
-  return <Navbar />
+  return (
+    <Header />
+    // <Navbar />
+  )
 }
 
 export default App

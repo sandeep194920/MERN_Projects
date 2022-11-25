@@ -7,16 +7,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gradient-canvas {
-  width: 100%;
-  height: 100%;
+:root {
   --gradient-color-1: #f20854;
   --gradient-color-2: #6ec3f4;
   --gradient-color-3: #ffb857;
   --gradient-color-4: #ba52ee;
   --gradient-color-5: #be5cc0;
-  --gradient-color-5: #d89997;
+  --gradient-color-6: #d89997;
+  --white-clr: #fff;
+  --title-clr: #425466;
+  --dark-grey-clr: #0a2540;
+}
 
+/* GRADIENT */
+#gradient-canvas {
+  width: 100%;
+  height: 100%;
+  --gradient-color-1: var(--gradient-color-1);
+  --gradient-color-2: var(--gradient-color-2);
+  --gradient-color-3: var(--gradient-color-3);
+  --gradient-color-4: var(--gradient-color-4);
+  --gradient-color-5: var(--gradient-color-5);
+  --gradient-color-6: var(--gradient-color-6);
   clip-path: polygon(0 0, 100% 0, 100% 39%, 0% 100%);
 }
 
@@ -26,7 +38,7 @@ body {
   z-index: -2;
 }
 
-nav h1 {
+/* nav h1 {
   font-size: 86px;
   line-height: 6rem;
   position: absolute;
@@ -34,7 +46,7 @@ nav h1 {
   left: 20rem;
   color: #171717;
   margin-right: 3rem;
-}
+} */
 
 .title-container {
   position: absolute;
@@ -94,11 +106,11 @@ nav h1 {
   padding: 0.5rem 1.2rem;
 }
 
-.title-container .btn-container {
+/* .title-container .btn-container {
   display: flex;
   justify-content: space-between;
   max-width: 63%;
-}
+} */
 
 .btn-container .start {
   background-color: #0a2540;
@@ -139,4 +151,123 @@ button .icon {
   right: 5rem;
   width: 45rem;
   border-radius: 10px;
+}
+
+/* HEADER */
+nav {
+  /* margin: 0 auto; */
+  display: flex;
+  flex-direction: column;
+}
+
+/* navbar */
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  background-color: #d89997;
+}
+.logo {
+  margin-right: 7rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  text-transform: capitalize;
+}
+
+nav ul li {
+  margin-right: 2rem;
+}
+
+.nav-container button {
+  margin-left: 5rem;
+}
+
+/* Header container */
+
+.header-container {
+  display: flex;
+  background-color: lightgreen;
+  justify-content: center;
+}
+
+/* Header text container -  hero text, title text and start buttons  */
+
+.header-text-container {
+  display: flex;
+  flex-direction: column;
+  background-color: lightblue;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.header-text-container h1 {
+  font-size: 76px;
+  line-height: 6rem;
+  color: #171717;
+  max-width: fit-content;
+}
+
+.title {
+  max-width: 36rem;
+  line-height: 2rem;
+  font-size: 1.4rem;
+  background-color: #d89997;
+  margin-bottom: 2rem;
+}
+
+/* buttons */
+.btn-container {
+  display: flex;
+  background-color: #ffb857;
+  margin-right: 22rem;
+  width: 80%;
+}
+
+.btn-container button {
+  font-size: 0.93rem;
+}
+
+.start-btn {
+  margin-right: 3rem;
+  outline: none;
+  background-color: var(--dark-grey-clr);
+  color: var(--white-clr);
+  border: none;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+}
+
+.contact-sales-btn {
+  background-color: transparent;
+  color: var(--dark-grey-clr);
+  border: none;
+  font-weight: bold;
+}
+
+/* Image  container -  iphone and stripe images  */
+.img-container {
+  background-color: black;
+  right: 0;
+  padding-left: 6rem;
+}
+
+.phone-images {
+  position: relative;
+}
+
+.iphone-image {
+  position: absolute;
+  top: 3rem;
+  right: 28rem;
+  z-index: 5;
+}
+
+.stripe-image {
+  max-width: 40rem;
+  border-radius: 10px;
+  z-index: 4;
 }

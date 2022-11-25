@@ -1,14 +1,39 @@
 import React, { useState } from 'react'
-import Menu from './Menubar'
+import Background from './Background'
 import { FaAngleRight, FaLongArrowAltRight } from 'react-icons/fa'
 function Navbar() {
   const [hovered, setHovered] = useState(false)
 
   return (
     <nav>
-      <div className="gradient-background">
-        <Menu angle={20.65} />
+      <div className="navbar-container">
+        <div className="logo">
+          <h3>stripe</h3>
+        </div>
+        <ul>
+          <li>products</li>
+          <li>solutions</li>
+          <li>developers</li>
+          <li>resources</li>
+          <li>pricing</li>
+        </ul>
+        <button
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
+          Sign in
+          {hovered ? (
+            <FaLongArrowAltRight className="icon" />
+          ) : (
+            <FaAngleRight className="icon" />
+          )}
+        </button>
       </div>
+
+      <div className="gradient-background">
+        <Background angle={20.65} />
+      </div>
+
       <div>
         <h1>
           Payments
@@ -53,29 +78,6 @@ function Navbar() {
             </div>
           </div>
         </div>
-      </div>
-      <div className="navbar-container">
-        <div className="logo">
-          <h3>stripe</h3>
-        </div>
-        <ul>
-          <li>products</li>
-          <li>solutions</li>
-          <li>developers</li>
-          <li>resources</li>
-          <li>pricing</li>
-        </ul>
-        <button
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-        >
-          Sign in
-          {hovered ? (
-            <FaLongArrowAltRight className="icon" />
-          ) : (
-            <FaAngleRight className="icon" />
-          )}
-        </button>
       </div>
 
       <div className="image-container">
