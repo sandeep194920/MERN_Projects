@@ -19,6 +19,8 @@ body {
   --dark-grey-clr: #0a2540;
   --transparent-clr: hsla(0, 0%, 100%, 0.2);
   --danger: #f20854;
+  --blue: blue;
+  --dark: black;
 }
 
 /* GRADIENT */
@@ -44,6 +46,7 @@ body {
   font-size: 1.5rem;
   text-transform: lowercase;
 }
+/* ************************************************* */
 
 /* HEADER */
 nav {
@@ -116,9 +119,8 @@ nav ul li {
 .header-container {
   display: flex;
   margin-left: 20%;
-  /* never use justify content when u are wrapping something */
+  /* never use justify content when u are wrapping something if your child wants to have nowrap prop*/
   /* justify-content: center; */
-  /* background-color: #ffb857; */
 }
 
 /* Header text container -  hero text, title text and start buttons  */
@@ -198,7 +200,7 @@ nav ul li {
   border-radius: 10px;
   z-index: 4;
 }
-
+/* ************************************************* */
 /* SIDEBAR */
 /* doing mobile first approach here */
 
@@ -240,7 +242,7 @@ nav ul li {
 }
 
 .sidebar-logo {
-  color: blue;
+  color: var(--blue);
   font-weight: 700;
   font-size: 2rem;
 }
@@ -283,9 +285,13 @@ nav ul li {
 .sidebar-links ul li a {
   margin-left: 1rem;
   text-decoration: none;
-  color: black;
+  color: var(--dark);
 }
 
 .icon {
-  color: black;
+  color: var(--dark);
 }
+
+/* ************************************************* */
+
+/* SUBMENUS */
