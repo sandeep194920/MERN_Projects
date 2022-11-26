@@ -1,8 +1,10 @@
 import React from 'react'
 import Background from './Background'
 import { GiHamburgerMenu } from 'react-icons/gi'
+import { useGlobalContext } from './context'
 
 function Header() {
+  const { openSidebar } = useGlobalContext()
   return (
     // NAVBAR
     <>
@@ -23,7 +25,7 @@ function Header() {
             <li>pricing</li>
           </ul>
           <button className="signin-btn">Sign in</button>
-          <button className="menu-btn">
+          <button onClick={openSidebar} className="menu-btn">
             <GiHamburgerMenu />
           </button>
         </div>

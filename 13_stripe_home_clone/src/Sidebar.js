@@ -1,14 +1,16 @@
 import React from 'react'
 import links from './data'
 import { AiOutlineClose } from 'react-icons/ai'
+import { useGlobalContext } from './Header/context'
 
 function Sidebar() {
+  const { showSidebar, closeSidebar } = useGlobalContext()
   return (
-    <article className="sidebar">
+    <article className={`${showSidebar ? 'sidebar' : 'sidebar hide-sidebar'}`}>
       <section className="sidebar-container">
         <div className="sidebar-header">
           <div className="sidebar-logo">stripe</div>
-          <button className="close-btn">
+          <button className="close-btn" onClick={closeSidebar}>
             <AiOutlineClose />
           </button>
         </div>

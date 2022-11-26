@@ -88,6 +88,7 @@ nav ul {
   .menu-btn {
     display: inline-block;
     margin-right: -20%;
+    cursor: pointer;
   }
   .logo {
     margin-left: -10rem;
@@ -211,6 +212,14 @@ nav ul li {
   background-color: var(--transparent-clr);
   display: grid;
   place-items: center;
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.hide-sidebar {
+  z-index: -2;
+  opacity: 0;
+  transform: scale(0.5);
 }
 
 .sidebar-container {
