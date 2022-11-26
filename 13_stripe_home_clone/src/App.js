@@ -1,10 +1,12 @@
 import Header from './Header'
-import Navbar from './Header/Navbar'
+import Sidebar from './Sidebar'
 
 function App() {
   return (
-    <Header />
-    // <Navbar />
+    <>
+      <Header />
+      <Sidebar />
+    </>
   )
 }
 
