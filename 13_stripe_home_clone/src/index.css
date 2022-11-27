@@ -8,19 +8,13 @@ body {
 }
 
 :root {
-  --gradient-color-1: #f20854;
-  --gradient-color-2: #6ec3f4;
-  --gradient-color-3: #ffb857;
-  --gradient-color-4: #ba52ee;
-  --gradient-color-5: #be5cc0;
-  --gradient-color-6: #d89997;
   --white-clr: #fff;
   --title-clr: #425466;
   --dark-grey-clr: #0a2540;
-  --transparent-clr: hsla(0, 0%, 100%, 0.2);
+  --transparent-clr: #ffffff33;
   --danger: #f20854;
-  --blue: blue;
-  --dark: black;
+  --blue-clr: #1c1cf6;
+  --dark-clr: #020202;
 }
 
 /* GRADIENT */
@@ -72,6 +66,13 @@ nav ul {
   list-style: none;
   display: flex;
   text-transform: capitalize;
+  position: relative;
+}
+
+nav ul li {
+  height: 4rem;
+  display: flex;
+  align-items: center;
 }
 
 .menu-btn {
@@ -242,7 +243,7 @@ nav ul li {
 }
 
 .sidebar-logo {
-  color: var(--blue);
+  color: var(--blue-clr);
   font-weight: 700;
   font-size: 2rem;
 }
@@ -285,13 +286,74 @@ nav ul li {
 .sidebar-links ul li a {
   margin-left: 1rem;
   text-decoration: none;
-  color: var(--dark);
+  color: var(--dark-clr);
 }
 
 .icon {
-  color: var(--dark);
+  color: var(--dark-clr);
 }
 
 /* ************************************************* */
 
-/* SUBMENUS */
+/* SUBMENU */
+
+.submenu {
+  background-color: var(--white-clr);
+  padding: 1rem 2rem;
+  width: fit-content;
+  /* left: 50%; */
+  position: absolute;
+  top: 4.5rem;
+  opacity: 0;
+  transform: translate(-50%);
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.show {
+  opacity: 1;
+  z-index: 5;
+}
+
+.submenu::before {
+  content: '';
+  /* absolute to the whole page and not to the parent. */
+  position: absolute;
+  top: -1.8rem;
+  /* translte to -50% and left 50% are key things to centering the tooltip. Dont just use left 47 or 48 or 52%, that will not work if u change the screen size. Make sure to add translate -50% also */
+  transform: translate(-50%);
+  left: 50%;
+
+  /* the arrow */
+  border: 15px solid var(--white-clr);
+  border-color: transparent transparent var(--white-clr) transparent;
+}
+
+.submenu h4 {
+  text-transform: capitalize;
+}
+
+.sublink-container {
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+
+.sublink-container .item {
+  margin-right: 2rem;
+  align-items: center;
+  display: flex;
+  color: var(--dark-grey-clr);
+}
+
+.sublink-container .item span {
+  margin-right: 0.4rem;
+  align-items: center;
+  display: flex;
+}
+
+.sublink-container .item a {
+  text-decoration: none;
+  color: var(--dark-grey-clr);
+}

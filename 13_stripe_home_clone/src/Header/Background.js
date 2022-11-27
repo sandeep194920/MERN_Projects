@@ -2,6 +2,7 @@ import { Gradient } from './Gradient'
 import { useEffect, useRef } from 'react'
 
 const gradient = new Gradient()
+
 // https://whatamesh.vercel.app/
 export default function Background() {
   const ref = useRef()
