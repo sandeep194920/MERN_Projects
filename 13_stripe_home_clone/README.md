@@ -1,5 +1,7 @@
 # Project details
 
+[Stripe Header](https://13-stripe-header-clone.netlify.app/)
+
 ## Details
 
 We will design stripe home page mainly we will focus on navbar where we have a nice drop-down for each nav link
