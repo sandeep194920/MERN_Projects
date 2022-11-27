@@ -1,0 +1,131 @@
+.loader {
+	width: 50px;
+	height: 50px;
+	margin: .5rem auto;
+	display: block;
+}
+
+.modal-full-screen {
+	margin: 0;
+	width: 100%;
+	height: 100vh;
+}
+.modal-full-screen .modal-content {
+	height: 100%;
+}
+
+/*.tab-content {
+	border: 1px solid #dee2e6;
+	border-top: 0;
+}*/
+.tab-pane {
+	padding: 1rem;
+}
+.required_field {
+	margin-left: 1px;
+	color: red;
+}
+
+.color_blue {
+	color: #4875f7;
+}
+
+.preview_container_wrap {
+	padding: 0;
+	background-image:
+		linear-gradient(#bbb, #bbb),
+		linear-gradient(white 50%, black 50%),
+		linear-gradient(90deg, white 50%, black 50%);
+	background-blend-mode: screen, difference, normal;
+	background-size: 100% 100%, 20px 20px, 20px 20px;
+}
+
+/* File Lockers  */
+
+.fl_theme_1 {
+	background-color: #fff;
+	padding: 10px;
+}
+.fl_theme_1>div {
+	max-width: 500px;
+	background-color: #f5f5f5;
+	color: #9c9c9c;
+	padding: 0 20px 20px;
+}
+.fl_theme_1 .btn {
+	background-color: #4875f7;
+	color: #fff;
+	padding: 10px;
+}
+.fl_theme_1 .btn:hover {
+	background-color: #244cbd; 
+	color: #fff;
+}
+
+.fl_theme_2>div {
+	max-width: 500px;
+}
+.fl_theme_2 {
+	background-color: #3a3a3a;
+	padding: 20px;
+	color: #a7a7a7;
+}
+.fl_theme_2 .btn {
+	background-color: #42c554;
+	color: #fff;
+}
+.fl_theme_2 .btn:hover {
+	background-color: #3db54d;
+}
+.fl_theme_2 .color_dark {
+	color: #00000040;
+}
+.fl_theme_2 .fl_body {
+	background-color: #454545;
+	padding: 15px;
+	text-align: center;
+}
+.fl_theme_2 .fl_footer {
+	background-color: #363636;
+	padding: 15px;
+}
+
+/* Link Lockers  */
+
+.ll_theme_1 {
+	background-color: #fff;
+	padding: 10px;
+}
+.ll_theme_1>div {
+	max-width: 500px;
+	background-color: #f5f5f5;
+	color: #9c9c9c;
+	padding: 0 20px 20px;
+}
+.ll_theme_1 .btn {
+	background-color: #4875f7;
+	color: #fff;
+}
+.ll_theme_1 .btn:hover {
+	background-color: #426ce6;
+}
+
+/* Reward Lockers  */
+
+.rl_theme_1 {
+	background-color: #fff;
+	padding: 10px;
+}
+.rl_theme_1>div {
+	max-width: 500px;
+	background-color: #f5f5f5;
+	color: #9c9c9c;
+	padding: 20px;
+}
+.rl_theme_1 .btn {
+	background-color: #4875f7;
+	color: #fff;
+}
+.rl_theme_1 .btn:hover {
+	background-color: #426ce6;
+}

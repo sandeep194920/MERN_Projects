@@ -1,0 +1,359 @@
+body {
+  margin: 0;
+  font-family: Sohne-war -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --white-clr: #fff;
+  --title-clr: #425466;
+  --dark-grey-clr: #0a2540;
+  --transparent-clr: #ffffff33;
+  --danger: #f20854;
+  --blue-clr: #1c1cf6;
+  --dark-clr: #020202;
+}
+
+/* GRADIENT */
+#gradient-canvas {
+  width: 100%;
+  --gradient-color-1: #f20854;
+  --gradient-color-2: #6ec3f4;
+  --gradient-color-3: #ffb857;
+  --gradient-color-4: #ba52ee;
+  --gradient-color-5: #be5cc0;
+  --gradient-color-6: #d89997;
+  clip-path: polygon(0 0, 100% 0, 100% 49%, 0% 100%);
+}
+
+.gradient-background {
+  position: absolute;
+  top: 0;
+  z-index: -2;
+  height: 30rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  text-transform: lowercase;
+}
+/* ************************************************* */
+
+/* HEADER */
+nav {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* navbar */
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--white-clr);
+  margin-left: 2rem;
+}
+.logo {
+  margin-right: 7rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  text-transform: capitalize;
+  position: relative;
+}
+
+nav ul li {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.menu-btn {
+  display: none;
+}
+
+@media only screen and (max-width: 969px) {
+  nav ul {
+    display: none;
+  }
+  .nav-container {
+    justify-content: space-evenly;
+  }
+  .signin-btn {
+    display: none;
+  }
+  .menu-btn {
+    display: inline-block;
+    margin-right: -20%;
+    cursor: pointer;
+  }
+  .logo {
+    margin-left: -10rem;
+  }
+}
+
+nav ul li {
+  margin-right: 2rem;
+}
+
+.nav-container button {
+  margin-left: 5rem;
+  background-color: var(--transparent-clr);
+  color: var(--white-clr);
+  padding: 0.3rem 1rem;
+  outline: none;
+  border: transparent;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 20px;
+}
+
+/* Header container */
+
+.header-container {
+  display: flex;
+  margin-left: 20%;
+  /* never use justify content when u are wrapping something if your child wants to have nowrap prop*/
+  /* justify-content: center; */
+}
+
+/* Header text container -  hero text, title text and start buttons  */
+
+.header-text-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 7.5rem;
+}
+
+.header-text-container h1 {
+  font-size: 76px;
+  line-height: 6rem;
+  color: #171717;
+  max-width: fit-content;
+}
+
+.title {
+  max-width: 36rem;
+  line-height: 2rem;
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+/* buttons */
+.btn-container {
+  display: flex;
+  margin-right: 22rem;
+  width: 80%;
+}
+
+.btn-container button {
+  font-size: 0.93rem;
+}
+
+.start-btn {
+  margin-right: 3rem;
+  outline: none;
+  background-color: var(--dark-grey-clr);
+  color: var(--white-clr);
+  border: none;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+}
+
+.contact-sales-btn {
+  background-color: transparent;
+  color: var(--dark-grey-clr);
+  border: none;
+  font-weight: bold;
+}
+
+/* Image  container -  iphone and stripe images  */
+.img-container {
+  padding-left: 6rem;
+  flex-shrink: 0;
+  margin-top: 3rem;
+
+  /* flex-sshrink makes image not to move to left and doesn't wrap it. we are applying it on child and parent is header-container */
+
+  /* when using this prop flex-shrink on child, never use justify-content on parent. If u do, then flex-shrink won't work  */
+}
+
+.phone-images {
+  position: relative;
+}
+
+.iphone-image {
+  position: absolute;
+  top: 3rem;
+  right: 28rem;
+  z-index: 5;
+}
+
+.stripe-image {
+  max-width: 40rem;
+  border-radius: 10px;
+  z-index: 4;
+}
+/* ************************************************* */
+/* SIDEBAR */
+/* doing mobile first approach here */
+
+.sidebar {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  background-color: var(--transparent-clr);
+  display: grid;
+  place-items: center;
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.hide-sidebar {
+  z-index: -2;
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.sidebar-container {
+  background-color: var(--white-clr);
+  z-index: 7;
+  width: 80%;
+  height: 95%;
+  border-radius: 10px;
+  -webkit-box-shadow: 5px 5px 15px 5px #30492d;
+  box-shadow: 5px 5px 15px 5px #30492d;
+  padding: 2rem;
+}
+
+@media only screen and (min-width: 969px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+.sidebar-logo {
+  color: var(--blue-clr);
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.close-btn {
+  top: 2rem;
+  right: 3rem;
+  background-color: transparent;
+  border: transparent;
+  font-size: 2rem;
+  color: var(--danger);
+  cursor: pointer;
+}
+
+.sidebar-links {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  text-transform: capitalize;
+  padding-left: 3rem;
+  margin-top: 2rem;
+}
+
+.sidebar-links ul {
+  list-style: none;
+}
+
+.sidebar-links ul li {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  margin-left: -2rem;
+}
+
+.sidebar-links ul li a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: var(--dark-clr);
+}
+
+.icon {
+  color: var(--dark-clr);
+}
+
+/* ************************************************* */
+
+/* SUBMENU */
+
+.submenu {
+  background-color: var(--white-clr);
+  padding: 1rem 2rem;
+  width: fit-content;
+  /* left: 50%; */
+  position: absolute;
+  top: 4.5rem;
+  opacity: 0;
+  transform: translate(-50%);
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.show {
+  opacity: 1;
+  z-index: 5;
+}
+
+.submenu::before {
+  content: '';
+  /* absolute to the whole page and not to the parent. */
+  position: absolute;
+  top: -1.8rem;
+  /* translte to -50% and left 50% are key things to centering the tooltip. Dont just use left 47 or 48 or 52%, that will not work if u change the screen size. Make sure to add translate -50% also */
+  transform: translate(-50%);
+  left: 50%;
+
+  /* the arrow */
+  border: 15px solid var(--white-clr);
+  border-color: transparent transparent var(--white-clr) transparent;
+}
+
+.submenu h4 {
+  text-transform: capitalize;
+}
+
+.sublink-container {
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+
+.sublink-container .item {
+  margin-right: 2rem;
+  align-items: center;
+  display: flex;
+  color: var(--dark-grey-clr);
+}
+
+.sublink-container .item span {
+  margin-right: 0.4rem;
+  align-items: center;
+  display: flex;
+}
+
+.sublink-container .item a {
+  text-decoration: none;
+  color: var(--dark-grey-clr);
+}
