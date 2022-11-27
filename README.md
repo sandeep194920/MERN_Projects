@@ -24,13 +24,13 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 ### useRef Project
 
-11. [Responsive Navbar](https://11-responsive-navbar.netlify.app/) &nbsp; `CSS only` &nbsp; `Animation effect` &nbsp; `svg-logo used` &nbsp;
+11. [Responsive Navbar](https://11-responsive-navbar.netlify.app/) &nbsp; `CSS only` &nbsp; `Animation effect` &nbsp; `svg-logo used` &nbsp; `getBoundingClientRect()`
 
 ### useContext Projects
 
 12. [Sidebar & Modal](https://12-sidebar-modal-app.netlify.app/) &nbsp; `CSS only` &nbsp; `Animation effect - adding and removing class` &nbsp; `custom hook`
 
-13. [Stripe Header](https://13-stripe-header-clone.netlify.app/) &nbsp; `CSS only` &nbsp;`flex-shrink on flex child` &nbsp; `centering tool-tip` &nbsp; `onMouseOver` &nbsp; `Center react icon`
+13. [Stripe Header](https://13-stripe-header-clone.netlify.app/) &nbsp; `CSS only` &nbsp;`flex-shrink on flex child` &nbsp; `centering tool-tip` &nbsp; `onMouseOver` &nbsp; `Center react icon` &nbsp; `useRef` &nbsp; `getBoundingClientRect()`
 
 ## Handy Tools
 
