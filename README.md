@@ -20,7 +20,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 7. [Slider Reviews App](https://7-review-slider.netlify.app/) &nbsp; `Typescript` &nbsp; `useEffect cleanup function` &nbsp; `CSS only`
 8. [Text Generator](https://8-text-generator.netlify.app/) &nbsp; `useEffect cleanup function` &nbsp; `CSS only` &nbsp; `html form`
 9. [Color Generator](https://9-colour-generator.netlify.app/) &nbsp; `Typescript` &nbsp; `useEffect cleanup function` &nbsp; `CSS Grid` &nbsp; `html form`
-10. [Grocery Store](https://10-grocery-store.netlify.app/) &nbsp; `CRUD Functionality` &nbsp; `LocalStorage` &nbsp; `Typescript` &nbsp; `useEffect cleanup function` &nbsp; `Unique IDs` &nbsp; `Better styling structure in MUI` &nbsp; `Alert` &nbsp; `Conditional styling` &nbsp; `Center react icon`
+10. [Grocery Store](https://10-grocery-store.netlify.app/) &nbsp; `CRUD Functionality` &nbsp; `LocalStorage` &nbsp; `Typescript` &nbsp; `useEffect cleanup function` &nbsp; `Unique IDs` &nbsp; `Better styling structure in MUI` &nbsp; `Alert` &nbsp; `Conditional styling`
 
 ### useRef Project
 
@@ -30,7 +30,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 12. [Sidebar & Modal](https://12-sidebar-modal-app.netlify.app/) &nbsp; `CSS only` &nbsp; `Animation effect - adding and removing class` &nbsp; `custom hook`
 
-13. [Stripe Header]() &nbsp; `CSS only` &nbsp;`flex-shrink on flex child` &nbsp; `centering tool-tip` &nbsp; `onMouseOver`
+13. [Stripe Header]() &nbsp; `CSS only` &nbsp;`flex-shrink on flex child` &nbsp; `centering tool-tip` &nbsp; `onMouseOver` &nbsp; `Center react icon`
 
 ## Handy Tools
 
