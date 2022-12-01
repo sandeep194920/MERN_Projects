@@ -30,7 +30,11 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 12. [Sidebar & Modal](https://12-sidebar-modal-app.netlify.app/) &nbsp; `CSS only` &nbsp; `Animation effect - adding and removing class` &nbsp; `custom hook`
 
-13. [Stripe Header](https://13-stripe-header-clone.netlify.app/) &nbsp; `CSS only` &nbsp;`flex-shrink on flex child` &nbsp; `centering tool-tip` &nbsp; `onMouseOver` &nbsp; `Center react icon` &nbsp; `useRef` &nbsp; `getBoundingClientRect()`
+13. [Stripe Header](https://13-stripe-header-clone.netlify.app/) &nbsp; `CSS only` &nbsp;`flex-shrink on flex child` &nbsp; `centering tool-tip` &nbsp; `onMouseOver` &nbsp; `Center react icon` &nbsp; `useRef` &nbsp; `getBoundingClientRect()` &nbsp; `useRef`
+
+### useReducer Projects
+
+14. [Shopping Cart]() &nbsp; `Add text to material icon`
 
 ## Handy Tools
 
