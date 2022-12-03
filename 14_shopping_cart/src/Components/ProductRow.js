@@ -42,7 +42,7 @@ function ProductRow({ id: productID }) {
   const {
     initialState: { products },
   } = useGlobalContext()
-  const { name, img, price, id, quantity } = products.find(
+  const { name, img, price, quantity } = products.find(
     (product) => product.id === productID
   )
   return (
@@ -62,7 +62,7 @@ function ProductRow({ id: productID }) {
         >
           <Grid item container xs={9} alignItems="center">
             <Grid item xs={2} container justifyContent="center">
-              <img style={styles.product} src={img} alt="phone-image" />
+              <img style={styles.product} src={img} alt="phone" />
             </Grid>
             <Grid item xs={4} direction="column" container>
               <Grid item>
