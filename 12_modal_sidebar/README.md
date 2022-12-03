@@ -512,6 +512,7 @@ In this setup, we will have to import `useContext` from react and also import `A
 `context.js`
 
 ```jsx
+// custom hook - to avoid using useContext + AppContext in other files. Instead we can directly use useGlobalContext
 const useGlobalContext = () => {
   return useContext(AppContext)
 }
