@@ -2,8 +2,8 @@ import { Button, Container, Grid, Paper, Typography } from '@mui/material'
 import React from 'react'
 import { useGlobalContext } from '../context'
 import Header from './Header'
-import ProductRow from './ProductRow'
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined'
+import CartItem from './CartItem'
 
 const styles = {
   container: {
@@ -33,10 +33,9 @@ const styles = {
 }
 
 function Cart() {
-  const {
-    initialState: { products },
-  } = useGlobalContext()
-
+  const { products, cartTotalAmount, clearCartHandler, fillCartHandler } =
+    useGlobalContext()
+  console.log('The products are', products)
   return (
     <>
       <Header />
@@ -45,22 +44,46 @@ function Cart() {
           <ShoppingBagOutlinedIcon sx={styles.shopIcon} fontSize="large" />
           Your bag
         </Typography>
+        {products?.length === 0 && (
+          <Typography
+            color="error"
+            variant="h5"
+            sx={{ textAlign: 'center', mt: '-2rem' }}
+          >
+            is empty
+          </Typography>
+        )}
         <Paper sx={styles.paper}>
-          {products.map((product) => {
-            return <ProductRow key={product.id} id={product.id} />
-          })}
+          {products &&
+            products.map((product) => {
+              return <CartItem key={product.id} {...product} />
+            })}
 
           <Grid container justifyContent="space-around" sx={styles.total}>
             <Grid item xs={5.5}>
               Total Amount
             </Grid>
-            <Grid item>$1099.99</Grid>
+            <Grid item>${cartTotalAmount.toFixed(2)}</Grid>
           </Grid>
 
           <Grid container justifyContent="center">
-            <Button variant="contained" color="error">
-              Clear Cart
-            </Button>
+            {products?.length > 0 ? (
+              <Button
+                variant="contained"
+                color="error"
+                onClick={clearCartHandler}
+              >
+                Clear Cart
+              </Button>
+            ) : (
+              <Button
+                variant="contained"
+                color="success"
+                onClick={fillCartHandler}
+              >
+                Fill Cart
+              </Button>
+            )}
           </Grid>
         </Paper>
       </Container>

@@ -34,7 +34,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 ### useReducer Projects
 
-14. [Shopping Cart]() &nbsp; `Add text to material icon`
+14. [Shopping Cart]() &nbsp; `Add text to material icon` &nbsp; `Deep-Copy vs Shallow-Copy pitfalls` &nbsp; `React Strict mode` &nbsp; `Subtract item and also remove from list when reaches 0` &nbsp; `reduce function to calculate the sum`
 
 ## Handy Tools
 

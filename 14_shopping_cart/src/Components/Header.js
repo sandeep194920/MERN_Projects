@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, Paper } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import { useGlobalContext } from '../context'
 
 const styles = {
   img: {
@@ -31,6 +32,7 @@ const styles = {
 }
 
 function Header() {
+  const { numberOfCartItems } = useGlobalContext()
   return (
     <nav>
       <Paper>
@@ -49,7 +51,7 @@ function Header() {
           </Grid>
           <Grid item>
             <div style={styles.cart}>
-              <div style={styles.ShoppingCartContent}>9</div>
+              <div style={styles.ShoppingCartContent}>{numberOfCartItems}</div>
               <ShoppingCartIcon color="secondary" fontSize="large" />
             </div>
           </Grid>

@@ -36,14 +36,20 @@ const styles = {
     marginLeft: '-0.5rem',
     mb: '-0.3rem',
   },
+  addRemoveIcon: {
+    cursor: 'pointer',
+  },
 }
 
-function ProductRow({ id: productID }) {
+function CartItem({ name, img, price, quantity, id }) {
   const {
-    initialState: { products },
+    increaseQtyHandler,
+    decreaseQtyHandler,
+    removeHandler,
+    changeQtyHandler,
   } = useGlobalContext()
-  const { name, img, price, quantity } = products.find(
-    (product) => product.id === productID
+  console.log(
+    `name: ${name}, img:${img}, price:${price}, quantity:${quantity}, id:${id} `
   )
   return (
     <Box>
@@ -74,16 +80,28 @@ function ProductRow({ id: productID }) {
                 <Typography>${price}</Typography>
               </Grid>
               <Grid item>
-                <Button color="error" sx={styles.removeBtn}>
+                <Button
+                  color="error"
+                  sx={styles.removeBtn}
+                  onClick={() => removeHandler(id)}
+                >
                   Remove
                 </Button>
               </Grid>
             </Grid>
           </Grid>
           <Grid item justifyContent="space-around" container xs={2}>
-            <AddBoxIcon sx={styles.addRemoveIcon} />
+            <AddBoxIcon
+              sx={styles.addRemoveIcon}
+              // onClick={() => increaseQtyHandler(id)}
+              onClick={() => changeQtyHandler(id, 'increase')}
+            />
             <Typography sx={styles.productName}>{quantity}</Typography>
-            <IndeterminateCheckBoxIcon sx={styles.addRemoveIcon} />
+            <IndeterminateCheckBoxIcon
+              sx={styles.addRemoveIcon}
+              // onClick={() => decreaseQtyHandler(id)}
+              onClick={() => changeQtyHandler(id, 'decrease')}
+            />
           </Grid>
         </Grid>
       </Grid>
@@ -92,4 +110,4 @@ function ProductRow({ id: productID }) {
   )
 }
 
-export default ProductRow
+export default CartItem
