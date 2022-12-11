@@ -4,7 +4,7 @@
 
 ### Development Notes
 
-- Create the project with `npm init` and accept defaults
+- Create the project with `npm init` and accept defaults. To accept defaults directly without pressing `y` everytime, do **`npm init -y`**
 - `npm install express nodemon`
 - Replae Scripts in package.json with
 

@@ -43,8 +43,8 @@ const styles = {
 
 function CartItem({ name, img, price, quantity, id }) {
   const {
-    increaseQtyHandler,
-    decreaseQtyHandler,
+    // increaseQtyHandler,
+    // decreaseQtyHandler,
     removeHandler,
     changeQtyHandler,
   } = useGlobalContext()
