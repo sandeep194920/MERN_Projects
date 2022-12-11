@@ -4,7 +4,7 @@
 
 ### Development Notes
 
-- Create the project with `npm init` and accept defaults
+- Create the project with `npm init` and accept defaults. To accept defaults directly without pressing `y` everytime, do **`npm init -y`**
 - `npm install express nodemon`
 - Replae Scripts in package.json with
 
@@ -16,6 +16,9 @@
 ```
 
 - Create app.js file and add this boiler plate code
+- Since `node_modules` are created, we will ignore that in gitignore, so
+  - Create a `.gitignore` file in same level as `node_modules` (not inside `node_modules`)
+  - Add `/node_modules` inside `.gitignore` file and save it
 
 ```js
 const express = require('express')

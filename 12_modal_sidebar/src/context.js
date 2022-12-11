@@ -37,6 +37,7 @@ export const AppProvider = ({ children }) => {
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>
 }
 
+// custom hook - to avoid using useContext + AppContext in other files. Instead we can directly use useGlobalContext
 const useGlobalContext = () => {
   return useContext(AppContext)
 }
