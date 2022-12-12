@@ -1,6 +1,6 @@
 # Project details
 
-[Shopping Cart]()
+[Shopping Cart](https://14-shopping-cart.netlify.app/)
 
 ## Details
 
