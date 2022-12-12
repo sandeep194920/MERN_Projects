@@ -8,7 +8,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 ### useState Projects
 
-1. [Show Hide People App](https://1-show-hide-people-app.netlify.app/) &nbsp; `Unit Tests implemented`
+1. [Show Hide People App](https://1-show-hide-people-app.netlify.app/) &nbsp; `Unit Tests implemented` &nbsp; `Shows how to deploy to netlify`
 2. [Reviews App](https://2-reviews-app.netlify.app/) &nbsp; `Unit Tests implemented` &nbsp; `Emotion CSS implemented and not MUI`
 3. [Accordion App](https://4-accordion-questions-app.netlify.app/)
 
