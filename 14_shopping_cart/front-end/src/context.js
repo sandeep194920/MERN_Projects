@@ -2,7 +2,12 @@ import React, { useContext, createContext, useEffect, useReducer } from 'react'
 import { actions, initialState, reducer } from './reducer'
 // import _ from 'lodash'
 
-const url = 'http://localhost:9000/.netlify/functions/api'
+// DEV URL
+// const url = 'http://localhost:9000/.netlify/functions/api'
+
+// PROD URL
+const url =
+  'https://14-shopping-cart-products.netlify.app/.netlify/functions/server'
 
 const AppContext = createContext(null)
 const AppProvider = ({ children }) => {
