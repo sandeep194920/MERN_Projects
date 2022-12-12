@@ -34,7 +34,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 ### useReducer Projects
 
-14. [Shopping Cart](https://14-shopping-cart.netlify.app/) &nbsp; `Add text to material icon` &nbsp; `Deep-Copy vs Shallow-Copy pitfalls` &nbsp; `React Strict mode` &nbsp; `Subtract item and also remove from list when reaches 0` &nbsp; `reduce function to calculate the sum` &nbsp; `Express API implemented` &nbsp; `Express deployed on Netlify` &nbsp; `Netlify lambda functions`
+14. [Shopping Cart](https://14-shopping-cart.netlify.app/) &nbsp; `Add text to material icon` &nbsp; `Deep-Copy vs Shallow-Copy pitfalls` &nbsp; `React Strict mode` &nbsp; `Subtract item and also remove from list when reaches 0` &nbsp; `reduce function to calculate the sum` &nbsp; `Express API implemented` &nbsp; `Express deployed on Netlify` &nbsp; `Netlify lambda functions` &nbsp; `useContext hook`
 
 ## Handy Tools
 
