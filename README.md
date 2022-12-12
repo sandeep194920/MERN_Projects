@@ -14,7 +14,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 ### useEffect Projects
 
-4. [Tours App](https://3-tours-app.netlify.app/) &nbsp; `Express API implemented` &nbsp; `Adding static images in react - front-end images`
+4. [Tours App](https://3-tours-app.netlify.app/) &nbsp; `Express API implemented` &nbsp; `Express deployed on Heroku` &nbsp; `Adding static images in react - front-end images`
 5. [Menu App](https://5-menu-app.netlify.app/) &nbsp; `Unit Tests implemented `&nbsp; `Adding dynamic images in react - images from backend`
 6. [Job Profile App](https://6-job-profile-app.netlify.app/)
 7. [Slider Reviews App](https://7-review-slider.netlify.app/) &nbsp; `Typescript` &nbsp; `useEffect cleanup function` &nbsp; `CSS only`
@@ -34,7 +34,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 ### useReducer Projects
 
-14. [Shopping Cart](https://14-shopping-cart.netlify.app/) &nbsp; `Add text to material icon` &nbsp; `Deep-Copy vs Shallow-Copy pitfalls` &nbsp; `React Strict mode` &nbsp; `Subtract item and also remove from list when reaches 0` &nbsp; `reduce function to calculate the sum`
+14. [Shopping Cart](https://14-shopping-cart.netlify.app/) &nbsp; `Add text to material icon` &nbsp; `Deep-Copy vs Shallow-Copy pitfalls` &nbsp; `React Strict mode` &nbsp; `Subtract item and also remove from list when reaches 0` &nbsp; `reduce function to calculate the sum` &nbsp; `Express API implemented` &nbsp; `Express deployed on Netlify`
 
 ## Handy Tools
 
