@@ -36,6 +36,10 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 14. [Shopping Cart](https://14-shopping-cart.netlify.app/) &nbsp; `Add text to material icon` &nbsp; `Deep-Copy vs Shallow-Copy pitfalls` &nbsp; `React Strict mode` &nbsp; `Subtract item and also remove from list when reaches 0` &nbsp; `reduce function to calculate the sum` &nbsp; `Express API implemented` &nbsp; `Express deployed on Netlify` &nbsp; `Netlify lambda functions` &nbsp; `useContext hook`
 
+### React Router Project
+
+15. [Cocktail Search]() &nbsp; `Navbar with logo(left) and links(right)` &nbsp; `Using John's pre-prepared CSS` &nbsp; `External API` &nbsp; `Search bar (instantly brings up items on search) with no enter button`
+
 ## Handy Tools
 
 1. [To get tints and shades of a selected colour](https://maketintsandshades.com/)
