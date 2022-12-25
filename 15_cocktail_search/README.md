@@ -12,6 +12,7 @@ We will design stripe home page mainly we will focus on navbar where we have a n
 - How to design a simple navbar (with a logo to the left and links to the right)?
 - Which external API are we using?
 - How to fetch cocktail API?
+- How to migrate from `react-router-5` to `react-router-6`?
 
 ---
 
@@ -149,4 +150,50 @@ const fetchDrinks = useCallback(async () => {
 useEffect(() => {
   fetchDrinks()
 }, [searchTerm, fetchDrinks])
+```
+
+---
+
+### How to migrate from `react-router-5` to `react-router-6`?
+
+[For react-router-6 tutorials](https://app.gitbook.com/s/-MVEiPUp08kYt33g51v7/languages-and-frameworks/react-router-6)
+
+**react-router-5**
+
+```jsx
+return (
+  <Router>
+    <Navbar />
+    <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route path="/about">
+        <About />
+      </Route>
+      <Route path="/cocktail/:id">
+        <SingleCocktail />
+      </Route>
+      <Route path="*">
+        <Error />
+      </Route>
+    </Switch>
+  </Router>
+)
+```
+
+**react-router-6**
+
+```jsx
+return (
+  <Router>
+    <Navbar />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/cocktail/:id" element={<SingleCocktail />} />
+      <Route path="*" element={<Error />} />
+    </Routes>
+  </Router>
+)
 ```
