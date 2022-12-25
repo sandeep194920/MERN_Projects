@@ -9,11 +9,9 @@ We will design stripe home page mainly we will focus on navbar where we have a n
 ## Things we can learn
 
 - How the components are arranged since we are using react router?
-- How to design a simple navbar (with a logo to the left and links to the right)
-- How to make a flex-box child to have nowrap effect?
-- How to center tool-tip
-- How to center react icon
-- How to open and close submenu
+- How to design a simple navbar (with a logo to the left and links to the right)?
+- Which external API are we using?
+- How to fetch cocktail API?
 
 ---
 
@@ -96,3 +94,15 @@ Navbar
   width: 12rem;
 }
 ```
+
+---
+
+### Which external API are we using?
+
+- We use [Cocktail DB API](https://www.thecocktaildb.com/api.php) for this project
+- This API doesn't need API key, so we can directly use it without any extra setup
+- We use two API links
+  - [Search cocktail by name](www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita) - `www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita` - to display all cocktails with the name
+  - [Lookup full cocktail details by id](www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007) - `www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007` - to display details of one single cocktail once we click on a cocktail
+
+---

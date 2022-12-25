@@ -1,7 +1,9 @@
 import React from 'react'
+import { useGlobalContext } from '../context'
 
 function SearchForm() {
-  return <div>SearchForm</div>
+  const { setSearchTerm } = useGlobalContext()
+  return <div>Search form</div>
 }
 
 export default SearchForm
