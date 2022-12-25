@@ -106,3 +106,47 @@ Navbar
   - [Lookup full cocktail details by id](www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007) - `www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007` - to display details of one single cocktail once we click on a cocktail
 
 ---
+
+### How to fetch cocktail API?
+
+`context.js`
+
+```js
+const [loading, setLoading] = useState(true)
+const [searchTerm, setSearchTerm] = useState('a') // initially it loads all the drinks that invloves 'a'
+const [cocktails, setCocktails] = useState([])
+
+const fetchDrinks = useCallback(async () => {
+  // we use this function multiple times, so setting loading to true whenever we type in search
+  setLoading(true)
+  try {
+    const response = await fetch(`${url}${searchTerm}`)
+    const { drinks } = await response.json()
+    if (drinks) {
+      console.log(drinks)
+      const newCocktails = drinks.map((drink) => {
+        const { idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass } =
+          drink
+        return {
+          id: idDrink,
+          name: strDrink,
+          image: strDrinkThumb,
+          info: strAlcoholic,
+          glass: strGlass,
+        }
+      })
+      setCocktails(newCocktails)
+    } else {
+      setCocktails([])
+    }
+    setLoading(false)
+  } catch (error) {
+    console.log(error)
+    setLoading(false)
+  }
+}, [searchTerm])
+
+useEffect(() => {
+  fetchDrinks()
+}, [searchTerm, fetchDrinks])
+```

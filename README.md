@@ -38,7 +38,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 ### React Router Project
 
-15. [Cocktail Search]() &nbsp; `react-router-5 transforming to react-router-6 (see commits)` &nbsp; `Navbar with logo(left) and links(right)` &nbsp; `Using John's pre-prepared CSS` &nbsp; [External API - No API key required](https://www.thecocktaildb.com/api.php) &nbsp; `Search bar (instantly brings up items on search) with no enter button` &nbsp; `uncontrolled input using useRef`
+15. [Cocktail Search]() &nbsp; `react-router-5 transforming to react-router-6 (see commits)` &nbsp; `Navbar with logo(left) and links(right)` &nbsp; `Using John's pre-prepared CSS` &nbsp; [External API - No API key required](https://www.thecocktaildb.com/api.php) &nbsp; `Search bar (instantly brings up items on search) with no enter button` &nbsp; `uncontrolled input using useRef - focus when component loads`
 
 ## Handy Tools
 
