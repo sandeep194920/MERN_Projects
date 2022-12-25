@@ -1,5 +1,4 @@
 import './App.css'
-import { useGlobalContext } from './context'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 // pages
 import Home from './pages/Home'
