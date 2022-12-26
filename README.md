@@ -113,7 +113,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `react-router-5 to react-router-6 (see commits)`
 - `Navbar with logo(left) and links(right)`
 - `Using John's pre-prepared CSS`
-- [External API - No API key required](https://www.thecocktaildb.com/api.php)
+- `External API - No API key required` - [API Link](https://www.thecocktaildb.com/api.php)
 - `Search bar (instantly brings up items on search) with no enter button`
 - `uncontrolled input using useRef - focus when component loads`
 - `async function inside useEffect`
