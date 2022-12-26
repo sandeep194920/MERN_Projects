@@ -8,37 +8,116 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 ### useState Projects
 
-1. [Show Hide People App](https://1-show-hide-people-app.netlify.app/) &nbsp; `Unit Tests implemented` &nbsp; `Shows how to deploy to netlify`
-2. [Reviews App](https://2-reviews-app.netlify.app/) &nbsp; `Unit Tests implemented` &nbsp; `Emotion CSS implemented and not MUI`
+1. [Show Hide People App](https://1-show-hide-people-app.netlify.app/)
+
+- `Unit Tests implemented`
+- `Shows how to deploy to netlify`
+
+2. [Reviews App](https://2-reviews-app.netlify.app/)
+
+- `Unit Tests implemented`
+- `Emotion CSS implemented and not MUI`
+
 3. [Accordion App](https://4-accordion-questions-app.netlify.app/)
 
 ### useEffect Projects
 
-4. [Tours App](https://3-tours-app.netlify.app/) &nbsp; `Express API implemented` &nbsp; `Express deployed on Heroku` &nbsp; `Adding static images in react - front-end images`
-5. [Menu App](https://5-menu-app.netlify.app/) &nbsp; `Unit Tests implemented `&nbsp; `Adding dynamic images in react - images from backend`
+4. [Tours App](https://3-tours-app.netlify.app/)
+
+- `Express API implemented`
+- `Express deployed on Heroku`
+- `Adding static images in react - front-end images`
+
+5. [Menu App](https://5-menu-app.netlify.app/)
+
+- `Unit Tests implemented`
+- `Adding dynamic images in react - images from backend`
+
 6. [Job Profile App](https://6-job-profile-app.netlify.app/)
-7. [Slider Reviews App](https://7-review-slider.netlify.app/) &nbsp; `Typescript` &nbsp; `useEffect cleanup function` &nbsp; `CSS only`
-8. [Text Generator](https://8-text-generator.netlify.app/) &nbsp; `useEffect cleanup function` &nbsp; `CSS only` &nbsp; `html form`
-9. [Color Generator](https://9-colour-generator.netlify.app/) &nbsp; `Typescript` &nbsp; `useEffect cleanup function` &nbsp; `CSS Grid` &nbsp; `html form`
-10. [Grocery Store](https://10-grocery-store.netlify.app/) &nbsp; `CRUD Functionality` &nbsp; `LocalStorage` &nbsp; `Typescript` &nbsp; `useEffect cleanup function` &nbsp; `Unique IDs` &nbsp; `Better styling structure in MUI` &nbsp; `Alert` &nbsp; `Conditional styling`
+7. [Slider Reviews App](https://7-review-slider.netlify.app/)
+
+- `Typescript`
+- `useEffect cleanup function`
+- `CSS only`
+
+8. [Text Generator](https://8-text-generator.netlify.app/)
+
+- `useEffect cleanup function`
+- `CSS only`
+- `html form`
+
+9. [Color Generator](https://9-colour-generator.netlify.app/)
+
+- `Typescript`
+- `useEffect cleanup function`
+- `CSS Grid`
+- `html form`
+
+10. [Grocery Store](https://10-grocery-store.netlify.app/)
+
+- `CRUD Functionality`
+- `LocalStorage`
+- `Typescript`
+- `useEffect cleanup function`
+- `Unique IDs`
+- `Better styling structure in MUI`
+- `Alert`
+- `Conditional styling`
 
 ### useRef Project
 
-11. [Responsive Navbar](https://11-responsive-navbar.netlify.app/) &nbsp; `CSS only` &nbsp; `Animation effect` &nbsp; `svg-logo used` &nbsp; `getBoundingClientRect()`
+11. [Responsive Navbar](https://11-responsive-navbar.netlify.app/)
+
+- `CSS only`
+- `Animation effect`
+- `svg-logo used`
+- `getBoundingClientRect()`
 
 ### useContext Projects
 
-12. [Sidebar & Modal](https://12-sidebar-modal-app.netlify.app/) &nbsp; `CSS only` &nbsp; `Animation effect - adding and removing class` &nbsp; `custom hook`
+12. [Sidebar & Modal](https://12-sidebar-modal-app.netlify.app/)
 
-13. [Stripe Header](https://13-stripe-header-clone.netlify.app/) &nbsp; `CSS only` &nbsp;`flex-shrink on flex child` &nbsp; `centering tool-tip` &nbsp; `onMouseOver` &nbsp; `Center react icon` &nbsp; `useRef` &nbsp; `getBoundingClientRect()` &nbsp; `useRef`
+- `CSS only`
+- `Animation effect - adding and removing class`
+- `custom hook`
+
+13. [Stripe Header](https://13-stripe-header-clone.netlify.app/)
+
+- `CSS only`
+- `flex-shrink on flex child`
+- `centering tool-tip`
+- `onMouseOver`
+- `Center react icon`
+- `useRef`
+- `getBoundingClientRect()`
+- `useRef`
 
 ### useReducer Projects
 
-14. [Shopping Cart](https://14-shopping-cart.netlify.app/) &nbsp; `Add text to material icon` &nbsp; `Deep-Copy vs Shallow-Copy pitfalls` &nbsp; `React Strict mode` &nbsp; `Subtract item and also remove from list when reaches 0` &nbsp; `reduce function to calculate the sum` &nbsp; `Express API implemented` &nbsp; `Express deployed on Netlify` &nbsp; `Netlify lambda functions` &nbsp; `useContext hook`
+14. [Shopping Cart](https://14-shopping-cart.netlify.app/)
+
+- `Add text to material icon`
+- `Deep-Copy vs Shallow-Copy pitfalls`
+- `React Strict mode`
+- `Subtract item and also remove from list when reaches 0`
+- `reduce function to calculate the sum`
+- `Express API implemented`
+- `Express deployed on Netlify`
+- `Netlify lambda functions`
+- `useContext hook`
 
 ### React Router Project
 
-15. [Cocktail Search]() &nbsp; `react-router-5 to react-router-6 (see commits)` &nbsp; `Navbar with logo(left) and links(right)` &nbsp; `Using John's pre-prepared CSS` &nbsp; [External API - No API key required](https://www.thecocktaildb.com/api.php) &nbsp; `Search bar (instantly brings up items on search) with no enter button` &nbsp; `uncontrolled input using useRef - focus when component loads` &nbsp; `async function inside useEffect` &nbsp; `react-router netlify issue`
+15. [Cocktail Search](https://15-cocktail-search.netlify.app/)
+
+- `react-router-5 to react-router-6 (see commits)`
+- `Navbar with logo(left) and links(right)`
+- `Using John's pre-prepared CSS`
+- [External API - No API key required](https://www.thecocktaildb.com/api.php)
+- `Search bar (instantly brings up items on search) with no enter button`
+- `uncontrolled input using useRef - focus when component loads`
+- `async function inside useEffect`
+- `react-router netlify issue`
 
 ## Handy Tools
 

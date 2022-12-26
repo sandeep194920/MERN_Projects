@@ -1,6 +1,6 @@
 # Project details
 
-[Cocktails Search](https://13-stripe-header-clone.netlify.app/)
+[Cocktails Search](https://15-cocktail-search.netlify.app/)
 
 ## Details
 
