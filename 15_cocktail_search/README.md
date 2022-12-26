@@ -13,6 +13,7 @@ We will design stripe home page mainly we will focus on navbar where we have a n
 - Which external API are we using?
 - How to fetch cocktail API?
 - How to migrate from `react-router-5` to `react-router-6`?
+- How to solve netlify react-router issue?
 
 ---
 
@@ -204,3 +205,9 @@ React-router-6 - `5d64bfb791da95871df75f86a653b38c1c21f284`
 React-router-5 - `da7767f4a04806d6de5572ac72bdf5d92c5ef3c3`
 
 ---
+
+### How to solve netlify react-router issue?
+
+This is the thing to remember when using `react-router` in our app. When we navigate to any URL that doesn't exist, netlify will show 404 page of netlify and doesn't show our error page. To solve this,
+
+- Just create `_redirects` file in your Public folder and paste this in \_redirects - `/* /index.html 200`.
