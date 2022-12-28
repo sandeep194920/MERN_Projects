@@ -4,7 +4,7 @@
 
 ## Details
 
-We will design stripe home page mainly we will focus on navbar where we have a nice drop-down for each nav link
+We will get the data from an external cocktail API and display the cocktails. When we click on a single cocktail, we use `react-router` to navigate to next page where it shows single cocktail details.
 
 ## Things we can learn
 
