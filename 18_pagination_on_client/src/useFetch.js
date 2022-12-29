@@ -10,7 +10,8 @@ export const useFetch = () => {
   const getProducts = async () => {
     const response = await fetch(url)
     const data = await response.json()
-    setData(data)
+    const slicedData = paginate(data)
+    setData(slicedData)
     setLoading(false)
   }
 
