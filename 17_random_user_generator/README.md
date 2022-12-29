@@ -1,6 +1,6 @@
 # Project details
 
-[Random User Generator]()
+[Random User Generator](https://17-random-user.netlify.app/)
 
 ## Details
 
