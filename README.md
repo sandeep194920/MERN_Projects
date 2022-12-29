@@ -133,7 +133,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `When element is hovered on functionality - onMouseOver`
 - `Object destructuring from nested API response`
 
-18. [Pagination on Client]()
+18. [Pagination on Client](https://18-pagination-on-client.netlify.app/)
 
 - `Array.from() to create main array and subarrays inside main array`
 - `custom hook useFetch() to get the data`
