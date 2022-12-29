@@ -133,6 +133,8 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `When element is hovered on functionality - onMouseOver`
 - `Object destructuring from nested API response`
 
+18. [Pagination on Client]()
+
 ## Handy Tools
 
 1. [To get tints and shades of a selected colour](https://maketintsandshades.com/)
