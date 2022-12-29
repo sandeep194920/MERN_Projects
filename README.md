@@ -119,7 +119,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `async function inside useEffect`
 - `react-router netlify issue`
 
-### Additional Projects
+### Additional Projects (Include usage of External API)
 
 16. [Markdown Preview](https://16-markdown-preview.netlify.app/)
 
@@ -132,6 +132,15 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `e.target.classList.contains`
 - `When element is hovered on functionality - onMouseOver`
 - `Object destructuring from nested API response`
+
+18. [Pagination on Client]()
+
+- `Array.from() to create main array and subarrays inside main array`
+- `custom hook useFetch() to get the data`
+- **`This implementation could be an interview question`**
+- `Conditional rendering depending on loading state`
+- `Dynamically set active class CSS on clicked button`
+- **`Circular Array Functionality`** - `When Previous btn is clicked, the last page is shown, and when next btn is clicked at last, first page is shown`
 
 ## Handy Tools
 
