@@ -119,7 +119,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `async function inside useEffect`
 - `react-router netlify issue`
 
-### Additional Projects
+### Additional Projects (Include usage of External API)
 
 16. [Markdown Preview](https://16-markdown-preview.netlify.app/)
 
