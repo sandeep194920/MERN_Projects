@@ -125,6 +125,14 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 - `react-markdown library` - [Link](https://www.npmjs.com/package/react-markdown)
 
+17. [Random User Generator]()
+
+- `External API - No API key required` - [API Link](https://randomuser.me/api/)
+- `Using same handler function for all inputs  using data label -  set state when hovered on element using data attribute on JSX`
+- `e.target.classList.contains`
+- `When element is hovered on functionality - onMouseOver`
+- `Object destructuring from nested API response`
+
 ## Handy Tools
 
 1. [To get tints and shades of a selected colour](https://maketintsandshades.com/)
