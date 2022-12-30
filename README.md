@@ -127,7 +127,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 17. [Random User Generator](https://17-random-user.netlify.app/)
 
-- `External API - No API key required` - [API Link](https://randomuser.me/api/)
+- `External API - No API key required` - [Random user api](https://randomuser.me/api/)
 - `Using same handler function for all inputs  using data label -  set state when hovered on element using data attribute on JSX`
 - `e.target.classList.contains`
 - `When element is hovered on functionality - onMouseOver`
@@ -135,6 +135,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 18. [Pagination on Client](https://18-pagination-on-client.netlify.app/)
 
+- `External API - No API key required` - [Github users api](https://api.github.com/users/john-smilga/followers?per_page=100)
 - `Array.from() to create main array and subarrays inside main array`
 - `custom hook useFetch() to get the data`
 - **`This implementation could be an interview question`**
