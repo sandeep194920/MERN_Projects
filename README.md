@@ -143,6 +143,14 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Dynamically set active class CSS on clicked button`
 - **`Circular Array Functionality`** - `When Previous btn is clicked, the last page is shown, and when next btn is clicked at last, first page is shown`
 
+19. [Photos search]()
+
+- `External API - API access key required` - [photos main api](https://api.unsplash.com/photos/) &nbsp; [photo search api](https://api.unsplash.com/search/photos/)
+- `Guidelines on using external API that requires API key`
+- `Infinite Scroll`
+- `Search functionality`
+- `.env file to store API keys`
+
 ## Handy Tools
 
 1. [To get tints and shades of a selected colour](https://maketintsandshades.com/)
