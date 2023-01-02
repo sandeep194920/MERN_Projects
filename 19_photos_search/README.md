@@ -10,6 +10,7 @@ This app is similar to [unsplash](https://unsplash.com/) where we can search pho
 
 - How to read API docs of [unsplash](https://unsplash.com/documentation#search-photos)
 - How to setup env variables?
+- How to setup `load on scroll` functionality?
 
 ---
 
@@ -52,3 +53,31 @@ These are some of the guidelines when working with external API. The main takeaw
 [My Stackoverflow answer](https://stackoverflow.com/a/68945430/10824697)
 
 ---
+
+### How to setup `load on scroll` functionality?
+
+`document.body.scrollHeight` - Defines the height of the body that is scrollable.
+[Reference of scrollHeight](https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_element_scrollheight)
+
+`window.scrollY` - returns the number of pixels that the document is currently scrolled vertically.
+
+`Window.innerHeight` - returns the interior height of the window in pixels, including the height of the horizontal scroll bar, if present. - This would change if we decrease the screen vertically (usually when console is open), but the `body.scrollHeight` stays same.
+
+**So the idea is to check if I have scrolled till end**
+
+To do this, I need to check if `innerHeight + scrollY === bodyHeight`, and if that is the case then I can fetch new images.
+
+```js
+// adding 5 pixels here as - before the end is reached we can start load new images
+if (innerHeight + scrollY >= bodyHeight - 5) {
+  console.log('Reached the end')
+}
+```
+
+also, we should not fetch the images if it is still loading...
+
+```js
+if (!loading && innerHeight + scrollY >= bodyHeight - 5) {
+  console.log('Reached the end')
+}
+```

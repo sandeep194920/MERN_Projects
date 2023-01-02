@@ -98,7 +98,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 - `Add text to material icon`
 - `Deep-Copy vs Shallow-Copy pitfalls`
-- `React Strict mode`
+- `React Strict mode issue - double render which is solved using deepcopy above`
 - `Subtract item and also remove from list when reaches 0`
 - `reduce function to calculate the sum`
 - `Express API implemented`
@@ -150,6 +150,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Infinite Scroll`
 - `Search functionality`
 - `.env file to store API keys`
+- `load on scroll functionality`
 
 ## Handy Tools
 
