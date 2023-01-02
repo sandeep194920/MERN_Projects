@@ -98,7 +98,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 - `Add text to material icon`
 - `Deep-Copy vs Shallow-Copy pitfalls`
-- `React Strict mode`
+- `React Strict mode issue - double render which is solved using deepcopy above`
 - `Subtract item and also remove from list when reaches 0`
 - `reduce function to calculate the sum`
 - `Express API implemented`
@@ -142,6 +142,17 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Conditional rendering depending on loading state`
 - `Dynamically set active class CSS on clicked button`
 - **`Circular Array Functionality`** - `When Previous btn is clicked, the last page is shown, and when next btn is clicked at last, first page is shown`
+
+19. [Photos search]()
+
+- `External API - API access key required` - [photos main api](https://api.unsplash.com/photos/) &nbsp; [photo search api](https://api.unsplash.com/search/photos/)
+- `Guidelines on using external API that requires API key`
+- `Infinite Scroll`
+- `Two flavours of fetching data when enter button is pressed on search`
+- `.env file to store API keys`
+- `load on scroll functionality`
+- `Two URLs used - one to fetch initial data (main URL) and other one is to fetch data when user searches something (search URL). So we have if else logic in fetch`
+- `Search functionality when enter button is pressed`
 
 ## Handy Tools
 
