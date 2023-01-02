@@ -148,9 +148,11 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `External API - API access key required` - [photos main api](https://api.unsplash.com/photos/) &nbsp; [photo search api](https://api.unsplash.com/search/photos/)
 - `Guidelines on using external API that requires API key`
 - `Infinite Scroll`
-- `Search functionality`
+- `Two flavours of fetching data when enter button is pressed on search`
 - `.env file to store API keys`
 - `load on scroll functionality`
+- `Two URLs used - one to fetch initial data (main URL) and other one is to fetch data when user searches something (search URL). So we have if else logic in fetch`
+- `Search functionality when enter button is pressed`
 
 ## Handy Tools
 

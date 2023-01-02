@@ -8,29 +8,40 @@ const searchUrl = `https://api.unsplash.com/search/photos/`
 function App() {
   const [loading, setLoading] = useState(false)
   const [photos, setPhotos] = useState([])
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(0)
   const [query, setQuery] = useState('')
 
   const fetchImages = useCallback(async () => {
+    console.log(' fetching again with query', query)
     setLoading(true)
     let url
     const urlPage = `&page=${page}`
-    url = `${mainUrl}${clientID}${urlPage}`
+    const urlQuery = `&query=${query}`
+    if (query) {
+      console.log('QUERY EXISTS', query)
+      url = `${searchUrl}${clientID}${urlPage}${urlQuery}`
+    } else {
+      console.log('QUERY DOESNT EXISTS', query)
+      url = `${mainUrl}${clientID}${urlPage}`
+    }
     try {
       const response = await fetch(url)
       const data = await response.json()
       setPhotos((oldPhotos) => {
-        // console.log('The old photos are', oldPhotos)
-        console.log('Old photos', [...oldPhotos])
-        console.log('data is', [...data])
-        return [...oldPhotos, ...data]
+        if (page === 1 && query) {
+          return data.results
+        } else if (query) {
+          return [...oldPhotos, ...data.results]
+        } else {
+          return [...oldPhotos, ...data]
+        }
       })
       setLoading(false)
     } catch (error) {
       setLoading(false)
       console.log(error)
     }
-  }, [page])
+  }, [page, query])
 
   useEffect(() => {
     fetchImages()
@@ -54,7 +65,19 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('hello')
+    console.log('calling fetch again with qyert', query)
+    setPage(1) //~ comment this if setPhotos([]) and fetchImages() are called like below
+
+    /* Initially, when page is set to 1 and  here when we set page to 1 again, the first 10 photos will not change as the state call for setPhotos would be same as before. Hence, either of two things can be done*/
+
+    //! This is not my favourite way
+    /*1. Initially set the page to 0, and setPage(1) as done in above line. In this case, everytime, the enter button is clicked, page is set from 0 to 1 and the data would be pulled.  */
+
+    //* This is my favourite way
+    /*2. Instead of setting the page to 0, when the enter button is clicked, we will wipe out the data by setting setPhotos([]) and then call fetchImages() which would call the images again with the query. To achieve this, comment above setPage(1) and uncomment below setPhotos([]) and fetchImages() */
+
+    // setPhotos([])
+    // fetchImages()
   }
 
   return (

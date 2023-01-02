@@ -11,6 +11,7 @@ This app is similar to [unsplash](https://unsplash.com/) where we can search pho
 - How to read API docs of [unsplash](https://unsplash.com/documentation#search-photos)
 - How to setup env variables?
 - How to setup `load on scroll` functionality?
+- Two flavours of calling API again when search's enter button is clicked to fetch the data with the search query
 
 ---
 
@@ -79,5 +80,28 @@ also, we should not fetch the images if it is still loading...
 ```js
 if (!loading && innerHeight + scrollY >= bodyHeight - 5) {
   console.log('Reached the end')
+}
+```
+
+---
+
+### Two flavours of calling API again when search's enter button is clicked to fetch the data with the search query
+
+```js
+const handleSubmit = (e) => {
+  e.preventDefault()
+  console.log('calling fetch again with qyert', query)
+  setPage(1) //~ comment this if setPhotos([]) and fetchImages() are called like below
+
+  /* Initially, when page is set to 1 and  here when we set page to 1 again, the first 10 photos will not change as the state call for setPhotos would be same as before. Hence, either of two things can be done*/
+
+  //! This is not my favourite way
+  /*1. Initially set the page to 0, and setPage(1) as done in above line. In this case, everytime, the enter button is clicked, page is set from 0 to 1 and the data would be pulled.  */
+
+  //* This is my favourite way
+  /*2. Instead of setting the page to 0, when the enter button is clicked, we will wipe out the data by setting setPhotos([]) and then call fetchImages() which would call the images again with the query. To achieve this, comment above setPage(1) and uncomment below setPhotos([]) and fetchImages() */
+
+  // setPhotos([])
+  // fetchImages()
 }
 ```
