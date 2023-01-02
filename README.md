@@ -155,6 +155,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Search functionality when enter button is pressed`
 - `Add env variable to Netlify`
 - `Rate limit - 403 error`
+- `useRef to stop useEffect initial render and only call useEffect on rerender. I havent implemented this, look at John's last video of this project.`
 
 ## Handy Tools
 
