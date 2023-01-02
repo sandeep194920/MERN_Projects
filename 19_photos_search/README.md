@@ -12,6 +12,7 @@ This app is similar to [unsplash](https://unsplash.com/) where we can search pho
 - How to setup env variables?
 - How to setup `load on scroll` functionality?
 - Two flavours of calling API again when search's enter button is clicked to fetch the data with the search query
+- How to add env variable to Netlify?
 
 ---
 
@@ -91,17 +92,25 @@ if (!loading && innerHeight + scrollY >= bodyHeight - 5) {
 const handleSubmit = (e) => {
   e.preventDefault()
   console.log('calling fetch again with qyert', query)
-  setPage(1) //~ comment this if setPhotos([]) and fetchImages() are called like below
+  // setPage(1) //~ comment this if setPhotos([]) and fetchImages() are called like below
 
   /* Initially, when page is set to 1 and  here when we set page to 1 again, the first 10 photos will not change as the state call for setPhotos would be same as before. Hence, either of two things can be done*/
 
   //! This is not my favourite way
-  /*1. Initially set the page to 0, and setPage(1) as done in above line. In this case, everytime, the enter button is clicked, page is set from 0 to 1 and the data would be pulled.  */
+  /*1. Initially set the page to 0, and setPage(1) as done in above line. In this case, everytime, the enter button is clicked, page is set from 0 to 1 and the data would be pulled.  THIS IS NOT WORKING PROPERLY FOR ME, as I am using callback hook as well, and I also don't think this is the right way to do, so the best way is to go with 2nd approach below.*/
 
   //* This is my favourite way
   /*2. Instead of setting the page to 0, when the enter button is clicked, we will wipe out the data by setting setPhotos([]) and then call fetchImages() which would call the images again with the query. To achieve this, comment above setPage(1) and uncomment below setPhotos([]) and fetchImages() */
 
-  // setPhotos([])
-  // fetchImages()
+  setPhotos([])
+  fetchImages()
 }
 ```
+
+---
+
+### How to add env variable to Netlify?
+
+We added env variable in local. We also need to add this variable to prod, which is netlify in this case as we are deploying the app there.
+
+We could add our variable in `Site settings -> Environment variables -> click on Add variable button and add it` [like this](https://app.netlify.com/sites/19-photos-search/settings/env)

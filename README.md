@@ -153,6 +153,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `load on scroll functionality`
 - `Two URLs used - one to fetch initial data (main URL) and other one is to fetch data when user searches something (search URL). So we have if else logic in fetch`
 - `Search functionality when enter button is pressed`
+- `Add env variable to Netlify`
 
 ## Handy Tools
 

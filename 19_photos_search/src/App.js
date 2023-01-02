@@ -12,16 +12,13 @@ function App() {
   const [query, setQuery] = useState('')
 
   const fetchImages = useCallback(async () => {
-    console.log(' fetching again with query', query)
     setLoading(true)
     let url
     const urlPage = `&page=${page}`
     const urlQuery = `&query=${query}`
     if (query) {
-      console.log('QUERY EXISTS', query)
       url = `${searchUrl}${clientID}${urlPage}${urlQuery}`
     } else {
-      console.log('QUERY DOESNT EXISTS', query)
       url = `${mainUrl}${clientID}${urlPage}`
     }
     try {
@@ -41,7 +38,7 @@ function App() {
       setLoading(false)
       console.log(error)
     }
-  }, [page, query])
+  }, [query, page])
 
   useEffect(() => {
     fetchImages()
@@ -65,8 +62,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('calling fetch again with qyert', query)
-    setPage(1) //~ comment this if setPhotos([]) and fetchImages() are called like below
+    //setPage(1) //~ comment this if setPhotos([]) and fetchImages() are called like below
 
     /* Initially, when page is set to 1 and  here when we set page to 1 again, the first 10 photos will not change as the state call for setPhotos would be same as before. Hence, either of two things can be done*/
 
@@ -76,8 +72,8 @@ function App() {
     //* This is my favourite way
     /*2. Instead of setting the page to 0, when the enter button is clicked, we will wipe out the data by setting setPhotos([]) and then call fetchImages() which would call the images again with the query. To achieve this, comment above setPage(1) and uncomment below setPhotos([]) and fetchImages() */
 
-    // setPhotos([])
-    // fetchImages()
+    setPhotos([])
+    fetchImages()
   }
 
   return (
