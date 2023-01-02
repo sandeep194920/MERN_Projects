@@ -143,7 +143,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Dynamically set active class CSS on clicked button`
 - **`Circular Array Functionality`** - `When Previous btn is clicked, the last page is shown, and when next btn is clicked at last, first page is shown`
 
-19. [Photos search]()
+19. [Photos search](https://19-photos-search.netlify.app/)
 
 - `External API - API access key required` - [photos main api](https://api.unsplash.com/photos/) &nbsp; [photo search api](https://api.unsplash.com/search/photos/)
 - `Guidelines on using external API that requires API key`
@@ -154,6 +154,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Two URLs used - one to fetch initial data (main URL) and other one is to fetch data when user searches something (search URL). So we have if else logic in fetch`
 - `Search functionality when enter button is pressed`
 - `Add env variable to Netlify`
+- `Rate limit - 403 error`
 
 ## Handy Tools
 

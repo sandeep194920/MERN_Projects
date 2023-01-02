@@ -1,6 +1,6 @@
 # Project details
 
-[Pagination on Client](https://18-pagination-on-client.netlify.app/)
+[Photos Search](https://19-photos-search.netlify.app/)
 
 ## Details
 
@@ -13,6 +13,7 @@ This app is similar to [unsplash](https://unsplash.com/) where we can search pho
 - How to setup `load on scroll` functionality?
 - Two flavours of calling API again when search's enter button is clicked to fetch the data with the search query
 - How to add env variable to Netlify?
+- Rate Limit 403
 
 ---
 
@@ -114,3 +115,9 @@ const handleSubmit = (e) => {
 We added env variable in local. We also need to add this variable to prod, which is netlify in this case as we are deploying the app there.
 
 We could add our variable in `Site settings -> Environment variables -> click on Add variable button and add it` [like this](https://app.netlify.com/sites/19-photos-search/settings/env)
+
+---
+
+### Rate Limit 403
+
+Unsplash provides 50 requests per hour, and after that it throws `403` error. We are not handling or showing any UI for that error in this project.
