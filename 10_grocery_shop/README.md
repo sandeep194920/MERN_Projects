@@ -98,7 +98,7 @@ To persist the data when we refresh the page, we need to have items stored in lo
 
 to store the object, into localstorage, we need to convert object first to string because only strings can be stored in localstorage and not objects directly.
 
-To stored object after converted to string we do `JSON.parse(localStorage.getItem('storedItems')`
+To store the object after converted to string, we do `JSON.parse(localStorage.getItem('storedItems')`
 
 Now TS complains that `localStorage.getItem('storedItems')` can be null, so to avoid we define like this `JSON.parse(localStorage.getItem('storedItems') || '[]')`. So the useState will be
 
@@ -108,7 +108,7 @@ Now TS complains that `localStorage.getItem('storedItems')` can be null, so to a
   )
 ```
 
-(Stackoverflow reference)[https://stackoverflow.com/a/64747306/10824697]
+[StackOverflow reference](https://stackoverflow.com/a/64747306/10824697)
 
 In `ImprovedShoppingArea`, we implement this in a function and then use it in state like this
 
@@ -130,9 +130,9 @@ const getLocalStorageItems = () => {
 const [items, setItems] = useState<[] | Item[]>(getLocalStorageItems())
 ```
 
-**RETRIEVE FROM LOCALSTORAGE**
+**RETRIEVE FROM AND UPDATE THE LOCALSTORAGE**
 
-So when update the items state using setState (through any crud operation like when we delete the item or add an item or update an item), the below useEffect runs and hence the updated items get stored in localstorage
+So when we update the `items` state using `setState` (through any crud operation like when we delete the item or add an item or update an item), the below useEffect runs and hence the updated items get stored in localstorage
 
 ```js
 useEffect(() => {

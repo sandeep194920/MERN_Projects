@@ -157,6 +157,15 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Rate limit - 403 error`
 - `useRef to stop useEffect initial render and only call useEffect on rerender. I havent implemented this, look at John's last video of this project.`
 
+20. [Dark mode toggle]()
+
+- `Moment js to work with` **`dates`** `in Javascript`
+- `MaxWidth and width explained - useful when you need a card of some fixed size`
+- `Dark and light theme toggle using CSS`
+- `Dark and light theme toggle using Material UI`
+- `Local storage to persist the light/dark theme toggle`
+- `Material UI - style vs sx prop`
+
 ## Handy Tools
 
 1. [To get tints and shades of a selected colour](https://maketintsandshades.com/)
