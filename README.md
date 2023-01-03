@@ -161,6 +161,8 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 - `Moment js to work with` **`dates`** `in Javascript`
 - `MaxWidth and width explained - useful when you need a card of some fixed size`
+- `Dark and light theme toggle using CSS`
+- `Local storage to persist the light/dark theme toggle`
 
 ## Handy Tools
 

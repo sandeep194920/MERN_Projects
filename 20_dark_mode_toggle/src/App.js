@@ -3,11 +3,27 @@ import data from './data'
 import Article from './Article'
 import { useEffect, useState } from 'react'
 
+/* We can retrieve saved theme using a function or without a function, just through a variable as shown below*/
+
+// without a function
+// const savedTheme = localStorage.getItem('savedTheme') || 'light-theme'
+
+// with function
+const getSavedTheme = () => {
+  let savedTheme = 'light-theme'
+  if (localStorage.getItem('savedTheme')) {
+    savedTheme = localStorage.getItem('savedTheme')
+  }
+  return savedTheme
+}
+
 function App() {
-  const [theme, setTheme] = useState('light-theme')
+  // const [theme, setTheme] = useState(savedTheme) //^ without function
+  const [theme, setTheme] = useState(getSavedTheme()) //* with a function
 
   useEffect(() => {
     document.documentElement.className = theme
+    localStorage.setItem('savedTheme', theme)
   }, [theme])
 
   const handleToggle = () => {

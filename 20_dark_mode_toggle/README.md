@@ -14,7 +14,8 @@ This app is similar to
   - and when screen is shrinked, in a mobile view, it should have 90vw
 
 - How to use `moment js` to display dates in any format easily?
-- How to implement dark theme using CSS?
+- How to implement dark theme and toggle using CSS?
+- Once the dark theme toggle is implemented, how can we persist on page storage using local storage?
 
 ---
 
@@ -78,7 +79,7 @@ console.log(formattedDate) // gives - Nov 22nd 19
 
 ---
 
-### How to implement dark theme using CSS?
+### How to implement dark theme and toggle using CSS?
 
 In `index.css` we have `:root` that defines the css for light theme
 
@@ -153,3 +154,110 @@ function App() {
 ```
 
 ![html](./readmeImages/html.png)
+
+---
+
+### Once the dark theme toggle is implemented, how can we persist on page storage using local storage?
+
+We have used the local storage in our grocery storage app as well. You can refer it [here](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/10_grocery_shop)
+
+It has two parts,
+
+- Retrieve theme from local storage
+- Set theme to local storage
+
+**Retrieve theme from local storage**
+
+We can retrieve from local storage using
+
+- A function
+
+```js
+// with function
+const getSavedTheme = () => {
+  let savedTheme = 'light-theme'
+  if (localStorage.getItem('savedTheme')) {
+    savedTheme = localStorage.getItem('savedTheme')
+  }
+  return savedTheme
+}
+```
+
+- Without a function
+
+```js
+// without a function
+const savedTheme = localStorage.getItem('savedTheme') || 'light-theme'
+```
+
+Then we use it in useState
+
+```js
+// const [theme, setTheme] = useState(savedTheme) //^ without function
+const [theme, setTheme] = useState(getSavedTheme()) //* with a function
+```
+
+**Set theme to local storage**
+
+```js
+useEffect(() => {
+  document.documentElement.className = theme
+  localStorage.setItem('savedTheme', theme)
+}, [theme])
+```
+
+Full code below
+
+```js
+/* We can retrieve saved theme using a function or without a function, just through a variable as shown below*/
+
+// without a function
+// const savedTheme = localStorage.getItem('savedTheme') || 'light-theme'
+
+// with function
+const getSavedTheme = () => {
+  let savedTheme = 'light-theme'
+  if (localStorage.getItem('savedTheme')) {
+    savedTheme = localStorage.getItem('savedTheme')
+  }
+  return savedTheme
+}
+
+function App() {
+  // const [theme, setTheme] = useState(savedTheme) //^ without function
+  const [theme, setTheme] = useState(getSavedTheme()) //* with a function
+
+  useEffect(() => {
+    document.documentElement.className = theme
+    localStorage.setItem('savedTheme', theme)
+  }, [theme])
+
+  const handleToggle = () => {
+    if (theme === 'light-theme') {
+      setTheme('dark-theme')
+    } else {
+      setTheme('light-theme')
+    }
+  }
+
+  return (
+    <main>
+      <nav>
+        <div className="nav-center">
+          <h1>Dark Mode Toggle</h1>
+          <button onClick={handleToggle} className="btn">
+            toggle
+          </button>
+        </div>
+      </nav>
+      <section className="articles">
+        {data.map((item) => {
+          return <Article key={item.id} {...item} />
+        })}
+      </section>
+    </main>
+  )
+}
+
+export default App
+```
