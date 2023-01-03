@@ -4,7 +4,7 @@
 
 ## Details
 
-This app is similar to
+This app has light and dark mode and is inspired by [Dan Abramov's blog](https://overreacted.io/). We can learn how to set dark mode and toggle between light and dark modes using `plain CSS` - `20_dark_mode_toggle/src/ToggleWithCSS.js` and also using `Material UI` - `20_dark_mode_toggle/src/ToggleWithMUI.js`.
 
 ## Things we can learn
 
@@ -16,6 +16,8 @@ This app is similar to
 - How to use `moment js` to display dates in any format easily?
 - How to implement dark theme and toggle using CSS?
 - Once the dark theme toggle is implemented, how can we persist on page storage using local storage?
+- How to use `darkmode` with `Material UI`?
+- what is the difference between Material UI's `style` and `sx` prop?
 
 ---
 
@@ -261,3 +263,135 @@ function App() {
 
 export default App
 ```
+
+---
+
+### How to use darkmode with `Material UI`?
+
+[Read the MUI docs here](https://mui.com/material-ui/customization/dark-mode/)
+
+In the above docs, in the section [Dark mode by default](https://mui.com/material-ui/customization/dark-mode/#dark-mode-by-default), the gotcha is that you need to have default colors and this won't work if you change any colors or anything in palette. Try out with a button and it works only with default MUI provided colors.
+
+So we need to refer [Dark mode with custom palette](https://mui.com/material-ui/customization/dark-mode/#dark-mode-with-a-custom-palette). I have referred this and used my own colors, and also simplified the given code like this below,
+
+Full code is in `20_dark_mode_toggle/src/ToggleWithMUI.js`
+
+```js
+const colors = {
+  light: {
+    primary: '#d23669',
+    text: '#282c35',
+    bg: '#fff',
+  },
+  dark: {
+    primary: '#ffa7c4',
+    text: '#fff',
+    bg: '#282c35',
+  },
+}
+const getDesignTokens = (mode) => ({
+  palette: {
+    mode,
+    primary: {
+      main: colors[mode].primary,
+    },
+    background: {
+      default: colors[mode].bg,
+      paper: colors[mode].bg,
+    },
+    text: {
+      primary: colors[mode].text,
+    },
+  },
+})
+```
+
+and then inside the component I use the above function this way
+
+```js
+function ToggleWithMUI() {
+  const [theme, setTheme] = React.useState(getSavedTheme())
+  const muiTheme = createTheme(getDesignTokens(theme)) // when theme changes, getDesignTokens is called with updated theme and we get right values
+
+  // when toggle button is clicked the theme is changed using handleToggle function
+  const handleToggle = () => {
+    setTheme((oldTheme) => {
+      let newTheme
+      if (oldTheme === 'light') {
+        newTheme = 'dark'
+      } else {
+        newTheme = 'light'
+      }
+      localStorage.setItem('savedTheme', newTheme) // local storage to persist theme after page refresh
+      return newTheme
+    })
+  }
+}
+```
+
+---
+
+### what is the difference between Material UI's `style` and `sx` prop?
+
+[Refer my stackOverflow answer here](https://stackoverflow.com/a/73768249/10824697)
+
+- `sx` prop works only on MUI components like `Grid`, `Box` and so on.
+- `style` prop works on both MUI components and HTML like elements such as `span`, `article`,`h1` and so on.
+
+There are several advantages of `sx` prop, and here are a few.
+
+- You can nest the styles when using `sx` prop, but can't do this when using `style` prop
+
+**With sx prop**
+
+```js
+<Box sx={styles.post}>
+  <Typography variant="h4">This is the title</Typography>
+</Box>
+```
+
+`Box` is a `div` of background black, and I need `h4` to be yellow OR primary color. With this requirement, I can nest my styles when I use `sx` prop like this
+
+```js
+const styles = {
+  post: {
+    backgroundColor: 'black',
+    h4: {
+      // color:'yellow' // OR
+      color: (theme) => theme.palette.primary.main,
+      // I cannot use theme inside style object. Since I am going to apply styles.post to sx prop,
+      // I could make use of theme object here as an argument
+    },
+  },
+}
+```
+
+**With style prop**
+
+```js
+;<Box style={styles.post}>
+  <Typography variant="h4" style={style.heading}>
+    This is the title
+  </Typography>
+</Box>
+
+const styles = {
+  post: {
+    backgroundColor: 'black',
+    h4: {
+      // color:'yellow' // OR
+      color: (theme) => theme.palette.primary.main,
+      // I cannot use theme inside style object. Since I am going to apply styles.post to sx prop,
+      // I could make use of theme object here as an argument
+    },
+  },
+  heading: {
+    color: 'yellow',
+    // color: (theme) => theme.palette.primary.main, // THIS WON'T WORK
+  },
+}
+```
+
+The other place where `sx` comes to rescue is when defining breakpoints as explained in my stackoverflow answer. Please refer that.
+
+---
