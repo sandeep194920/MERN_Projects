@@ -118,6 +118,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `uncontrolled input using useRef - focus when component loads`
 - `async function inside useEffect`
 - `react-router netlify issue`
+- `useCallback hook`
 
 ### Additional Projects (Include usage of External API)
 
@@ -132,6 +133,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `e.target.classList.contains`
 - `When element is hovered on functionality - onMouseOver`
 - `Object destructuring from nested API response`
+- `useCallback hook`
 
 18. [Pagination on Client](https://18-pagination-on-client.netlify.app/)
 
@@ -156,6 +158,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Add env variable to Netlify`
 - `Rate limit - 403 error`
 - `useRef to stop useEffect initial render and only call useEffect on rerender. I havent implemented this, look at John's last video of this project.`
+- `useCallback hook`
 
 20. [Dark mode toggle](https://20-dark-mode-toggle.netlify.app/)
 
