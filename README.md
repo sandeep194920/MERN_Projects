@@ -62,6 +62,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Unique IDs`
 - `Better styling structure in MUI`
 - `Alert`
+- `show different error/alert programmatically based on different conditions - setting alert state object`
 - `Conditional styling`
 
 ### useRef Project
@@ -168,6 +169,15 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Dark and light theme toggle using Material UI`
 - `Local storage to persist the light/dark theme toggle`
 - `Material UI - style vs sx prop`
+
+21. [Movies search]()
+
+- `External API - API access key required` - [omdb api](https://www.omdbapi.com/)
+- `react-router-5 to react-router-6 (see commits)`
+- `useContext hook - for gloabal context`
+- `quick context api state setup`
+- `show different error/alert programmatically based on different conditions - setting alert state object` - [similar to 10-grocery-store project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/10_grocery_shop#how-to-set-alert-programmatically-based-on-different-conditions-on-crud)
+- `Search bar (instantly brings up items on search) with no enter button` [Like Cocktail search project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/15_cocktail_search)
 
 ## Handy Tools
 

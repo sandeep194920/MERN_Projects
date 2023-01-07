@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# Project details
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Movies search]()
 
-## Available Scripts
+## Details
 
-In the project directory, you can run:
+This app is similar to photos search but in addition to searching movies we also use react router to display details of clicked movie in the next page. We use omdbapi for this project.
 
-### `npm start`
+## Things we can learn
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Things to remember and recap when we are setting context
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+### Things to remember and recap when we are setting context
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+When we are working on some medium to big size app, we generally use context. This question can be a reference for you to recall quickly what we can set up.
 
-### `npm run build`
+- Once you have the context boiler plate, then setup **state** values for
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - isLoading
+  - error - object state - as we would generally have different error messages for different conditions - [similar to 10-grocery-store project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/10_grocery_shop#how-to-set-alert-programmatically-based-on-different-conditions-on-crud)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  ```js
+  const [error, setError] = useState({ show: false, msg: '' })
+  ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  - any values that initially you would like to fetch from an API and display on the home page. For example Movies in this case
+  - and then a state for search query if it applies - for subsequent requests
 
-### `npm run eject`
+- Once you have state values, then define async function to fetch the data from API and call it inside useEffect
+- Inside the async function, first set isLoading to true and then once the data is fetched, set it to false
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```js
+const fetchMovies = async (url) => {
+  setIsLoading(true)
+  try {
+    // fetch the data
+  } catch (e) {
+    console.log(e)
+  }
+  setIsLoading(false)
+}
+useEffect(() => {
+  fetchMovies(`${API_ENDPOINT}`)
+}, [])
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Set the errors now
+  - Modify the inputs and see what response you are getting. Sometimes, the response will be false for an invalid input(in this project) so you might want to handle such things and set the error accordingly
+  - Also refer to their docs for any additional error details that the API could throw
+- Once you set the above use effect, then we might have to pass query like this in `useEffect` and then we would get the warning saying we need to add `fetchMovies` to `useEffect` dependency array.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```js
+useEffect(() => {
+  fetchMovies(`${API_ENDPOINT}&s=${query}`)
+}, [query]) // here it complains about not having fetchMovies
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- To solve this complain/warning, we have two options
 
-## Learn More
+  - add a comment `// eslint-disable-next-line` like this so the warning goes away (**not recommended**)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  ```js
+  useEffect(() => {
+    fetchMovies(`${API_ENDPOINT}&s=${query}`)
+    // eslint-disable-next-line
+  }, [query])
+  ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  - enclose fetchMovies call inside useCallback hook (**remommended**)
 
-### Code Splitting
+  ```js
+  useEffect(() => {
+    fetchMovies(`${API_ENDPOINT}&s=${query}`)
+  }, [query, fetchMovies])
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  ```js
+  const fetchMovies = useCallback(
+    async (url) => {
+      setIsLoading(true)
+      // fetch the data
+      try {
+        const response = await fetch(url)
+        const data = await response.json()
+        console.log(data)
+        if (data.Response === false) {
+          setError({ ...error, show: true, msg: data.Error })
+        }
+      } catch (error) {
+        console.log(error)
+      }
+      setIsLoading(false)
+    },
+    [error]
+  )
+  ```
