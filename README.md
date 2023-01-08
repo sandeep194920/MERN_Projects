@@ -194,6 +194,8 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Search bar (instantly brings up items on search) with no enter button similar to` [15-Cocktail-search project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/15_cocktail_search) `and` [21-Movie-search project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/21_movies_search)
 - `Delete each item functionality`
 - `Use predefined variables (actions) for useReducer to avoid typos`
+- `switch-case statements in reducer`
+- `Open link in new tag when clicked on <a href/> tag`
 
 ## Handy Tools
 

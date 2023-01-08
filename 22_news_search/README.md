@@ -9,6 +9,7 @@ In this app, we have a search functionality without enter button that brings the
 ## Things we can learn
 
 - How to implement `useReducer` hook?
+- How to Open link in new tag when clicked on `<a href/>` tag
 
 ---
 
@@ -34,10 +35,99 @@ const initialState = {
 const [state, dispatch] = useReducer(reducer, initialState)
 
 const fetchStories = async () => {
-  dispatch({ type: SET_LOADING, payload: true })
+  dispatch({ type: SET_LOADING }) // we don't need any payload to set to true. By this dispatch we set setIsLoading it to true, and then in other dispatch calls, we set the isLoading to false with other data
 }
 
 useEffect(() => {
   fetchStories()
 }, [])
 ```
+
+- `reducer` (first parameter of `useReducer`) looks like this initially
+
+```js
+import {
+  SET_LOADING,
+  SET_STORIES,
+  REMOVE_STORY,
+  HANDLE_PAGE,
+  HANDLE_SEARCH,
+} from './actions' // actions file holds all the string mapping. Eg. SET_LOADING = 'SET_LOADING' to avoid typos
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case SET_LOADING:
+      return { ...state, isLoading: true } // we don't need any payload to set to true. By this dispatch we set setIsLoading it to true, and then in other dispatch calls, we set the isLoading to false with other data
+    default:
+      throw new Error(`no matching "${action.type} action type"`)
+  }
+}
+export default reducer
+```
+
+**So the fetch function looks like this now**
+
+```js
+const initialState = {
+  isLoading: true,
+  hits: [],
+  query: 'react',
+  page: 0,
+  nbPages: 0, // number of pages - we get from api
+}
+
+const AppProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  const fetchStories = async (url) => {
+    dispatch({ type: SET_LOADING, payload: true })
+    try {
+      const response = await fetch(url)
+      const data = await response.json()
+      dispatch({
+        type: SET_STORIES,
+        payload: { hits: data.hits, nbPages: data.nbPages },
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchStories(`${API_ENDPOINT}query=${state.query}&page=${state.page}`)
+  }, [state.page, state.query])
+}
+```
+
+**and reducer looks like this**
+
+```js
+const reducer = (state, action) => {
+  switch (action.type) {
+    case SET_LOADING: // this is to set loading to true. In other requests where we get the data, we set loading to false
+      return { ...state, isLoading: true }
+    case SET_STORIES:
+      const { hits, nbPages } = action.payload
+      return { ...state, isLoading: false, hits, nbPages } // setting loading to false
+    default:
+      throw new Error(`no matching "${action.type} action type"`)
+  }
+}
+export default reducer
+```
+
+**_At this point you could see the state change in react developer tools_**
+
+---
+
+### How to Open link in new tag when clicked on `<a href/>` tag?
+
+we add `target={'_blank'}` and `rel="noreferrer"`
+
+```js
+<a href={url} target={'_blank'} rel="noreferrer">
+  read more
+</a>
+```
+
+---
