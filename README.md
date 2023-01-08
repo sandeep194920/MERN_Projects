@@ -187,12 +187,13 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 22. [News Search]()
 
-- `External API - API access key required` - [hacker news api]()
+- `External API - No API access key required` - [hacker news algolia api](https://hn.algolia.com/api)
 - `Server side pagination`
 - `useContext hook - for gloabal context`
 - `useReducer hook - for state management`
 - `Search bar (instantly brings up items on search) with no enter button similar to` [15-Cocktail-search project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/15_cocktail_search) `and` [21-Movie-search project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/21_movies_search)
 - `Delete each item functionality`
+- `Use predefined variables (actions) for useReducer to avoid typos`
 
 ## Handy Tools
 

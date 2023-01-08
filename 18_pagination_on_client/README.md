@@ -19,6 +19,7 @@ We get github profiles in this project using github API. Since there are more pr
 - How to paginate on front-end?
 - How to set active class dynamically when button is selected?
 - `Circular Array Functionality` - When we are in first page and `prev` btn is clicked, last page must be shown. Also, when `next` btn is clicked in last page, first page should be shown
+- How to make custom hooks like `useFetch`?
 
 ---
 
@@ -143,3 +144,11 @@ const nextPage = () => {
   next
 </button>
 ```
+
+---
+
+### How to make custom hooks like `useFetch`?
+
+I have implemented `useFetch` in this project in `18_pagination_on_client/src/useFetch.js`, but explained in detail in [21_movie_search project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/21_movies_search#implement-custom-hook-usefetch)
+
+---
