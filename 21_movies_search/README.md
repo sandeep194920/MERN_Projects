@@ -11,6 +11,7 @@ This app is similar to photos search but in addition to searching movies we also
 - Things to remember and recap when we are setting context
 - **Gotcha** - `useEffect + useCallback` infinite loop
 - How to display different image when image from API is not available
+- Implement custom hook `useFetch`
 
 ---
 
@@ -176,6 +177,115 @@ return{
     //.....
     <img src={poster === 'N/A' ? url : poster} alt={title} />
 }
+```
+
+---
+
+### Implement custom hook `useFetch`
+
+We have data fetching from API and set the states for `isLoading`, `error` and `data`(`movies` - for movies and `movie` for `SingleMovie`). We are fetching the data in two places, so instead of repeating the process of data fetching in two places, we can use custom hook concept and implement `useFetch` hook which fetches the data and we can use this logic in those two places.
+
+Currently we fetch data in two places
+
+- `SingleMovie.js` - to fetch single movie
+- `context.js` - to feetch searched movies list
+
+**`SingleMovie fetch`**
+
+```js
+const [isLoading, setIsLoading] = useState(true)
+const [error, setError] = useState({ show: false, msg: '' })
+const [movie, setMovie] = useState({})
+const fetchMovie = async (url) => {
+  const response = await fetch(url)
+  const data = await response.json()
+  if (data.Response === 'False') {
+    setError({ show: true, msg: data.Error })
+  } else {
+    setMovie(data)
+  }
+  setIsLoading(false)
+}
+useEffect(() => {
+  fetchMovie(`${API_ENDPOINT}&i=${id}`)
+}, [id])
+```
+
+**`context.js fetch - all movies`**
+
+```js
+const [isLoading, setIsLoading] = useState(false)
+// const [error, setError] = useState(false)
+const [error, setError] = useState({ show: false, msg: '' })
+const [movies, setMovies] = useState([])
+const fetchMovies = useCallback(async (url) => {
+  setIsLoading(true)
+  try {
+    const response = await fetch(url)
+    const data = await response.json()
+    if (data.Response === 'True') {
+      setMovies(data.Search)
+      setError((prevError) => {
+        return {
+          ...prevError,
+          show: false,
+          msg: '',
+        }
+      })
+    } else {
+      setError((prevError) => ({ ...prevError, show: true, msg: data.Error }))
+    }
+    setIsLoading(false)
+  } catch (error) {
+    console.log(error)
+    setIsLoading(false)
+  }
+}, [])
+
+useEffect(() => {
+  fetchMovies(`${API_ENDPOINT}&s=${query}`)
+}, [query, fetchMovies])
+```
+
+**Let's combine above two implementations in `useFetch` hook**
+
+```js
+import { useEffect, useState } from 'react'
+
+function useFetch(url) {
+  const [error, setError] = useState({ show: false, msg: '' })
+  const [data, setData] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
+
+  const fetchData = async (url) => {
+    setIsLoading(true)
+    try {
+      const response = await fetch(url)
+      const data = await response.json()
+      if (data.Response === 'True') {
+        setData(data)
+        setError((prevError) => {
+          return {
+            ...prevError,
+            show: false,
+            msg: '',
+          }
+        })
+      } else {
+        setError({ show: true, msg: data.Error })
+      }
+    } catch (error) {
+      console.log(error)
+    }
+    setIsLoading(false)
+  }
+  useEffect(() => {
+    fetchData(url)
+  }, [url])
+  return { data, error, isLoading }
+}
+
+export default useFetch
 ```
 
 ---

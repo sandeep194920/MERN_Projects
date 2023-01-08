@@ -1,16 +1,29 @@
 import React, { useContext, useEffect, useState, useCallback } from 'react'
+import useFetch from './useFetch'
 
 const AppContext = React.createContext()
 
 export const API_ENDPOINT = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}`
 
 const AppProvider = ({ children }) => {
+  /*
   const [isLoading, setIsLoading] = useState(false)
   // const [error, setError] = useState(false)
   const [error, setError] = useState({ show: false, msg: '' })
   const [movies, setMovies] = useState([])
+  */
+
   const [query, setQuery] = useState('superman')
 
+  const {
+    isLoading,
+    data: { Search: movies },
+    error,
+  } = useFetch(`${API_ENDPOINT}&s=${query}`)
+  console.log('The data', movies)
+
+  //^ Implemented the below logic in useFetch custom hook
+  /*
   const fetchMovies = useCallback(async (url) => {
     setIsLoading(true)
     // fetch the data
@@ -40,6 +53,8 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     fetchMovies(`${API_ENDPOINT}&s=${query}`)
   }, [query, fetchMovies])
+
+  */
 
   return (
     <AppContext.Provider
