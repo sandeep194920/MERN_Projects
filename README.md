@@ -140,7 +140,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 - `External API - No API key required` - [Github users api](https://api.github.com/users/john-smilga/followers?per_page=100)
 - `Array.from() to create main array and subarrays inside main array`
-- `custom hook useFetch() to get the data`
+- `custom hook useFetch() to get the data - use it when you have repetitive code - for example fetching data from API in multiple places`
 - **`This implementation could be an interview question`**
 - `Conditional rendering depending on loading state`
 - `Dynamically set active class CSS on clicked button`
@@ -175,9 +175,13 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `External API - API access key required` - [omdb api](https://www.omdbapi.com/)
 - `react-router-5 to react-router-6 (see commits)`
 - `useContext hook - for gloabal context`
-- `quick context api state setup`
-- `show different error/alert programmatically based on different conditions - setting alert state object` - [similar to 10-grocery-store project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/10_grocery_shop#how-to-set-alert-programmatically-based-on-different-conditions-on-crud)
-- `Search bar (instantly brings up items on search) with no enter button` [Like Cocktail search project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/15_cocktail_search)
+- `Quick context api state setup`
+- `Show different error/alert programmatically based on different conditions - setting alert state object` - [similar to 10-grocery-store project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/10_grocery_shop#how-to-set-alert-programmatically-based-on-different-conditions-on-crud)
+- `Search bar (instantly brings up items on search) with no enter button` [similar to 15-Cocktail-search project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/15_cocktail_search)
+- **Gotcha** - `useEffect + useCallback infinite loop cause and resolution - explained`
+- `Show different image when image from API is not available`
+- `useParams hook to get the query params from the url given by react router (both v5 and v6 - same in both versions)`
+- `custom hook useFetch() to get the data - use it when you have repetitive code - for example fetching data from API in multiple places - see commits - before and after useFetch hook`
 
 ## Handy Tools
 

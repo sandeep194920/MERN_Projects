@@ -5,33 +5,37 @@ const AppContext = React.createContext()
 export const API_ENDPOINT = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}`
 
 const AppProvider = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+  // const [error, setError] = useState(false)
   const [error, setError] = useState({ show: false, msg: '' })
   const [movies, setMovies] = useState([])
-  const [query, setQuery] = useState('batman')
+  const [query, setQuery] = useState('superman')
 
-  const fetchMovies = useCallback(
-    async (url) => {
-      setIsLoading(true)
-      // fetch the data
-      try {
-        const response = await fetch(url)
-        const data = await response.json()
-        console.log(data)
-        if (data.Response === 'True') {
-          setMovies(data.Search)
-          setError({ ...error, show: false, msg: '' })
-        } else {
-          setError({ ...error, show: true, msg: data.Error })
-        }
-        setIsLoading(false)
-      } catch (error) {
-        console.log(error)
-        setIsLoading(false)
+  const fetchMovies = useCallback(async (url) => {
+    setIsLoading(true)
+    // fetch the data
+    try {
+      const response = await fetch(url)
+      const data = await response.json()
+      if (data.Response === 'True') {
+        setMovies(data.Search)
+        setError((prevError) => {
+          return {
+            ...prevError,
+            show: false,
+            msg: '',
+          }
+        })
+      } else {
+        // setError({...error, show: true, msg: data.Error }) //! This line needs error in dependency array of useCallback (leads to infinite loop)
+        setError((prevError) => ({ ...prevError, show: true, msg: data.Error })) //* This line DOESN'T need error in dependency array of useCallback as we are relying on prevError  (doesn't lead to infinite loop - and is recommended way)
       }
-    },
-    [error]
-  )
+      setIsLoading(false)
+    } catch (error) {
+      console.log(error)
+      setIsLoading(false)
+    }
+  }, [])
 
   useEffect(() => {
     fetchMovies(`${API_ENDPOINT}&s=${query}`)

@@ -9,6 +9,8 @@ This app is similar to photos search but in addition to searching movies we also
 ## Things we can learn
 
 - Things to remember and recap when we are setting context
+- **Gotcha** - `useEffect + useCallback` infinite loop
+- How to display different image when image from API is not available
 
 ---
 
@@ -86,13 +88,94 @@ useEffect(() => {
         const data = await response.json()
         console.log(data)
         if (data.Response === false) {
-          setError({ ...error, show: true, msg: data.Error })
+          // setError({ ...error, show: true, msg: data.Error }) // REFERENCE LINE 1 (FOR BELOW EXPLANATION)
+          // setError({ show: true, msg: data.Error }) // REFERENCE LINE 2 (FOR BELOW EXPLANATION)
         }
       } catch (error) {
         console.log(error)
       }
       setIsLoading(false)
     },
-    [error]
+    [error] // [] this could be an empty array if setError is REFERENCE LINEE 2 (which is the right way - explained below)
   )
   ```
+
+---
+
+### **Gotcha** - `useEffect + useCallback` infinite loop
+
+I noticed one thing while working with `useCallback and useEffect`. In the above question, see `REFEENCE LINE 1` and `REFEENCE LINE 2`. If you use `REFEENCE LINE 1` then we are making use of `error`, hence we need to set that `error` in dependency array, and this leads to infinite loop.
+
+**Why does it lead to infinite loop?**
+
+- `fetchImage` function is recreated always when dependecy of `useCallback` changes.
+- If we include `error` in that dependency, since `REFEENCE LINE 1` or `REFEENCE LINE 2` is about `setError`, this sets error which leads to re-render component. Because of this component re-render, `useEffect` is run again. This useEffect contains `fetchImages` as dependency and because of this, react does see if `fetchImages` function need to be re-run. `fetchImages` even though enclosed in callback, it would re-run again as it has `error` dependency which means that, when error changes, re-run callback function. This happend due to setError in `REFEENCE LINE 1` or `REFEENCE LINE 2`.
+- So one rule of thumb in `useCallback` is, never have any dependency in useCallback that will have state change inside useCallback. Example,
+
+```js
+useCallback(function x() {
+  setSomething('newValue')
+}),
+  [something] // this would lead to infinite loop. So try removing it from dependency array
+```
+
+**So based on the above discussion, what is the resolution here?**
+
+Replace
+
+```js
+setError({ ...error, show: true, msg: data.Error })
+```
+
+with
+
+```js
+setError((prevError) => ({ ...prevError, show: true, msg: data.Error }))
+```
+
+and because of this, we can skip error in callback dependency
+
+```js
+const fetchMovies = useCallback(async (url) => {
+  setIsLoading(true)
+  // fetch the data
+  try {
+    const response = await fetch(url)
+    const data = await response.json()
+    console.log(data)
+    if (data.Response === 'True') {
+      setMovies(data.Search)
+      setError((prevError) => {
+        return {
+          ...prevError,
+          show: false,
+          msg: '',
+        }
+      })
+    } else {
+      // setError({...error, show: true, msg: data.Error }) //! This line needs error in dependency array of useCallback (leads to infinite loop)
+      setError((prevError) => ({ ...prevError, show: true, msg: data.Error })) //* This line DOESN'T need error in dependency array of useCallback as we are relying on prevError  (doesn't lead to infinite loop - and is recommended way)
+    }
+    setIsLoading(false)
+  } catch (error) {
+    console.log(error)
+    setIsLoading(false)
+  }
+}, [])
+```
+
+so the takeaway is, always use prevState to set new state so you can skip adding that state value in `useCallback dependency`.
+
+---
+
+### How to display different image when image from API is not available?
+
+```jsx
+const url = `no image available image`
+return{
+    //.....
+    <img src={poster === 'N/A' ? url : poster} alt={title} />
+}
+```
+
+---
