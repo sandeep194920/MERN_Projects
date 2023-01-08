@@ -12,6 +12,7 @@ This app is similar to photos search but in addition to searching movies we also
 - **Gotcha** - `useEffect + useCallback` infinite loop
 - How to display different image when image from API is not available
 - Implement custom hook `useFetch`
+- Migrate from `react-router-5` to `react-router-6`
 
 ---
 
@@ -286,6 +287,46 @@ function useFetch(url) {
 }
 
 export default useFetch
+```
+
+---
+
+### Migrate from `react-router-5` to `react-router-6`
+
+We did migrate from `react-router-5` to `react-router-6` in [15-cocktail-api project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/15_cocktail_search#how-to-migrate-from-react-router-5-to-react-router-6), but we will once again see how we can do that here.
+
+For complete `react-router-6` tutorial, [refer my notes](https://app.gitbook.com/s/-MVEiPUp08kYt33g51v7/languages-and-frameworks/react-router-6)
+
+In this project, since we are implementing `BrowserRouter` in index.js, that wouldn't change. In `App.js` we need to
+
+- replace `Switch` with `Routes`
+- remove `exact` prop
+- replace children with `element`
+- make all Route component as self closing with `element` prop and pass component inside `element`
+
+**react router 5**
+
+```js
+<Switch>
+  <Route path="/" exact>
+    <Home />
+  </Route>
+  {/* If you want <Route/> to be self closing then use children prop to define the component */}
+  <Route path="/movies/:id" children={<SingleMovie />} />
+  <Route path="*">
+    <Error />
+  </Route>
+</Switch>
+```
+
+**react router 6**
+
+```js
+<Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/movies/:id" element={<SingleMovie />} />
+  <Route path="*" element={<Error />} />
+</Routes>
 ```
 
 ---

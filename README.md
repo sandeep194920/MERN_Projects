@@ -111,7 +111,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 15. [Cocktail Search](https://15-cocktail-search.netlify.app/)
 
-- `react-router-5 to react-router-6 (see commits)`
+- `migrate react-router-5 to react-router-6 (see commits)`
 - `Navbar with logo(left) and links(right)`
 - `Using John's pre-prepared CSS (for this and all project below)`
 - `External API - No API key required` - [API Link](https://www.thecocktaildb.com/api.php)
@@ -173,7 +173,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 21. [Movies search]()
 
 - `External API - API access key required` - [omdb api](https://www.omdbapi.com/)
-- `react-router-5 to react-router-6 (see commits)`
+- `migrate react-router-5 to react-router-6`
 - `useContext hook - for gloabal context`
 - `Quick context api state setup`
 - `Show different error/alert programmatically based on different conditions - setting alert state object` - [similar to 10-grocery-store project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/10_grocery_shop#how-to-set-alert-programmatically-based-on-different-conditions-on-crud)
