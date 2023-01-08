@@ -13,7 +13,6 @@ const Movies = () => {
   return (
     <section className="movies">
       {movies.map((movie) => {
-        console.log(movie)
         const { imdbID: id, Poster: poster, Title: title, Year: year } = movie
 
         return (

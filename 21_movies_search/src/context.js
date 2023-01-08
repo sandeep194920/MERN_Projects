@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useCallback } from 'react'
+import React, { useContext, useState } from 'react'
 import useFetch from './useFetch'
 
 const AppContext = React.createContext()
@@ -20,7 +20,6 @@ const AppProvider = ({ children }) => {
     data: { Search: movies },
     error,
   } = useFetch(`${API_ENDPOINT}&s=${query}`)
-  console.log('The data', movies)
 
   //^ Implemented the below logic in useFetch custom hook
   /*
