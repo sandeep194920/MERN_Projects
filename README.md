@@ -62,6 +62,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Unique IDs`
 - `Better styling structure in MUI`
 - `Alert`
+- `show different error/alert programmatically based on different conditions - setting alert state object`
 - `Conditional styling`
 
 ### useRef Project
@@ -110,7 +111,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 15. [Cocktail Search](https://15-cocktail-search.netlify.app/)
 
-- `react-router-5 to react-router-6 (see commits)`
+- `migrate react-router-5 to react-router-6 (see commits)`
 - `Navbar with logo(left) and links(right)`
 - `Using John's pre-prepared CSS (for this and all project below)`
 - `External API - No API key required` - [API Link](https://www.thecocktaildb.com/api.php)
@@ -118,6 +119,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `uncontrolled input using useRef - focus when component loads`
 - `async function inside useEffect`
 - `react-router netlify issue`
+- `useCallback hook`
 
 ### Additional Projects (Include usage of External API)
 
@@ -132,12 +134,13 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `e.target.classList.contains`
 - `When element is hovered on functionality - onMouseOver`
 - `Object destructuring from nested API response`
+- `useCallback hook`
 
 18. [Pagination on Client](https://18-pagination-on-client.netlify.app/)
 
 - `External API - No API key required` - [Github users api](https://api.github.com/users/john-smilga/followers?per_page=100)
 - `Array.from() to create main array and subarrays inside main array`
-- `custom hook useFetch() to get the data`
+- `custom hook useFetch() to get the data - use it when you have repetitive code - for example fetching data from API in multiple places`
 - **`This implementation could be an interview question`**
 - `Conditional rendering depending on loading state`
 - `Dynamically set active class CSS on clicked button`
@@ -156,6 +159,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Add env variable to Netlify`
 - `Rate limit - 403 error`
 - `useRef to stop useEffect initial render and only call useEffect on rerender. I havent implemented this, look at John's last video of this project.`
+- `useCallback hook`
 
 20. [Dark mode toggle](https://20-dark-mode-toggle.netlify.app/)
 
@@ -165,6 +169,19 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Dark and light theme toggle using Material UI`
 - `Local storage to persist the light/dark theme toggle`
 - `Material UI - style vs sx prop`
+
+21. [Movies search]()
+
+- `External API - API access key required` - [omdb api](https://www.omdbapi.com/)
+- `migrate react-router-5 to react-router-6`
+- `useContext hook - for gloabal context`
+- `Quick context api state setup`
+- `Show different error/alert programmatically based on different conditions - setting alert state object` - [similar to 10-grocery-store project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/10_grocery_shop#how-to-set-alert-programmatically-based-on-different-conditions-on-crud)
+- `Search bar (instantly brings up items on search) with no enter button` [similar to 15-Cocktail-search project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/15_cocktail_search)
+- **Gotcha** - `useEffect + useCallback infinite loop cause and resolution - explained`
+- `Show different image when image from API is not available`
+- `useParams hook to get the query params from the url given by react router (both v5 and v6 - same in both versions)`
+- `custom hook useFetch() to get the data - use it when you have repetitive code - for example fetching data from API in multiple places - see commits - before and after useFetch hook`
 
 ## Handy Tools
 
