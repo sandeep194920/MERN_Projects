@@ -160,6 +160,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Rate limit - 403 error`
 - `useRef to stop useEffect initial render and only call useEffect on rerender. I havent implemented this, look at John's last video of this project.`
 - `useCallback hook`
+- `server side pagination - get additional pages from server as we scroll`
 
 20. [Dark mode toggle](https://20-dark-mode-toggle.netlify.app/)
 
