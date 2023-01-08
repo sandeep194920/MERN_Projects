@@ -170,7 +170,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Local storage to persist the light/dark theme toggle`
 - `Material UI - style vs sx prop`
 
-21. [Movies search]()
+21. [Movies search](https://21-movies-search.netlify.app/)
 
 - `External API - API access key required` - [omdb api](https://www.omdbapi.com/)
 - `migrate react-router-5 to react-router-6`
