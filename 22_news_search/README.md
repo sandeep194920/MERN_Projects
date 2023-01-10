@@ -10,6 +10,8 @@ In this app, we have a search functionality without enter button that brings the
 
 - How to implement `useReducer` hook?
 - How to Open link in new tag when clicked on `<a href/>` tag
+- `prev` and `next` buttons will change the page, and while doing so, disable the buttons
+- Two flavours of implementing next and prev buttons in reducer
 
 ---
 
@@ -128,6 +130,84 @@ we add `target={'_blank'}` and `rel="noreferrer"`
 <a href={url} target={'_blank'} rel="noreferrer">
   read more
 </a>
+```
+
+---
+
+### `prev` and `next` buttons will change the page, and while doing so, disable the buttons
+
+When you change the page (prev or next), you load new data, and at that time, we don't want user to keep clicking the next or prev buttons as they won't see the data. Instead they just see loading page which is not a good user experience. So while loading, disable the button clicks.
+
+```js
+<div className="btn-container">
+  <button disabled={isLoading} onClick={() => handlePage('dec')}>
+    prev
+  </button>
+  <p>
+    {page + 1} of {nbPages}
+  </p>
+  <button disabled={isLoading} onClick={() => handlePage('inc')}>
+    next
+  </button>
+</div>
+```
+
+---
+
+### Two flavours of implementing next and prev buttons in reducer
+
+I first implemented `HANDLE_PAGE` this way
+
+```js
+case HANDLE_PAGE:
+    let page
+    if (action.payload === 'dec') {
+    if (state.page === 0) {
+        page = state.nbPages - 1
+    } else {
+        page = state.page - 1
+    }
+    } else if (action.payload === 'inc') {
+    if (state.page === state.nbPages - 1) {
+        page = 0
+    } else {
+        page = state.page + 1
+    }
+    }
+    return {
+    ...state,
+    page,
+    }
+```
+
+You see there are a lot of `else` code that is not actually required. I then learnt from John and this is the improved way of doing the above
+
+```js
+case HANDLE_PAGE:
+    if (action.payload === 'dec') {
+        let prevPage = state.page - 1 // desired functionality
+        if (prevPage < 0) {
+            prevPage = state.nbPages - 1 // edge case
+        }
+        return {
+            ...state,
+            page: prevPage,
+        }
+    }
+    if (action.payload === 'inc') {
+        let nextPage = state.page + 1 // desired functionality
+        if (nextPage > state.nbPages - 1) {
+            nextPage = 0
+        }
+        return {
+            ...state,
+            page: nextPage,
+        }
+    }
+    // this line is never hit techically as we either will have inc or dec
+    return {
+    ...state,
+    }
 ```
 
 ---

@@ -42,8 +42,32 @@ const AppProvider = ({ children }) => {
     fetchStories(`${API_ENDPOINT}query=${state.query}&page=${state.page}`)
   }, [state.page, state.query])
 
+  const removeStory = (id) => {
+    // & You could either do the commented way below by using SET_STORIES
+    /*
+    const newStories = state.hits.filter((hit) => hit.objectID !== id)
+    dispatch({ type: SET_STORIES, payload: { hits: newStories } })
+    */
+
+    // * OR You could do using a new reducer function REMOVE_STORY
+    dispatch({ type: REMOVE_STORY, payload: id })
+  }
+
+  const handleSearch = (query) => {
+    // everytime we change the query, the page also should start from 0
+    dispatch({ type: HANDLE_SEARCH, payload: query, page: 0 })
+  }
+
+  const handlePage = (value) => {
+    dispatch({ type: HANDLE_PAGE, payload: value })
+  }
+
   return (
-    <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>
+    <AppContext.Provider
+      value={{ ...state, removeStory, handleSearch, handlePage }}
+    >
+      {children}
+    </AppContext.Provider>
   )
 }
 // make sure use

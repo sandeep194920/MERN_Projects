@@ -196,6 +196,8 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Use predefined variables (actions) for useReducer to avoid typos`
 - `switch-case statements in reducer`
 - `Open link in new tag when clicked on <a href/> tag`
+- `button disabled while loading which is a good practice`
+- `two flavours of implementing next and prev buttons in reducer`
 
 ## Handy Tools
 
