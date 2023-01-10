@@ -138,6 +138,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 18. [Pagination on Client](https://18-pagination-on-client.netlify.app/)
 
+- `Client side pagination`
 - `External API - No API key required` - [Github users api](https://api.github.com/users/john-smilga/followers?per_page=100)
 - `Array.from() to create main array and subarrays inside main array`
 - `custom hook useFetch() to get the data - use it when you have repetitive code - for example fetching data from API in multiple places`
@@ -183,6 +184,20 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Show different image when image from API is not available`
 - `useParams hook to get the query params from the url given by react router (both v5 and v6 - same in both versions)`
 - `custom hook useFetch() to get the data - use it when you have repetitive code - for example fetching data from API in multiple places - see commits - before and after useFetch hook`
+
+22. [News Search]()
+
+- `External API - No API access key required` - [hacker news algolia api](https://hn.algolia.com/api)
+- `Server side pagination`
+- `useContext hook - for gloabal context`
+- `useReducer hook - for state management`
+- `Search bar (instantly brings up items on search) with no enter button similar to` [15-Cocktail-search project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/15_cocktail_search) `and` [21-Movie-search project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/21_movies_search)
+- `Delete each item functionality`
+- `Use predefined variables (actions) for useReducer to avoid typos`
+- `switch-case statements in reducer`
+- `Open link in new tag when clicked on <a href/> tag`
+- `button disabled while loading which is a good practice`
+- `two flavours of implementing next and prev buttons in reducer`
 
 ## Handy Tools
 

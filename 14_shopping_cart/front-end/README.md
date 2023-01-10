@@ -260,3 +260,5 @@ const [state, dispatch] = useReducer(reducer, initialState)
 ```
 
 `useReducer` will give us `state` that can be used in any component, and `dispatch` that will be used to update the state (similar to setState). `dispatch` will dispatch an action that should be defined inside the reducer.
+
+`useReducer` hook implementation in detail is explained in [22_news_search project](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/22_news_search/22_news_search#how-to-implement-basic-usereducer-hook)
