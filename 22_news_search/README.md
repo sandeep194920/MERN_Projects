@@ -1,6 +1,6 @@
 # Project details
 
-[News search]()
+[News search](https://22-news-search.netlify.app/)
 
 ## Details
 

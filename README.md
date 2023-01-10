@@ -185,7 +185,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `useParams hook to get the query params from the url given by react router (both v5 and v6 - same in both versions)`
 - `custom hook useFetch() to get the data - use it when you have repetitive code - for example fetching data from API in multiple places - see commits - before and after useFetch hook`
 
-22. [News Search]()
+22. [News Search](https://22-news-search.netlify.app/)
 
 - `External API - No API access key required` - [hacker news algolia api](https://hn.algolia.com/api)
 - `Server side pagination`
