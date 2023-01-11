@@ -199,6 +199,12 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `button disabled while loading which is a good practice`
 - `two flavours of implementing next and prev buttons in reducer`
 
+23. [Quiz App]()
+
+- `External API - No API access key required` - [open trivia database api (opentdb)](https://opentdb.com/api_config.php)
+- `Generate dynamic URL`
+- `axios` [axios notes for more info](https://app.gitbook.com/s/-MVEiPUp08kYt33g51v7/languages-and-frameworks/axios)
+
 ## Handy Tools
 
 1. [To get tints and shades of a selected colour](https://maketintsandshades.com/)
