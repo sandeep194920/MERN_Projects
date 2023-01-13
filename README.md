@@ -204,6 +204,8 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `External API - No API access key required` - [open trivia database api (opentdb)](https://opentdb.com/api_config.php)
 - `Generate dynamic URL`
 - `axios` [axios notes for more info](https://app.gitbook.com/s/-MVEiPUp08kYt33g51v7/languages-and-frameworks/axios)
+- `Modal (placed inside App.js) and shown dynamically`
+- `HTML converted into string`
 
 ## Handy Tools
 

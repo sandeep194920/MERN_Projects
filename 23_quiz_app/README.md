@@ -10,6 +10,7 @@ In this app, we can setup a quiz by defining number of questions, category, and 
 
 - Flow of this app
 - How to work with axios
+- How to convert HTML kind of string into normal string and display on UI?
 
 ---
 
@@ -34,3 +35,36 @@ const fetchQuestions = async (url) => {
 ```
 
 If there is some kind of issue with URL then response will be undefined, so we can use that to display the error
+
+```js
+const fetchQuestions = async (url) => {
+  setLoading(true)
+  setWaiting(false)
+  const response = await axios(url).catch((err) => console.log(err)) // line 1
+  if (response) {
+    const data = response.data.results
+    if (data.length > 0) {
+      setQuestions(data)
+      setLoading(false)
+      setError(false)
+      setWaiting(false)
+    } else {
+      setWaiting(true)
+      setError(true)
+    }
+  } else {
+    // response is undefined, which means we have some kind of error (we technically need to handle this here or in line1, but that's ok for now )
+    setWaiting(true)
+  }
+}
+```
+
+---
+
+### How to convert HTML kind of string into normal string and display on UI?
+
+You can use `dangerouslySetInnerHTML`
+
+```js
+<h2 dangerouslySetInnerHTML={{ __html: `question&nbsp;` }} /> // this will be - question
+```
