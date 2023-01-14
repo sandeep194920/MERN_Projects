@@ -50,6 +50,36 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  const nextQuestion = () => {
+    setIndex((prevIndex) => {
+      const index = prevIndex + 1
+      if (index > questions.length - 1) {
+        openModal()
+        return 0
+      }
+      return index
+    })
+  }
+
+  const checkAnswer = (value) => {
+    if (value) {
+      setCorrect((prev) => prev + 1)
+    }
+    nextQuestion()
+  }
+
+  const openModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    // once we close the modal, we need this waiting to be true so that we come to initial phase of showing categories
+    setWaiting(true)
+    setCorrect(0)
+    setIsModalOpen(false)
+  }
+
+  // fetch data once the user selects categories
   useEffect(() => {
     fetchQuestions(tempURL)
   }, [])
@@ -64,6 +94,9 @@ const AppProvider = ({ children }) => {
         correct,
         error,
         isModalOpen,
+        nextQuestion,
+        checkAnswer,
+        closeModal,
       }}
     >
       {children}
