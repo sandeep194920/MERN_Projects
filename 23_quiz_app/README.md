@@ -1,6 +1,6 @@
 # Project details
 
-[Quiz app]()
+[Quiz app](https://23-quiz-app.netlify.app/)
 
 ## Details
 

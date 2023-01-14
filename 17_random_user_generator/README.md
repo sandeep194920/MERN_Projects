@@ -58,6 +58,6 @@ const handleValue = (e) => {
 }
 ```
 
-**NOTE:** Here we have used data-label since it is a button. For the inputs however, since `input` has name prop on that, we could use that `name` and use `e.target.name` to dynamically get the inputs and change their state in a single handler function, so that we could have same handler function for multiple inputs. For more details about this, refer [23_Quiz_app]()
+**NOTE:** Here we have used data-label since it is a button. For the inputs however, since `input` has name prop on that, we could use that `name` and use `e.target.name` to dynamically get the inputs and change their state in a single handler function, so that we could have same handler function for multiple inputs. For more details about this, refer [23_Quiz_app](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/23_quiz_app#how-to-use-same-handler-function-to-dynamically-set-state-values-for-different-input-changes)
 
 ---

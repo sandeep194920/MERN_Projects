@@ -130,7 +130,8 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 17. [Random User Generator](https://17-random-user.netlify.app/)
 
 - `External API - No API key required` - [Random user api](https://randomuser.me/api/)
-- `Using same handler function for all inputs  using data label -  set state when hovered on element using data attribute on JSX`
+- `Using same handler function for all inputs  using data label -  set state when hovered on element using data attribute on JSX` [Similar to 23_Quiz_app](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/23_quiz_app#how-to-use-same-handler-function-to-dynamically-set-state-values-for-different-input-changes)
+
 - `e.target.classList.contains`
 - `When element is hovered on functionality - onMouseOver`
 - `Object destructuring from nested API response`
@@ -199,7 +200,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `button disabled while loading which is a good practice`
 - `two flavours of implementing next and prev buttons in reducer`
 
-23. [Quiz App]()
+23. [Quiz App](https://23-quiz-app.netlify.app/)
 
 - `External API - No API access key required` - [open trivia database api (opentdb)](https://opentdb.com/api_config.php)
 - `Generate dynamic URL`
