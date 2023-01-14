@@ -206,6 +206,8 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `axios` [axios notes for more info](https://app.gitbook.com/s/-MVEiPUp08kYt33g51v7/languages-and-frameworks/axios)
 - `Modal (placed inside App.js) and shown dynamically`
 - `HTML converted into string`
+- `Form - Matching form's name prop to the state so that we can have same handlechange function for all the inputs` [Similar to 17_random_user_generator app](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/17_random_user_generator#how-to-use-same-handler-function-when-for-different-input-values-this-can-also-be-done-for-form-values)
+- `Form - select tag`
 
 ## Handy Tools
 

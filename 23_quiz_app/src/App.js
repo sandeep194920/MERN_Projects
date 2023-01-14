@@ -21,7 +21,6 @@ function App() {
   if (loading) {
     return <Loading />
   }
-  console.log(questions[0])
   const { question, correct_answer, incorrect_answers } = questions[index]
   const answers = [...incorrect_answers, correct_answer]
   return (

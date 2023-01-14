@@ -13,16 +13,7 @@ We will use [random user](https://randomuser.me/) API to display random user. We
 
 ---
 
-### Know about markdown
-
-![Markdown image](./readmeImages/markdown.png)
-
-To get markdown -> HTML, we use `react-markdown` library. We enclose state value in `<ReactMarkdown>` and then the library converts it into HTML.
-Then we can use css to style the markdown as we need as shown in the above image.
-
----
-
-### How to use same handler function when for different input values? (This can also be done for form values)
+### How to use same handler function when for different button values? (This can also be done for form values, but for input values, refer the 23-Quiz project)
 
 When we hover(mouse over) on icons, we need to set the values.
 
@@ -66,5 +57,7 @@ const handleValue = (e) => {
   }
 }
 ```
+
+**NOTE:** Here we have used data-label since it is a button. For the inputs however, since `input` has name prop on that, we could use that `name` and use `e.target.name` to dynamically get the inputs and change their state in a single handler function, so that we could have same handler function for multiple inputs. For more details about this, refer [23_Quiz_app]()
 
 ---

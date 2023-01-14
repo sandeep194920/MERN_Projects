@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 
 const table = {
   sports: 21,
@@ -9,10 +9,9 @@ const table = {
 
 const API_ENDPOINT = 'https://opentdb.com/api.php?'
 
-const url = ''
-
-const tempURL =
-  'https://opentdb.com/api.php?amount=10&category=21&type=multiple'
+// ^ URL for your reference. We would generate the URL dynamically in handleSubmit function below
+// const tempURL =
+//   'https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple'
 
 const AppContext = React.createContext()
 
@@ -26,9 +25,15 @@ const AppProvider = ({ children }) => {
   // number of correct answers
   const [correct, setCorrect] = useState(0)
   const [error, setError] = useState(false)
-
   // once all the questions are answered the modal is shown
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  // setup form
+  const [quiz, setQuiz] = useState({
+    amount: 10,
+    category: 'sports',
+    difficulty: 'easy',
+  })
 
   const fetchQuestions = async (url) => {
     setLoading(true)
@@ -79,10 +84,26 @@ const AppProvider = ({ children }) => {
     setIsModalOpen(false)
   }
 
-  // fetch data once the user selects categories
-  useEffect(() => {
-    fetchQuestions(tempURL)
-  }, [])
+  const handleChange = (e) => {
+    //* name is the name in form input. Each input will have different names like - amount, difficulty, category
+    const name = e.target.name
+    const value = e.target.value
+    console.log(name, value)
+    setQuiz((oldQuizValues) => ({
+      ...oldQuizValues,
+      [name]: value,
+    }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    //& once the inputs change due to handleChange, we need to construct the URL based on different form values changed on handleChange, so let's construct it.
+
+    const { amount, category, difficulty } = quiz
+
+    const url = `${API_ENDPOINT}amount=${amount}&category=${table[category]}&difficulty=${difficulty}&type=multiple`
+    fetchQuestions(url)
+  }
 
   return (
     <AppContext.Provider
@@ -97,6 +118,9 @@ const AppProvider = ({ children }) => {
         nextQuestion,
         checkAnswer,
         closeModal,
+        handleChange,
+        handleSubmit,
+        quiz,
       }}
     >
       {children}
