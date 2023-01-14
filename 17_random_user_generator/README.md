@@ -9,7 +9,7 @@ We will use [random user](https://randomuser.me/) API to display random user. We
 ## Things we can learn
 
 - How to set state when hovered on a element
-- How to use same handler function when for different input values? (This can also be done for form values)
+- How to use same handler function when for different button values? (This can also be done for form values, but for input values, refer the 23-Quiz project)
 
 ---
 

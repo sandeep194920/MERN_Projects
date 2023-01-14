@@ -12,6 +12,7 @@ In this app, we can setup a quiz by defining number of questions, category, and 
 - How to work with axios
 - How to convert HTML kind of string into normal string and display on UI?
 - How to use same handler function to dynamically set state values for different `input` changes?
+- Shuffle an array and Math random
 
 ---
 
@@ -158,3 +159,31 @@ You can use react-dev-tools while development and see that the state values chan
 ![React Dev Tools show state change](./readmeImages/dynamic_values_change.png)
 
 **_You could use this setup when you have too many input values, and in that case only one handler function should be good_**
+
+---
+
+### Shuffle an array and Math random
+
+The answers are always placed at the bottom of the array(last element) which is not good. So we need to shuffle them. We could do shuffle in multiple ways using lodash library or writing it ourselves [Reference](https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array)
+
+Let's see how we could use math random to shuffle an array.
+
+**`Math random()`**
+
+`Math.random()` generates a number between 0 and 0.99 (not including 1)
+
+We want to generate a number between 0 and 3. The idea is, we will have 4 answers, and we already have 3 incorrect answers. We need to generate a random number between 0 and 3 and then place the correct answer in that random place.
+
+Let's do that
+
+```js
+let tempIndex = Math.random() * 4 // this would generate a random number between 0 to 3.96... Because maximum is (0.99) * 4 -> 3.96, where Math.random() could generate 0.99 max
+
+// We don't need a float value so let's round it using floor. BTW, we can round it using floor / ceil / round (refer notes link below)
+
+tempIndex = Math.floor(tempIndex) // so now we get random values between 0 and 3 (never be more than 3)
+
+answers.splice(tempIndex, 0, correct_answer) // place the answer in place of tempIndex
+```
+
+[Refer my notes to know how to round numbers](https://app.gitbook.com/s/-MVEiPUp08kYt33g51v7/languages-and-frameworks/javascript#rounding-integers)

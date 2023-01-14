@@ -22,7 +22,14 @@ function App() {
     return <Loading />
   }
   const { question, correct_answer, incorrect_answers } = questions[index]
-  const answers = [...incorrect_answers, correct_answer]
+  // ^ Placing correct_answer at the end
+  // const answers = [...incorrect_answers, correct_answer]
+
+  // ^Let's shuffle the answers so that we don't have the correct_answer placed at the end always
+  let answers = [...incorrect_answers]
+  const tempIndex = Math.floor(Math.random() * 4)
+  answers.splice(tempIndex, 0, correct_answer)
+
   return (
     <main>
       <Modal />
