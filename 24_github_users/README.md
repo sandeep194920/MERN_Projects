@@ -41,6 +41,8 @@ Since this is a big app, we would note down the flow of the app.
 
 #### 1. Initial Pages we see when app starts (after setting up the starter project)
 
+`24_github_users/src/App.js`
+
 - We see 3 components on the `App.js` - Dashboard Page, Login Page and Error Page
 
 ![starter screen of App.js](./readmeImages/starter.png)
@@ -50,6 +52,8 @@ Since this is a big app, we would note down the flow of the app.
 ---
 
 #### 2. Setup React Router 5
+
+`24_github_users/src/App.js`
 
 - In the App.js we setup the react router v5 basic routes
 - We enclose everything in `BrowserRouter (as Router)`, and use `Switch` so the first matching route is rendered. to understand better about exact and Switch and their differences, refer the _Things we can learn_ or [Watch this short video](https://www.youtube.com/watch?v=jVtxC6CKzYU&ab_channel=kudvenkat)
@@ -75,6 +79,8 @@ function App() {
 ---
 
 #### 3. Let's add error
+
+`24_github_users/src/App.js`
 
 Now if the user navigates to the URL that doesn't exist then he will get a blank page. We need to avoid that using default route for `Error`
 
@@ -102,6 +108,8 @@ function App() {
 
 #### 4. Let's add Switch
 
+`24_github_users/src/App.js`
+
 Now, if we navigate to unknown URL the error page is displayed. But notice one thing, when you navigate to dashboard `/`, the error page is also shown along with Dashboard
 
 ![dashboard and error page without Switch in App.js](./readmeImages/dashboard%26error.png)
@@ -123,9 +131,9 @@ function App() {
         </Route>
 
         {/* Default route to show error page if none of the above routes match */}
-        <Router path="*">
+        <Route path="*">
           <Error />
-        </Router>
+        </Route>
       </Switch>
     </Router>
   )
@@ -137,6 +145,8 @@ function App() {
 ---
 
 #### 5. Let's style error page
+
+`24_github_users/src/pages/Error.js`
 
 For now, we will navigate back the user to the home page `/`, but later once we will setup the private route, if user isn't logged in then we will send him back to `/login` route (Login page)
 

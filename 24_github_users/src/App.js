@@ -15,9 +15,9 @@ function App() {
         </Route>
 
         {/* Default route to show error page if none of the above routes match */}
-        <Router path="*">
+        <Route path="*">
           <Error />
-        </Router>
+        </Route>
       </Switch>
     </Router>
   )
