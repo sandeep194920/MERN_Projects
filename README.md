@@ -216,13 +216,16 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 24. [Github users]()
 
 - `Starter Project Files`
+- `Flow of the app in README of this project`
 - `Authentication - auth0, facebook and google authentication`
 - `External API - No API key required` - [Github users api](https://api.github.com/users/john-smilga/followers?per_page=100)
-- `Styled Components`
+- `Styled Components for specific components + Global CSS as other projects`
 - `index.js to combine files`
 - `using mockData`
 - `loadiing gif`
-- `react router - private route`
+- `react-router (v5 to v6 like other apps)`
+- `react-router private/protected route`
+- `react-router-5 Switch vs Exact explained`
 
 ## Handy Tools
 
