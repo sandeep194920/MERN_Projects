@@ -221,11 +221,14 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `External API - No API key required` - [Github users api](https://api.github.com/users/john-smilga/followers?per_page=100)
 - `Styled Components for specific components + Global CSS as other projects`
 - `index.js to combine files`
-- `using mockData`
-- `loadiing gif`
+- `using mockData - as we will run out of the requests (60 per hour) otherwise - this mockData is same as real github api data`
+- `loading gif`
 - `react-router (v5 to v6 like other apps)`
 - `react-router private/protected route`
 - `react-router-5 Switch vs Exact explained`
+- `images used - not in public folder but inside src/images folder`
+- `useContext hook - no redux`
+- `axios`
 
 ## Handy Tools
 
