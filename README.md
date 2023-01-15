@@ -241,3 +241,4 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 7. [Create gradient videos for background like stripe](https://codesandbox.io/s/bxnsx?file=/src/App.js:0-617) - [Refer stripe.com](https://stripe.com/en-ca)
 8. [Clip Image](https://bennettfeely.com/clippy/)
 9. [Design Tool-tips](https://blog.logrocket.com/creating-beautiful-tooltips-with-only-css/)
+10. [Nice Images and Art](https://undraw.co/)

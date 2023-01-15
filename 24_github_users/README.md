@@ -228,3 +228,29 @@ export default Login
 ```
 
 ---
+
+#### 7. Let's **style** the Dashboard page, just basic UI
+
+`24_github_users/src/pages/Dashboard.js`
+
+**_intial setup_** we will come back to this later after setting up some state values in the context in next step
+
+```js
+import React from 'react'
+// importing this way in single line is possible because of index.js inside /components
+import { Info, Repos, User, Search, Navbar } from '../components'
+import loadingImage from '../images/preloader.gif'
+import { GithubContext } from '../context/context'
+const Dashboard = () => {
+  return (
+    <main>
+      <Navbar></Navbar>
+      <Search />
+      <Info />
+      <Repos />
+    </main>
+  )
+}
+
+export default Dashboard
+```
