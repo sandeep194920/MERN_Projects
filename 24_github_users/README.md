@@ -6,7 +6,7 @@
 
 This project contains user registration and login functionality where user can register/login using username/password, OR throguh social accounts like Google, Facebook. Once the user logs in, he can search a github profile and get all the info about a profile like number of followers, languages, most cloned repos and so on. All the data could be represented using different charts like Bar Chart, Doughnut Chart and so on. We use `auth0` library for authenticaton.
 
-## **_Starter Project, Commit ID_** - `a993b413d2c24f7de7669834aa6061303a016cbb`
+_Starter Project, Commit ID_- `a993b413d2c24f7de7669834aa6061303a016cbb`
 
 ---
 
