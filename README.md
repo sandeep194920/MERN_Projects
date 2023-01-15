@@ -211,6 +211,19 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Form - select tag`
 - `Shuffle an array and Math random`
 
+### Large-scale Projects (Include authentication)
+
+24. [Github users]()
+
+- `Starter Project Files`
+- `Authentication - auth0, facebook and google authentication`
+- `External API - No API key required` - [Github users api](https://api.github.com/users/john-smilga/followers?per_page=100)
+- `Styled Components`
+- `index.js to combine files`
+- `using mockData`
+- `loadiing gif`
+- `react router - private route`
+
 ## Handy Tools
 
 1. [To get tints and shades of a selected colour](https://maketintsandshades.com/)
