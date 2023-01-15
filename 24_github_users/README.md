@@ -39,7 +39,7 @@ _Starter Project, Commit ID_- `a993b413d2c24f7de7669834aa6061303a016cbb`
 
 Since this is a big app, we would note down the flow of the app.
 
-#### Initial Pages we see when app starts (after setting up the starter project)
+#### 1. Initial Pages we see when app starts (after setting up the starter project)
 
 - We see 3 components on the `App.js` - Dashboard Page, Login Page and Error Page
 
@@ -49,7 +49,7 @@ Since this is a big app, we would note down the flow of the app.
 
 ---
 
-#### Setup React Router 5
+#### 2. Setup React Router 5
 
 - In the App.js we setup the react router v5 basic routes
 - We enclose everything in `BrowserRouter (as Router)`, and use `Switch` so the first matching route is rendered. to understand better about exact and Switch and their differences, refer the _Things we can learn_ or [Watch this short video](https://www.youtube.com/watch?v=jVtxC6CKzYU&ab_channel=kudvenkat)
@@ -74,7 +74,7 @@ function App() {
 
 ---
 
-#### Let's add error
+#### 3. Let's add error
 
 Now if the user navigates to the URL that doesn't exist then he will get a blank page. We need to avoid that using default route for `Error`
 
@@ -100,7 +100,7 @@ function App() {
 
 ---
 
-#### Let's add Switch
+#### 4. Let's add Switch
 
 Now, if we navigate to unknown URL the error page is displayed. But notice one thing, when you navigate to dashboard `/`, the error page is also shown along with Dashboard
 
