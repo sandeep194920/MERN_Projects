@@ -412,3 +412,59 @@ _Why do we need mock data when the github API is free and no API key is required
 So the key takeaway is, until we hook up everything, we will use the mock data in our context to power up our app.
 
 ---
+
+#### 10. Setup state values of mockData in context
+
+`24_github_users/src/context/context.js`
+`24_github_users/src/components/Info.js`
+
+We will now setup some state values to use API data, but not real API call, instead we will use mock for the reasons explained above
+
+**`context.js`**
+
+```js
+import React, { useState, useEffect, createContext, useContext } from 'react'
+import mockUser from './mockData/mockUser'
+import mockRepos from './mockData/mockRepos'
+import mockFollowers from './mockData/mockFollowers'
+import axios from 'axios'
+
+const rootUrl = 'https://api.github.com'
+
+const GithubContext = createContext()
+
+const GithubProvider = ({ children }) => {
+  // github user state is the user we get from mockData / the user we search for (not the user who is logged in)
+  const [githubUser, setGithubUser] = useState(mockUser)
+  const [repos, setRepos] = useState(mockRepos)
+  const [followers, setFollowers] = useState(mockFollowers)
+
+  return (
+    <GithubContext.Provider value={{ githubUser, repos, followers }}>
+      {children}
+    </GithubContext.Provider>
+  )
+}
+
+// custom hook that starts with use
+const useGlobalContext = () => {
+  return useContext(GithubContext)
+}
+
+export { GithubProvider, useGlobalContext }
+```
+
+**`Info.js`**
+
+```js
+const UserInfo = () => {
+  const data = useGlobalContext()
+  // TESTING THE CONTEXT
+  console.log(data) // this would give the mock repos, mock followers and mock user - placed in mockData folder
+  return <h2>user info component </h2>
+}
+```
+
+Now that we are getting the mock data back (of course we will hook up real data through axios calls to github api later), we can now populate the Dashboard UI
+
+---

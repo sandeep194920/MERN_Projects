@@ -9,8 +9,13 @@ const rootUrl = 'https://api.github.com'
 const GithubContext = createContext()
 
 const GithubProvider = ({ children }) => {
+  // github user state is the user we get from mockData / the user we search for (not the user who is logged in)
+  const [githubUser, setGithubUser] = useState(mockUser)
+  const [repos, setRepos] = useState(mockRepos)
+  const [followers, setFollowers] = useState(mockFollowers)
+
   return (
-    <GithubContext.Provider value="test-value">
+    <GithubContext.Provider value={{ githubUser, repos, followers }}>
       {children}
     </GithubContext.Provider>
   )
