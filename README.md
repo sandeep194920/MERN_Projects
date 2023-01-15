@@ -221,7 +221,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `External API - No API key required` - [Github users api](https://api.github.com/users/john-smilga/followers?per_page=100)
 - `Styled Components for specific components + Global CSS as other projects`
 - `index.js to combine files`
-- `using mockData - as we will run out of the requests (60 per hour) otherwise - this mockData is same as real github api data`
+- `using mockData - as we will run out of the requests (60 per hour) otherwise - this mockData is same as real github api data. Even though we don't have API key, it tracks our IP Address, so we will run out of requests`
 - `loading gif`
 - `react-router (v5 to v6 like other apps)`
 - `react-router private/protected route`

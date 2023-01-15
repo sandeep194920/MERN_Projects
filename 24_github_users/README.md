@@ -390,3 +390,25 @@ export default UserInfo
 ```
 
 ---
+
+#### 9. Info about mockData
+
+`24_github_users/src/context/mockData`
+
+_Why do we need mock data when the github API is free and no API key is required?_
+
+- When you work with Github API, they have limits. Each and everytime when we search for a different user, we will run out of our requests pretty quickly (60 requests per hour).
+- That's why we have static data (mockData which is copied from real data but use in our development until everything is setup). In `mockData` folder we have `mockFollowers`, `mockRepos`, `mockUsers`
+- The requests to API is tracked by the IP address and not the user we search for, and that is the reason, when I search for any user, my IP address is the one that makes request and I will run out of requests very soon
+
+**_Gihthub API_**
+
+- [Root Endpoint](https://api.github.com)
+- [Get User](https://api.github.com/users/wesbos)
+- [Repos](https://api.github.com/users/john-smilga/repos?per_page=100)
+- [Followers](https://api.github.com/users/john-smilga/followers)
+- [Rate Limit](https://api.github.com/rate_limit)
+
+So the key takeaway is, until we hook up everything, we will use the mock data in our context to power up our app.
+
+---
