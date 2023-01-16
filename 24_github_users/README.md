@@ -468,3 +468,138 @@ const UserInfo = () => {
 Now that we are getting the mock data back (of course we will hook up real data through axios calls to github api later), we can now populate the Dashboard UI
 
 ---
+
+#### 11. Let's work on User info part that shows followers, repos and so on
+
+`24_github_users/src/components/Info.js`
+
+Let's work on this user info section that shows repos, followers, following and gists. We can work on Search bar once everything is setup so that we can search for real data (make API calls) instead of mocks. We can work on Navbar once the auth is hooked up. For now we will focus on this user info section.
+
+![user info section](./readmeImages/userinfoSection.png)
+
+For real data, [this would be the URL for githubUsers](https://api.github.com/users/wesbos) and the mock would be `mockUser`
+
+```js
+import React from 'react'
+import { GithubContext, useGlobalContext } from '../context/context'
+import styled from 'styled-components'
+import { GoRepo, GoGist } from 'react-icons/go'
+import { FiUsers, FiUserPlus } from 'react-icons/fi'
+
+const UserInfo = () => {
+  const { githubUser } = useGlobalContext()
+  console.log(githubUser)
+  const { public_repos, followers, following, public_gists } = githubUser
+
+  // since each item (like public_repos, followers and so on) will have different icons, let's create an object
+  const items = [
+    {
+      id: 1,
+      icon: <GoRepo className="icon" />,
+      label: 'repos',
+      value: public_repos,
+      color: 'pink',
+    },
+    {
+      id: 2,
+      icon: <FiUsers className="icon" />,
+      label: 'following',
+      value: following,
+      color: 'green',
+    },
+    {
+      id: 3,
+      icon: <FiUserPlus className="icon" />,
+      label: 'followers',
+      value: followers,
+      color: 'purple',
+    },
+    {
+      id: 4,
+      icon: <GoGist className="icon" />,
+      label: 'gists',
+      value: public_gists,
+      color: 'yellow',
+    },
+  ]
+  return (
+    <section className="section">
+      {/* styled component + global style added heree to Wrapper */}
+      <Wrapper className="section-center">
+        {items.map((item) => {
+          return <Item key={item.id} {...item} />
+        })}
+      </Wrapper>
+    </section>
+  )
+}
+
+// We could have had other component for above Item, but just doing it here
+const Item = ({ icon, label, color, value }) => {
+  return (
+    <article className="item">
+      <span className={color}>{icon}</span>
+      <div>
+        <h3>{value}</h3>
+        <p>{label}</p>
+      </div>
+    </article>
+  )
+}
+
+const Wrapper = styled.section`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem 2rem;
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+  .item {
+    border-radius: var(--radius);
+    padding: 1rem 2rem;
+    background: var(--clr-white);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 3rem;
+    align-items: center;
+    span {
+      width: 3rem;
+      height: 3rem;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+    }
+    .icon {
+      font-size: 1.5rem;
+    }
+    h3 {
+      margin-bottom: 0;
+      letter-spacing: 0;
+    }
+    p {
+      margin-bottom: 0;
+      text-transform: capitalize;
+    }
+    .pink {
+      background: #ffe0f0;
+      color: #da4a91;
+    }
+    .green {
+      background: var(--clr-primary-10);
+      color: var(--clr-primary-5);
+    }
+    .purple {
+      background: #e6e6ff;
+      color: #5d55fa;
+    }
+    .yellow {
+      background: #fffbea;
+      color: #f0b429;
+    }
+  }
+`
+
+export default UserInfo
+```
+
+---

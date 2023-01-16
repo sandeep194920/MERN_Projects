@@ -5,10 +5,64 @@ import { GoRepo, GoGist } from 'react-icons/go'
 import { FiUsers, FiUserPlus } from 'react-icons/fi'
 
 const UserInfo = () => {
-  const data = useGlobalContext()
-  // TESTING THE CONTEXT
-  console.log(data)
-  return <h2>user info component </h2>
+  const { githubUser } = useGlobalContext()
+  console.log(githubUser)
+  const { public_repos, followers, following, public_gists } = githubUser
+
+  // since each item (like public_repos, followers and so on) will have different icons, let's create an object
+  const items = [
+    {
+      id: 1,
+      icon: <GoRepo className="icon" />,
+      label: 'repos',
+      value: public_repos,
+      color: 'pink',
+    },
+    {
+      id: 2,
+      icon: <FiUsers className="icon" />,
+      label: 'following',
+      value: following,
+      color: 'green',
+    },
+    {
+      id: 3,
+      icon: <FiUserPlus className="icon" />,
+      label: 'followers',
+      value: followers,
+      color: 'purple',
+    },
+    {
+      id: 4,
+      icon: <GoGist className="icon" />,
+      label: 'gists',
+      value: public_gists,
+      color: 'yellow',
+    },
+  ]
+  return (
+    <section className="section">
+      {/* styled component + global style added heree to Wrapper */}
+      <Wrapper className="section-center">
+        {items.map((item) => {
+          return <Item key={item.id} {...item} />
+        })}
+      </Wrapper>
+    </section>
+  )
+}
+
+// We could have had other component for above Item, but just doing it here
+const Item = ({ icon, label, color, value }) => {
+  return (
+    <article className="item">
+      <span className={color}>{icon}</span>
+      <div>
+        <h3>{value}</h3>
+        <p>{label}</p>
+      </div>
+    </article>
+  )
 }
 
 const Wrapper = styled.section`

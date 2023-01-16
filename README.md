@@ -229,6 +229,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `images used - not in public folder but inside src/images folder`
 - `useContext hook - no redux`
 - `axios`
+- `creating an array of objects by adding icon and text for each item - githubUser - UserInfo file`
 
 ## Handy Tools
 
