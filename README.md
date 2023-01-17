@@ -230,6 +230,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `useContext hook - no redux`
 - `axios`
 - `creating an array of objects by adding icon and text for each item - githubUser - UserInfo file`
+- `semantic HTML - using <header> in Card.js - would be better for SEO`
 
 ## Handy Tools
 
