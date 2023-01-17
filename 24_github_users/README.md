@@ -635,8 +635,6 @@ const Dashboard = () => {
 export default Dashboard
 ```
 
-![User component](./readmeImages/UserDone.png)
-
 **User.js**
 
 ```js
@@ -798,5 +796,7 @@ const Wrapper = styled.article`
 `
 export default Card
 ```
+
+![User component](./readmeImages/UserDone.png)
 
 ---
