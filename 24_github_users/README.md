@@ -1099,8 +1099,8 @@ const Wrapper = styled.div`
 export default Repos
 ```
 
----
-
 The example chart looks like this
 
 ![ExampleChart](./readmeImages/ExampleChart.png)
+
+---
