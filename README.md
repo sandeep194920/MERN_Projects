@@ -231,6 +231,8 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `axios`
 - `creating an array of objects by adding icon and text for each item - githubUser - UserInfo file`
 - `semantic HTML - using <header> in Card.js - would be better for SEO`
+- [Fusion Charts library](https://www.fusioncharts.com/)
+-
 
 ## Handy Tools
 
@@ -244,3 +246,4 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 8. [Clip Image](https://bennettfeely.com/clippy/)
 9. [Design Tool-tips](https://blog.logrocket.com/creating-beautiful-tooltips-with-only-css/)
 10. [Nice Images and Art](https://undraw.co/)
+11. [Fusion Charts library](https://www.fusioncharts.com/)

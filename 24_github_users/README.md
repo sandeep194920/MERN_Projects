@@ -890,3 +890,217 @@ export default Followers
 ![followers component done](./readmeImages/followersDone.png)
 
 ---
+
+#### 14. Let's now design Repos Component
+
+`24_github_users/src/pages/Dashboard.js` -> Use Repos component here
+`24_github_users/src/components/Repos.js`
+
+**Dashboard.js**
+
+```js
+import React from 'react'
+// importing this way in single line is possible because of index.js inside /components
+import { Info, Repos, User, Search, Navbar } from '../components'
+import loadingImage from '../images/preloader.gif'
+import { GithubContext } from '../context/context'
+const Dashboard = () => {
+  return (
+    <main>
+      {/* <Navbar></Navbar>
+      <Search /> */}
+      <Info />
+      <User />
+      <Repos />
+    </main>
+  )
+}
+
+export default Dashboard
+```
+
+**Repos.js**
+
+```js
+import React from 'react'
+import styled from 'styled-components'
+import { GithubContext, useGlobalContext } from '../context/context'
+import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts'
+const Repos = () => {
+  const { repos } = useGlobalContext()
+  console.log(repos)
+  return <h2>repos component</h2>
+}
+
+const Wrapper = styled.div`
+  display: grid;
+  justify-items: center;
+  gap: 2rem;
+  @media (min-width: 800px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 1200px) {
+    grid-template-columns: 2fr 3fr;
+  }
+  div {
+    width: 100% !important;
+  }
+  .fusioncharts-container {
+    width: 100% !important;
+  }
+  svg {
+    width: 100% !important;
+    border-radius: var(--radius) !important;
+  }
+`
+
+export default Repos
+```
+
+---
+
+#### 15. Explore Fusion charts and get an example from Fusion charts and try in ExampleChart
+
+`24_github_users/src/components/Repos.js`
+`24_github_users/src/components/Charts/ExampleChart.js`
+
+- We will use [Fusion Charts library](https://www.fusioncharts.com/dev/getting-started/react/your-first-chart-using-react) for integrating beautiful charts
+- Install it `npm install fusioncharts react-fusioncharts --save`
+- First we will navigate to [Render a chart section](https://www.fusioncharts.com/dev/getting-started/react/your-first-chart-using-react#render-the-chart) and copy the code and paste into `ExampleChart.js` and modify the code a little bit to get the first chart
+- Then use this ExampleChart inside Repos and see the output
+
+**ExampleChart.js**
+
+```js
+// STEP 1 - Include Dependencies
+// Include react
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+// Include the react-fusioncharts component
+import ReactFC from 'react-fusioncharts'
+
+// Include the fusioncharts library
+import FusionCharts from 'fusioncharts'
+
+// Include the chart type
+import Column2D from 'fusioncharts/fusioncharts.charts'
+
+// Include the theme as fusion
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
+
+// Adding the chart and theme as dependency to the core fusioncharts
+ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme)
+
+// STEP 2 - Chart Data
+const chartData = [
+  {
+    label: 'Venezuela',
+    value: '290',
+  },
+  {
+    label: 'Saudi',
+    value: '260',
+  },
+  {
+    label: 'Canada',
+    value: '180',
+  },
+  {
+    label: 'Iran',
+    value: '140',
+  },
+  {
+    label: 'Russia',
+    value: '115',
+  },
+  {
+    label: 'UAE',
+    value: '100',
+  },
+  {
+    label: 'US',
+    value: '30',
+  },
+  {
+    label: 'China',
+    value: '30',
+  },
+]
+
+// STEP 3 - Creating the JSON object to store the chart configurations
+const chartConfigs = {
+  type: 'column2d', // The chart type
+  width: '700', // Width of the chart
+  height: '400', // Height of the chart
+  dataFormat: 'json', // Data type
+  dataSource: {
+    // Chart Configuration
+    chart: {
+      //Set the chart caption
+      caption: 'Countries With Most Oil Reserves [2017-18]',
+      //Set the chart subcaption
+      subCaption: 'In MMbbl = One Million barrels',
+      //Set the x-axis name
+      xAxisName: 'Country',
+      //Set the y-axis name
+      yAxisName: 'Reserves (MMbbl)',
+      numberSuffix: 'K',
+      //Set the theme for your chart
+      theme: 'fusion',
+    },
+    // Chart Data
+    data: chartData,
+  },
+}
+
+const ChartComponent = () => {
+  return <ReactFC {...chartConfigs} />
+}
+
+export default ChartComponent
+```
+
+**Repos.js**
+
+```js
+import React from 'react'
+import styled from 'styled-components'
+import { GithubContext, useGlobalContext } from '../context/context'
+import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts'
+const Repos = () => {
+  const { repos } = useGlobalContext()
+  console.log(repos)
+  return <ExampleChart />
+}
+
+const Wrapper = styled.div`
+  display: grid;
+  justify-items: center;
+  gap: 2rem;
+  @media (min-width: 800px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 1200px) {
+    grid-template-columns: 2fr 3fr;
+  }
+  div {
+    width: 100% !important;
+  }
+  .fusioncharts-container {
+    width: 100% !important;
+  }
+  svg {
+    width: 100% !important;
+    border-radius: var(--radius) !important;
+  }
+`
+
+export default Repos
+```
+
+---
+
+The example chart looks like this
+
+![ExampleChart](./readmeImages/ExampleChart.png)
