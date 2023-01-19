@@ -1229,3 +1229,36 @@ export default ChartComponent
 ```
 
 ---
+
+#### 17. Where to get more configuration options for the charts
+
+![config options](./readmeImages/configOptions.png)
+![all attributes](./readmeImages/allAttributes.png)
+
+```js
+const chartConfigs = {
+    type: 'column2d', // The chart type <------------ javascript alias name in the doc
+    width: '400', // Width of the chart
+    height: '400', // Height of the chart
+    dataFormat: 'json', // Data type
+    dataSource: {
+      // Chart Configuration
+      chart: {
+        //Set the chart caption
+        caption: 'Countries With Most Oil Reserves [2017-18]',
+        //Set the chart subcaption
+        subCaption: 'In MMbbl = One Million barrels',
+        //Set the x-axis name
+        xAxisName: 'Country',
+        //Set the y-axis name
+        yAxisName: 'Reserves (MMbbl)',
+        numberSuffix: 'K',
+        //Set the theme for your chart
+        theme: 'fusion',
+      },
+      // Chart Data
+      data,
+    },
+```
+
+---
