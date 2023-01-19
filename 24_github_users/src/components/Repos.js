@@ -5,7 +5,29 @@ import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts'
 const Repos = () => {
   const { repos } = useGlobalContext()
   console.log(repos)
-  return <ExampleChart />
+
+  // STEP 2 - Chart Data
+  const chartData = [
+    {
+      label: 'HTML',
+      value: '13',
+    },
+    {
+      label: 'CSS',
+      value: '23',
+    },
+    {
+      label: 'Javascript',
+      value: '80',
+    },
+  ]
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        <ExampleChart data={chartData} />
+      </Wrapper>
+    </section>
+  )
 }
 
 const Wrapper = styled.div`

@@ -1104,3 +1104,128 @@ The example chart looks like this
 ![ExampleChart](./readmeImages/ExampleChart.png)
 
 ---
+
+#### 16. Let's now make some modifications to example chart and make it dynamic
+
+`24_github_users/src/components/Repos.js`
+`24_github_users/src/components/Charts/ExampleChart.js`
+
+First modify the ChartConfigs like width, height and so on and play around with it in ExampleChart. Then we will make this Example Chart dynamic by passing the props by extracting some of the data from fusion charts and pass them as props from Repos
+
+**_For more explanation of the fusion charts, take a look at video - 320. Fusion Charts API by John on Udemy_**
+
+So here, I have taken out the `ChartData` from `ExampleChart` and placed it inside `Repos`, and we pass it to `ExampleChart` as props as shown below.
+
+**Repos.js**
+
+```js
+import React from 'react'
+import styled from 'styled-components'
+import { GithubContext, useGlobalContext } from '../context/context'
+import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts'
+const Repos = () => {
+  const { repos } = useGlobalContext()
+  console.log(repos)
+
+  // STEP 2 - Chart Data
+  const chartData = [
+    {
+      label: 'HTML',
+      value: '13',
+    },
+    {
+      label: 'CSS',
+      value: '23',
+    },
+    {
+      label: 'Javascript',
+      value: '80',
+    },
+  ]
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        <ExampleChart data={chartData} />
+      </Wrapper>
+    </section>
+  )
+}
+
+const Wrapper = styled.div`
+  display: grid;
+  justify-items: center;
+  gap: 2rem;
+  @media (min-width: 800px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 1200px) {
+    grid-template-columns: 2fr 3fr;
+  }
+  div {
+    width: 100% !important;
+  }
+  .fusioncharts-container {
+    width: 100% !important;
+  }
+  svg {
+    width: 100% !important;
+    border-radius: var(--radius) !important;
+  }
+`
+
+export default Repos
+```
+
+**ExampleChart.js**
+
+```js
+// Include react
+import React from 'react'
+
+// Include the react-fusioncharts component
+import ReactFC from 'react-fusioncharts'
+
+// Include the fusioncharts library
+import FusionCharts from 'fusioncharts'
+
+// Include the chart type
+import Chart from 'fusioncharts/fusioncharts.charts'
+
+// Include the theme as fusion
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
+
+// Adding the chart and theme as dependency to the core fusioncharts
+ReactFC.fcRoot(FusionCharts, Chart, FusionTheme)
+
+const ChartComponent = ({ data }) => {
+  const chartConfigs = {
+    type: 'column2d', // The chart type
+    width: '400', // Width of the chart
+    height: '400', // Height of the chart
+    dataFormat: 'json', // Data type
+    dataSource: {
+      // Chart Configuration
+      chart: {
+        //Set the chart caption
+        caption: 'Countries With Most Oil Reserves [2017-18]',
+        //Set the chart subcaption
+        subCaption: 'In MMbbl = One Million barrels',
+        //Set the x-axis name
+        xAxisName: 'Country',
+        //Set the y-axis name
+        yAxisName: 'Reserves (MMbbl)',
+        numberSuffix: 'K',
+        //Set the theme for your chart
+        theme: 'fusion',
+      },
+      // Chart Data
+      data,
+    },
+  }
+  return <ReactFC {...chartConfigs} />
+}
+
+export default ChartComponent
+```
+
+---
