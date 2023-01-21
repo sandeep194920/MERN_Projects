@@ -1797,3 +1797,9 @@ export default Repos
 ```
 
 ---
+
+#### 19. Now let's make the chart responsive
+
+For making the chart responsive, please watch John's udemy video. It's just adding some CSS values there. One more thing to do is make chart width 100%
+
+---
