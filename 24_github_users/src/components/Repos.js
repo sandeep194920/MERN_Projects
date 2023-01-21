@@ -139,8 +139,9 @@ const Repos = () => {
   */
 
   // -------------------------
-  /*
-  HARDCODED DATA
+
+  // HARDCODED DATA
+
   const chartData = [
     {
       label: 'HTML',
@@ -155,15 +156,20 @@ const Repos = () => {
       value: '80',
     },
   ]
-  */
-  // -------------------------
 
   return (
     <section className="section">
       <Wrapper className="section-center">
         {/* <ExampleChart data={chartData} /> */}
         {/* <Pie3D data={chartData} /> */}
+
         <Pie3D data={languages} />
+        {/* this below div is for Column Chart */}
+        <div></div>
+
+        <Doughnut2D data={chartData} />
+        {/* this below div is for Bar Chart */}
+        <div></div>
       </Wrapper>
     </section>
   )

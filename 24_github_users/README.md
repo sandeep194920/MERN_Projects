@@ -1803,3 +1803,63 @@ export default Repos
 For making the chart responsive, please watch John's udemy video. It's just adding some CSS values there. One more thing to do is make chart width 100%
 
 ---
+
+#### 20. Create Dougnut chart which is same as Pie chart
+
+`24_github_users/src/components/Repos.js`
+`24_github_users/src/components/Charts/Doughnut2d.js`
+
+![pie done, let's do donut](./readmeImages/doughnutChart.png)
+
+- Since the Doughnut chart is same as PieChart, first copy PieChart into Doughnut file and rename the component name to Doughnut
+- We can avoid showing percentage values on chart by adding this prop `showPercentValues: 0` inside `chartConfigs`
+- For changing the theme, refer documentation. [Here you can find available themes](https://www.fusioncharts.com/dev/themes/introduction-to-themes)
+
+```js
+// Include react
+import React from 'react'
+
+// Include the react-fusioncharts component
+import ReactFC from 'react-fusioncharts'
+
+// Include the fusioncharts library
+import FusionCharts from 'fusioncharts'
+
+// Include the chart type
+import Chart from 'fusioncharts/fusioncharts.charts'
+
+// Include the theme as fusion
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.candy'
+
+// Adding the chart and theme as dependency to the core fusioncharts
+ReactFC.fcRoot(FusionCharts, Chart, FusionTheme)
+
+const Doughnut2D = ({ data }) => {
+  const chartConfigs = {
+    type: 'doughnut2D', // The chart type
+    width: '100%', // Width of the chart
+    height: '400', // Height of the chart
+    dataFormat: 'json', // Data type
+    dataSource: {
+      // Chart Configuration
+      chart: {
+        caption: 'Stars Per Language',
+        // theme: 'fusion',
+        decimals: 0,
+        doughnutRadius: '45%',
+        showPercentValues: 0,
+        theme: 'candy',
+      },
+      // Chart Data
+      data,
+    },
+  }
+  return <ReactFC {...chartConfigs} />
+}
+
+export default Doughnut2D
+```
+
+At the moment we are using hardcoded `chartData`. Later we will see how we can use data from `mockRepos` to get this data.
+
+---
