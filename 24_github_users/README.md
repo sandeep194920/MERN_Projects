@@ -150,7 +150,7 @@ let languages = repos.reduce((accObj, itemObj) => {
 console.log(languages)
 ```
 
-**_In `reduce`, we don't define a variable externally, and instead use the accumulator, first parameter inside reducer_**
+**_In `reduce`, we don't define a variable externally, and instead use the accumulator, first parameter inside reducer. In `forEach`, we define the variable outside of the function unlike `reduce`_**
 
 ---
 
