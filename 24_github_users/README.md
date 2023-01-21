@@ -15,6 +15,8 @@ _Starter Project, Commit ID_- `a993b413d2c24f7de7669834aa6061303a016cbb`
 ## Things we can learn
 
 - Difference between `exact` and `Switch` in react-router-5
+- `reduce` function to calculate number of times an item occurs in an array of objects
+- How to sort an object / How to convert object values into array for sorting purpose
 
 ---
 
@@ -30,6 +32,200 @@ _Starter Project, Commit ID_- `a993b413d2c24f7de7669834aa6061303a016cbb`
 ![switch explained](./readmeImages/SwitchExplained.png)
 
 ---
+
+### `reduce` function to calculate number of times an item occurs in an array of objects
+
+We have implemented the reduce function here in [14_shopping_cart](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/14_shopping_cart/front-end#how-to-calculate-single-numberlike-sum-from-an-array-using-reduce-function) so please refer this first.
+
+In this case we want to achieve this: We have an array of objects called repos. Each object will have a property called language set to any language like this
+
+```js
+/*
+repos = [
+    {...otherProps, language:'javascript'},
+    {...otherProps, language:'HTML'},
+    {...otherProps, language:'HTML'},
+    {...otherProps, language:'CSS'},
+    {...otherProps, language:'CSS'},
+  ]
+```
+
+Our motive is to convert into this
+
+```js
+/* 
+  languages = [
+    'javascript' : {
+      label : 'javascript',
+      value : 1
+    },
+    'HTML' : {
+      label : 'HTML',
+      value : 2
+    },
+    'CSS' : {
+      label : 'CSS',
+      value : 2
+    },
+  ]
+  */
+```
+
+For this purpose, we can use a `for loop` (forEach or normal for loop) and also `reduce function`. We will see both the usages.
+
+**Using forEach**
+
+```js
+// let langs = {}
+// repos.forEach((itemObj) => {
+//   const { language } = itemObj
+//   if (!language) return
+//   if (!langs[language]) {
+//     langs[language] = { label: language, value: 1 }
+//   } else {
+//     langs[language] = { label: language, value: langs[language].value + 1 }
+//   }
+// })
+
+// console.log(langs)
+```
+
+**Using reduce**
+
+```js
+let languages = repos.reduce((accObj, itemObj) => {
+  //^ remember we need to return an object. The way to remember this is, we need to return what we defined as second param. The second param is the accumulator which is accObj
+
+  const { language } = itemObj
+
+  //& Sometimes the language will be null and in that case we will return same accObj without doing anything. But in anycase, we will have to return accObj
+  if (!language) return accObj
+
+  // accObj[language] = language // -> This would return - {JavaScript: 'JavaScript', CSS: 'CSS', HTML: 'HTML'}
+
+  // accObj[language] = { language } // -> This would return the below
+
+  /*
+    {
+      "JavaScript": {
+          "language": "JavaScript"
+      },
+      "CSS": {
+          "language": "CSS"
+      },
+      "HTML": {
+          "language": "HTML"
+      }
+    */
+
+  // We will tweak this a little now
+
+  if (!accObj[language]) {
+    accObj[language] = { label: language, value: 1 }
+  } else {
+    accObj[language] = { label: language, value: accObj[language].value + 1 }
+  }
+
+  // Now the accObj will look this this
+
+  /*
+    {
+      "JavaScript": {
+          "label": "JavaScript",
+          "value": 45
+      },
+      "CSS": {
+          "label": "CSS",
+          "value": 38
+      },
+      "HTML": {
+          "label": "HTML",
+          "value": 14
+      }
+    }
+  */
+  return accObj
+}, {})
+
+console.log(languages)
+```
+
+**_In `reduce`, we don't define a variable externally, and instead use the accumulator, first parameter inside reducer_**
+
+---
+
+### How to sort an object / How to convert object values into array for sorting purpose
+
+From the above result of languages, we see this
+
+```js
+languages = {
+  JavaScript: {
+    label: 'JavaScript',
+    value: 45,
+  },
+  CSS: {
+    label: 'CSS',
+    value: 38,
+  },
+  HTML: {
+    label: 'HTML',
+    value: 14,
+  },
+}
+```
+
+Now, we need to sort the languages based on value of each subobject. For that we need to convert this lanugages object into array and then sort that array based on value prop of each object
+
+So, two steps,
+
+- convert this lanugages object into array
+- then sort that array based on value prop of each object
+
+**step 1:** convert this lanugages object into array
+
+```js
+languages = Object.values(languages)
+```
+
+Now the languages would be
+
+```js
+languages = [
+  {
+    label: 'JavaScript',
+    value: 45,
+  },
+  {
+    label: 'CSS',
+    value: 38,
+  },
+  {
+    label: 'HTML',
+    value: 14,
+  },
+]
+```
+
+This looks like it's already sorted, but it's a coincidence here. We need to sort this to be safe
+
+**step2:** then sort that array based on value prop of each object
+
+```js
+languages = languages.sort((a, b) => b.value - a.value)
+```
+
+Now the languages will be sorted. I would like to take only first five languages (in this case it is less than 5, but not always)
+
+```js
+languages = languages.slice(0, 5)
+```
+
+I could have combined above two steps into one like this
+
+```js
+languages = languages.sort((a, b) => b.value - a.value).slice(0, 5)
+```
 
 ---
 
@@ -1259,6 +1455,345 @@ const chartConfigs = {
       // Chart Data
       data,
     },
+```
+
+---
+
+#### 17. Use Pie chart inside Repos component
+
+`24_github_users/src/components/Repos.js`
+`24_github_users/src/components/Charts/Pie3D.js`
+
+**Pie3D.js**
+
+```js
+// Include react
+import React from 'react'
+
+// Include the react-fusioncharts component
+import ReactFC from 'react-fusioncharts'
+
+// Include the fusioncharts library
+import FusionCharts from 'fusioncharts'
+
+// Include the chart type
+import Chart from 'fusioncharts/fusioncharts.charts'
+
+// Include the theme as fusion
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
+
+// Adding the chart and theme as dependency to the core fusioncharts
+ReactFC.fcRoot(FusionCharts, Chart, FusionTheme)
+
+const Pie3D = ({ data }) => {
+  const chartConfigs = {
+    type: 'pie3d', // The chart type
+    width: '400', // Width of the chart
+    height: '400', // Height of the chart
+    dataFormat: 'json', // Data type
+    dataSource: {
+      // Chart Configuration
+      chart: {
+        caption: 'Languages',
+        theme: 'fusion',
+        decimals: 0,
+        pieRadius: '55%',
+      },
+      // Chart Data
+      data,
+    },
+  }
+  return <ReactFC {...chartConfigs} />
+}
+
+export default Pie3D
+```
+
+**Repos.js**
+
+```js
+import React from 'react'
+import styled from 'styled-components'
+import { GithubContext, useGlobalContext } from '../context/context'
+import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts'
+const Repos = () => {
+  const { repos } = useGlobalContext()
+  console.log(repos)
+
+  // STEP 2 - Chart Data
+  const chartData = [
+    {
+      label: 'HTML',
+      value: '13',
+    },
+    {
+      label: 'CSS',
+      value: '23',
+    },
+    {
+      label: 'Javascript',
+      value: '80',
+    },
+  ]
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        {/* <ExampleChart data={chartData} /> */}
+        <Pie3D data={chartData} />
+      </Wrapper>
+    </section>
+  )
+}
+
+const Wrapper = styled.div`
+  display: grid;
+  justify-items: center;
+  gap: 2rem;
+  @media (min-width: 800px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 1200px) {
+    grid-template-columns: 2fr 3fr;
+  }
+  div {
+    width: 100% !important;
+  }
+  .fusioncharts-container {
+    width: 100% !important;
+  }
+  svg {
+    width: 100% !important;
+    border-radius: var(--radius) !important;
+  }
+`
+
+export default Repos
+```
+
+---
+
+#### 18. Now in the Pie chart, let's calculate most used languages
+
+`24_github_users/src/components/Repos.js`
+
+Currently we are passing this hardcoded chartData from Repos as props to Pie3D chart
+
+```js
+const chartData = [
+  {
+    label: 'HTML',
+    value: '13',
+  },
+  {
+    label: 'CSS',
+    value: '23',
+  },
+  {
+    label: 'Javascript',
+    value: '80',
+  },
+]
+```
+
+Let's now actually get this chartData from `mockRepos`. `mockRepos` is an array of object, and each object in the array has `language` prop. This language could be `html` , `python` and so on. We need to calculate how many times each language appears and populate the `chartData` so that we can generate the Pie chart.
+
+We will use `reduce` method for this. The code inside contains all the explanation. For the detailed explanation see above - Things to learn section.
+
+```js
+import React from 'react'
+import styled from 'styled-components'
+import { GithubContext, useGlobalContext } from '../context/context'
+import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts'
+const Repos = () => {
+  const { repos } = useGlobalContext()
+
+  /* repos is an array of objects. Each object will have a property called language set to any language like this 
+  
+  repos = [
+    {...otherProps, language:'javascript'},
+    {...otherProps, language:'HTML'},
+    {...otherProps, language:'HTML'},
+    {...otherProps, language:'CSS'},
+    {...otherProps, language:'CSS'},
+  ]
+
+  Our motive is to convert into this
+
+  languages = [
+    'javascript' : {
+      label : 'javascript',
+      value : 1
+    },
+    'HTML' : {
+      label : 'HTML',
+      value : 2
+    },
+    'CSS' : {
+      label : 'CSS',
+      value : 2
+    },
+  ]
+
+  */
+
+  let languages = repos.reduce((accObj, itemObj) => {
+    //^ remember we need to return an object. The way to remember this is, we need to return what we defined as second param. The second param is the accumulator which is accObj
+
+    const { language } = itemObj
+
+    //& Sometimes the language will be null and in that case we will return same accObj without doing anything. But in anycase, we will have to return accObj
+    if (!language) return accObj
+
+    // accObj[language] = language // -> This would return - {JavaScript: 'JavaScript', CSS: 'CSS', HTML: 'HTML'}
+
+    // accObj[language] = { language } // -> This would return the below
+
+    /*
+    {
+      "JavaScript": {
+          "language": "JavaScript"
+      },
+      "CSS": {
+          "language": "CSS"
+      },
+      "HTML": {
+          "language": "HTML"
+      }
+    */
+
+    // We will tweak this a little now
+
+    if (!accObj[language]) {
+      accObj[language] = { label: language, value: 1 }
+    } else {
+      accObj[language] = { label: language, value: accObj[language].value + 1 }
+    }
+
+    // Now the accObj will look this this
+
+    /*
+    {
+      "JavaScript": {
+          "label": "JavaScript",
+          "value": 45
+      },
+      "CSS": {
+          "label": "CSS",
+          "value": 38
+      },
+      "HTML": {
+          "label": "HTML",
+          "value": 14
+      }
+    }
+  */
+    return accObj
+  }, {})
+
+  console.log(languages)
+
+  //* Alternative Solution using forEach
+  /*
+  let langs = {}
+  repos.forEach((itemObj) => {
+    const { language } = itemObj
+    if (!language) return
+    if (!langs[language]) {
+      langs[language] = { label: language, value: 1 }
+    } else {
+      langs[language] = { label: language, value: langs[language].value + 1 }
+    }
+  })
+  console.log(langs)
+*/
+
+  // ^ Now we have an object of object (same as hardcoded chartData below), let's sort the values of object languages and find the top 5 highest values. To to this, first we will have to get the values alone from languages
+
+  languages = Object.values(languages)
+  console.log('Values of languages', languages)
+  /*
+  [
+    {
+        "label": "JavaScript",
+        "value": 45
+    },
+    {
+        "label": "CSS",
+        "value": 38
+    },
+    {
+        "label": "HTML",
+        "value": 14
+    }
+ ]
+ */
+
+  //^ Once we got this, we could now sort the values like this
+
+  languages = languages.sort((a, b) => b.value - a.value)
+  console.log('Sorted languages are', languages)
+
+  languages = languages.slice(0, 5) // we could now pass this into PieChart rather than passing hardcoded chartData
+
+  /*
+  The above two steps could be combined into one like this
+  languages = languages.sort((a, b) => b.value - a.value).slice(0,5)
+  */
+
+  // -------------------------
+  /*
+  HARDCODED DATA
+  const chartData = [
+    {
+      label: 'HTML',
+      value: '13',
+    },
+    {
+      label: 'CSS',
+      value: '23',
+    },
+    {
+      label: 'Javascript',
+      value: '80',
+    },
+  ]
+  */
+  // -------------------------
+
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        {/* <ExampleChart data={chartData} /> */}
+        {/* <Pie3D data={chartData} /> */}
+        <Pie3D data={languages} />
+      </Wrapper>
+    </section>
+  )
+}
+
+const Wrapper = styled.div`
+  display: grid;
+  justify-items: center;
+  gap: 2rem;
+  @media (min-width: 800px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 1200px) {
+    grid-template-columns: 2fr 3fr;
+  }
+  div {
+    width: 100% !important;
+  }
+  .fusioncharts-container {
+    width: 100% !important;
+  }
+  svg {
+    width: 100% !important;
+    border-radius: var(--radius) !important;
+  }
+`
+
+export default Repos
 ```
 
 ---

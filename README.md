@@ -232,7 +232,9 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `creating an array of objects by adding icon and text for each item - githubUser - UserInfo file`
 - `semantic HTML - using <header> in Card.js - would be better for SEO`
 - [Fusion Charts library](https://www.fusioncharts.com/)
--
+- `reduce function to calculate number of times an item occurs in an array of objects. forEach vs reduce to achieve same result`
+- `How to sort an object / How to convert object values into array for sorting purpose`
+- `Get first five values of sorted array`
 
 ## Handy Tools
 
