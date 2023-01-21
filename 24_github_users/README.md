@@ -175,7 +175,7 @@ languages = {
 }
 ```
 
-Now, we need to sort the languages based on value of each subobject. For that we need to convert this lanugages object into array and then sort that array based on value prop of each object
+Now, we need to sort the languages based on `value` prop of each sub-object. For that we need to convert this lanugages object into array and then sort that array based on value prop of each object
 
 So, two steps,
 
