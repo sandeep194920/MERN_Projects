@@ -1804,7 +1804,7 @@ For making the chart responsive, please watch John's udemy video. It's just addi
 
 ---
 
-#### 20. Create Dougnut chart which is same as Pie chart
+#### 20. Create Dougnut chart which is same as Pie chart to calculate most popular languages used - Stars Per Language
 
 `24_github_users/src/components/Repos.js`
 `24_github_users/src/components/Charts/Doughnut2d.js`
@@ -1861,5 +1861,363 @@ export default Doughnut2D
 ```
 
 At the moment we are using hardcoded `chartData`. Later we will see how we can use data from `mockRepos` to get this data.
+
+---
+
+#### 21. Calculate most popular languages used - Stars Per Language (mostPopularLanguages) - dynamic data from mockRepos
+
+`24_github_users/src/components/Repos.js`
+
+_What are we calculating here?_
+
+In previous task 19 we had a language in each repo, so we could combine all and calculate - a single language used in how many repos. First five most used languages are displayed on the chart. In this task 21, we will same thing with stars. Each repo will have certain stars given to it. We will use that to calculate (based on language) how many stars given to per language in all the repos.
+
+In previous task 20, we showed the Doughnut chart using hardcoded data. Let's now get that data from mockRepos and show most popular languages used. The prop we are looking in at is `stargazers_count` which tells me how many stars that repo got.
+
+We can extend our logic from task 19 here like this
+
+```js
+const languages = repos.reduce((accObj, itemObj) => {
+  //^ remember we need to return an object. The way to remember this is, we need to return what we defined as second param. The second param is the accumulator which is accObj
+
+  const { language, stargazers_count } = itemObj
+
+  //& Sometimes the language will be null and in that case we will return same accObj without doing anything. But in anycase, we will have to return accObj
+  if (!language) return accObj
+
+  // accObj[language] = language // -> This would return - {JavaScript: 'JavaScript', CSS: 'CSS', HTML: 'HTML'}
+
+  // accObj[language] = { language } // -> This would return the below
+
+  /*
+    {
+      "JavaScript": {
+          "language": "JavaScript"
+      },
+      "CSS": {
+          "language": "CSS"
+      },
+      "HTML": {
+          "language": "HTML"
+      }
+    */
+
+  // We will tweak this a little now
+
+  if (!accObj[language]) {
+    accObj[language] = {
+      label: language,
+      value: 1,
+      stars: stargazers_count,
+    }
+  } else {
+    accObj[language] = {
+      label: language,
+      value: accObj[language].value + 1,
+      stars: accObj[language].stars + stargazers_count, // ADDED THIS HERE
+    }
+  }
+
+  // Now the accObj will look this this
+
+  /*
+    {
+      "JavaScript": {
+          "label": "JavaScript",
+          "value": 45,
+          "stars": 12
+      },
+      "CSS": {
+          "label": "CSS",
+          "value": 38,
+          "stars": 14
+      },
+      "HTML": {
+          "label": "HTML",
+          "value": 14,
+          "stars": 29
+      }
+    }
+  */
+  return accObj
+}, {})
+```
+
+Most used languages was like this (for our Piechart)
+
+```js
+const mostUsedLanguages = Object.values(languages)
+  .sort((a, b) => b.value - a.value)
+  .slice(0, 5)
+/*
+  The mostUsedLanguages would be
+  [
+    {
+        "label": "JavaScript",
+        "value": 45
+    },
+    {
+        "label": "CSS",
+        "value": 38
+    },
+    {
+        "label": "HTML",
+        "value": 14
+    }
+ ]
+ */
+```
+
+Most popular languages we are doing now for (Doughnut chart)
+
+```js
+// Since the chart is looking for values, we need to put stars back into value prop, so we will do a map
+const mostPopularLanguages = Object.values(languages)
+  .sort((a, b) => b.stars - a.stars)
+  .slice(0, 5)
+  .map((item) => {
+    return { ...item, value: item.stars }
+  })
+
+console.log(mostPopularLanguages)
+
+//* mostPopularLanguages looks like this now. NOTE: Chart will look for value prop so we put stars is in values using map above
+/*
+[
+    {
+        "label": "CSS",
+        "value": 412,
+        "stars": 412
+    },
+    {
+        "label": "JavaScript",
+        "value": 376,
+        "stars": 376
+    },
+    {
+        "label": "HTML",
+        "value": 34,
+        "stars": 34
+    }
+]
+  */
+```
+
+Full code for **Repos.js**
+
+```js
+import React from 'react'
+import styled from 'styled-components'
+import { GithubContext, useGlobalContext } from '../context/context'
+import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts'
+const Repos = () => {
+  const { repos } = useGlobalContext()
+  /* repos is an array of objects. Each object will have a property called language set to any language like this 
+  
+  repos = [
+    {...otherProps, language:'javascript'},
+    {...otherProps, language:'HTML'},
+    {...otherProps, language:'HTML'},
+    {...otherProps, language:'CSS'},
+    {...otherProps, language:'CSS'},
+  ]
+
+  Our motive is to convert into this
+
+  languages = [
+    'javascript' : {
+      label : 'javascript',
+      value : 1
+    },
+    'HTML' : {
+      label : 'HTML',
+      value : 2
+    },
+    'CSS' : {
+      label : 'CSS',
+      value : 2
+    },
+  ]
+
+  */
+
+  const languages = repos.reduce((accObj, itemObj) => {
+    //^ remember we need to return an object. The way to remember this is, we need to return what we defined as second param. The second param is the accumulator which is accObj
+
+    const { language, stargazers_count } = itemObj
+
+    //& Sometimes the language will be null and in that case we will return same accObj without doing anything. But in anycase, we will have to return accObj
+    if (!language) return accObj
+
+    // accObj[language] = language // -> This would return - {JavaScript: 'JavaScript', CSS: 'CSS', HTML: 'HTML'}
+
+    // accObj[language] = { language } // -> This would return the below
+
+    /*
+    {
+      "JavaScript": {
+          "language": "JavaScript"
+      },
+      "CSS": {
+          "language": "CSS"
+      },
+      "HTML": {
+          "language": "HTML"
+      }
+    */
+
+    // We will tweak this a little now
+
+    if (!accObj[language]) {
+      accObj[language] = {
+        label: language,
+        value: 1,
+        stars: stargazers_count,
+      }
+    } else {
+      accObj[language] = {
+        label: language,
+        value: accObj[language].value + 1,
+        stars: accObj[language].stars + stargazers_count,
+      }
+    }
+
+    // Now the accObj will look this this
+
+    /*
+    {
+      "JavaScript": {
+          "label": "JavaScript",
+          "value": 45,
+          "stars": 12
+      },
+      "CSS": {
+          "label": "CSS",
+          "value": 38,
+          "stars": 14
+      },
+      "HTML": {
+          "label": "HTML",
+          "value": 14,
+          "stars": 29
+      }
+    }
+  */
+    return accObj
+  }, {})
+
+  const mostUsedLanguages = Object.values(languages)
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 5)
+  /*
+  The mostUsedLanguages would be
+  [
+    {
+        "label": "JavaScript",
+        "value": 45
+    },
+    {
+        "label": "CSS",
+        "value": 38
+    },
+    {
+        "label": "HTML",
+        "value": 14
+    }
+ ]
+ */
+
+  // Since the chart is looking for values, we need to put stars back into value prop, so we will do a map
+  const mostPopularLanguages = Object.values(languages)
+    .sort((a, b) => b.stars - a.stars)
+    .slice(0, 5)
+    .map((item) => {
+      return { ...item, value: item.stars }
+    })
+
+  console.log(mostPopularLanguages)
+
+  //* mostPopularLanguages looks like this now. NOTE: Chart will look for value prop so we put stars is in values using map above
+  /*
+[
+    {
+        "label": "CSS",
+        "value": 412,
+        "stars": 412
+    },
+    {
+        "label": "JavaScript",
+        "value": 376,
+        "stars": 376
+    },
+    {
+        "label": "HTML",
+        "value": 34,
+        "stars": 34
+    }
+]
+  */
+
+  // -------------------------
+
+  // HARDCODED DATA
+
+  const chartData = [
+    {
+      label: 'HTML',
+      value: '13',
+    },
+    {
+      label: 'CSS',
+      value: '23',
+    },
+    {
+      label: 'Javascript',
+      value: '80',
+    },
+  ]
+
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        {/* <ExampleChart data={chartData} /> */}
+        {/* <Pie3D data={chartData} /> */}
+
+        <Pie3D data={mostUsedLanguages} />
+        {/* this below div is for Column Chart */}
+        <div></div>
+
+        <Doughnut2D data={mostPopularLanguages} />
+        {/* this below div is for Bar Chart */}
+        <div></div>
+      </Wrapper>
+    </section>
+  )
+}
+
+const Wrapper = styled.div`
+  display: grid;
+  justify-items: center;
+  gap: 2rem;
+  @media (min-width: 800px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 1200px) {
+    grid-template-columns: 2fr 3fr;
+  }
+  div {
+    width: 100% !important;
+  }
+  .fusioncharts-container {
+    width: 100% !important;
+  }
+  svg {
+    width: 100% !important;
+    border-radius: var(--radius) !important;
+  }
+`
+
+export default Repos
+```
 
 ---
