@@ -173,15 +173,10 @@ const Repos = () => {
     <section className="section">
       <Wrapper className="section-center">
         {/* <ExampleChart data={chartData} /> */}
-        {/* <Pie3D data={chartData} /> */}
-
         <Pie3D data={mostUsedLanguages} />
-        {/* this below div is for Column Chart */}
-        <div></div>
-
+        <Column3D data={chartData} /> {/* chartData - hardCoded data */}
         <Doughnut2D data={mostPopularLanguages} />
-        {/* this below div is for Bar Chart */}
-        <div></div>
+        <Bar3D data={chartData} /> {/* chartData - hardCoded data */}
       </Wrapper>
     </section>
   )
