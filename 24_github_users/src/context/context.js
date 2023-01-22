@@ -16,50 +16,11 @@ const GithubProvider = ({ children }) => {
 
   // to check remaining requests
   const [requests, setRequests] = useState(0)
+  // loading
   const [isLoading, setIsLoading] = useState(false)
+  // error
+  const [error, setError] = useState({ show: false, msg: '' })
 
-  // TODO: error
-
-  //^ TYPE 1 - setup
-
-  // check rate limit (remaining requests)
-  // const checkRateLimit = async () => {
-  //   const result = await axios(`${rootUrl}/rate_limit`)
-  //   console.log(result)
-  // }
-  // useEffect(() => {
-  //   console.log('hey app loaded')
-  //   checkRateLimit()
-  // }, [])
-
-  //^ TYPE 2 - setup
-
-  // check rate limit (remaining requests)
-  // const checkRateLimit = () => {
-  //   axios(`${rootUrl}/rate_limit`)
-  //     .then((result) => {
-  //       console.log(result)
-  //     })
-  //     .catch((error) => {
-  //       console.log(error)
-  //     })
-  // }
-  // useEffect(() => {
-  //   checkRateLimit()
-  // }, [])
-
-  //^ TYPE 3 - setup - similar to type 2 (inisde the function itself)
-  // useEffect(() => {
-  //   axios(`${rootUrl}/rate_limit`)
-  //     .then((result) => {
-  //       console.log(result)
-  //     })
-  //     .catch((error) => {
-  //       console.log(error)
-  //     })
-  // }, [])
-
-  //^ TYPE 4 - setup - similar to type 3, but put cb outside of useEffect and give it a name called checkRateLimit
   const checkRateLimit = () => {
     axios(`${rootUrl}/rate_limit`)
       .then(({ data }) => {
@@ -69,6 +30,7 @@ const GithubProvider = ({ children }) => {
         setRequests(remaining)
         if (remaining === 0) {
           // throw an error
+          toggleError(true, 'Sorry, you have exceeded hourly rate limit!')
         }
       })
       .catch((error) => {
@@ -78,8 +40,15 @@ const GithubProvider = ({ children }) => {
 
   useEffect(checkRateLimit, [])
 
+  // error function
+  function toggleError(show = false, msg = '') {
+    setError({ show, msg })
+  }
+
   return (
-    <GithubContext.Provider value={{ githubUser, repos, followers, requests }}>
+    <GithubContext.Provider
+      value={{ githubUser, repos, followers, requests, error }}
+    >
       {children}
     </GithubContext.Provider>
   )
