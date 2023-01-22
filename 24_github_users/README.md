@@ -17,6 +17,7 @@ _Starter Project, Commit ID_- `a993b413d2c24f7de7669834aa6061303a016cbb`
 - Difference between `exact` and `Switch` in react-router-5
 - `reduce` function to calculate number of times an item occurs in an array of objects
 - How to sort an object / How to convert object values into array for sorting purpose
+- Alternative setup of useEffect - `useEffect(cbFunction, dependencyArray)`
 
 ---
 
@@ -231,6 +232,94 @@ I could have combined above two steps into one like this
 
 ```js
 languages = languages.sort((a, b) => b.value - a.value).slice(0, 5)
+```
+
+---
+
+### Alternative setup of useEffect - `useEffect(cbFunction, dependencyArray)`
+
+We can write useEffect in 4 flavours. We have seen first three, but let's learn about the fourth one as well. All these are in `context.js` if you want to take a look
+
+**1. Using async await as we know**
+
+```js
+const checkRateLimit = async () => {
+  try {
+    const result = await axios(`${rootUrl}/rate_limit`)
+    console.log(result)
+  } catch (e) {
+    console.log(e)
+  }
+}
+useEffect(() => {
+  console.log('hey app loaded')
+  checkRateLimit()
+}, [])
+```
+
+**2. Using then catch as we know**
+
+```js
+// check rate limit (remaining requests)
+const checkRateLimit = () => {
+  axios(`${rootUrl}/rate_limit`)
+    .then((result) => {
+      console.log(result)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+useEffect(() => {
+  checkRateLimit()
+}, [])
+```
+
+**3. Using then catch as we know inside the useEffect itself**
+
+```js
+useEffect(() => {
+  axios(`${rootUrl}/rate_limit`)
+    .then((result) => {
+      console.log(result)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}, [])
+```
+
+Now, if you observe the above useEffect, our `checkRateLimit` function is directly written inside the useEffect -> this part I mean
+
+```js
+;() => {
+  axios(`${rootUrl}/rate_limit`)
+    .then((result) => {
+      console.log(result)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+```
+
+so we can write our 4th type based on this
+
+**4. Putting the callback function outside the useEffect in type 3 becomes type 4**
+
+```js
+const checkRateLimit = () => {
+  axios(`${rootUrl}/rate_limit`)
+    .then((result) => {
+      console.log(result)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+useEffect(checkRateLimit, [])
 ```
 
 ---
@@ -3010,6 +3099,196 @@ const ErrorWrapper = styled.article`
   }
 `
 export default Search
+```
+
+---
+
+#### 25. Let's now call API end point when the user is searched
+
+`24_github_users/src/context/context.js`
+`24_github_users/src/pages/Dashboard.js`
+`24_github_users/src/components/Search.js`
+
+As said earlier above, as soon as the app loads we need to know how many requests are available. To know this, we need to do a request to API at this endpoint `https://api.github.com/rate_limit`. Calling this endpoint doesn't count as a request, hence we can call this endpoint as many times we like.
+
+```json
+"resources": {
+  "core": {
+  "limit": 60,
+  "remaining": 60, // this will keep reducing as and when we request data from API endpoints except this endpoint
+  "reset": 1674366342, // remaining time to reset to 60 requests again. This happens every hour
+  "used": 0,
+  "resource": "core"
+  },
+},
+```
+
+We are setting up useEffect here in a different flavour to demonstrate how all we can set it up. Take a look at _Alternative setup of useEffect - `useEffect(cbFunction, dependencyArray)`_ before you continue
+
+Now we are setting up these things here
+
+- A search bar
+- Requests next to searchbar (within the search component on UI)
+
+**context.js** - we are calling `rateLimit` api endpoint (this is not counted for requests per hour)
+
+```js
+import React, { useState, useEffect, createContext, useContext } from 'react'
+import mockUser from './mockData/mockUser'
+import mockRepos from './mockData/mockRepos'
+import mockFollowers from './mockData/mockFollowers'
+import axios from 'axios'
+
+const rootUrl = 'https://api.github.com'
+
+const GithubContext = createContext()
+
+const GithubProvider = ({ children }) => {
+  // github user state is the user we get from mockData / the user we search for (not the user who is logged in)
+  const [githubUser, setGithubUser] = useState(mockUser)
+  const [repos, setRepos] = useState(mockRepos)
+  const [followers, setFollowers] = useState(mockFollowers)
+
+  // to check remaining requests
+  const [requests, setRequests] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
+
+  // TODO: error
+
+  //^ TYPE 1 - setup
+
+  // check rate limit (remaining requests)
+  // const checkRateLimit = async () => {
+  //   const result = await axios(`${rootUrl}/rate_limit`)
+  //   console.log(result)
+  // }
+  // useEffect(() => {
+  //   console.log('hey app loaded')
+  //   checkRateLimit()
+  // }, [])
+
+  //^ TYPE 2 - setup
+
+  // check rate limit (remaining requests)
+  // const checkRateLimit = () => {
+  //   axios(`${rootUrl}/rate_limit`)
+  //     .then((result) => {
+  //       console.log(result)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  // }
+  // useEffect(() => {
+  //   checkRateLimit()
+  // }, [])
+
+  //^ TYPE 3 - setup - similar to type 2 (inisde the function itself)
+  // useEffect(() => {
+  //   axios(`${rootUrl}/rate_limit`)
+  //     .then((result) => {
+  //       console.log(result)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  // }, [])
+
+  //^ TYPE 4 - setup - similar to type 3, but put cb outside of useEffect and give it a name called checkRateLimit
+  const checkRateLimit = () => {
+    axios(`${rootUrl}/rate_limit`)
+      .then(({ data }) => {
+        let {
+          rate: { remaining },
+        } = data
+        setRequests(remaining)
+        if (remaining === 0) {
+          // throw an error
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  useEffect(checkRateLimit, [])
+
+  return (
+    <GithubContext.Provider value={{ githubUser, repos, followers, requests }}>
+      {children}
+    </GithubContext.Provider>
+  )
+}
+
+// custom hook that starts with use
+const useGlobalContext = () => {
+  return useContext(GithubContext)
+}
+
+export { GithubProvider, useGlobalContext }
+```
+
+**Dashboard.js** - here we call Search component
+
+```js
+import React from 'react'
+// importing this way in single line is possible because of index.js inside /components
+import { Info, Repos, User, Search, Navbar } from '../components'
+import loadingImage from '../images/preloader.gif'
+import { GithubContext } from '../context/context'
+const Dashboard = () => {
+  return (
+    <main>
+      {/* <Navbar></Navbar>*/}
+      <Search />
+      <Info />
+      <User />
+      <Repos />
+    </main>
+  )
+}
+
+export default Dashboard
+```
+
+**Search.js** - This component has Searchbar and also shows rate limit
+
+```js
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import { MdSearch } from 'react-icons/md'
+import { useGlobalContext } from '../context/context'
+const Search = () => {
+  const { requests } = useGlobalContext()
+  const [user, setUser] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (user) {
+      // if user is empty then we  will not reach here so basically won't do anything in that case
+    }
+  }
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        <form onSubmit={handleSubmit}>
+          <div className="form-control">
+            <MdSearch />
+            <input
+              type="text"
+              placeholder="enter github user"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
+            />
+            {requests > 0 && <button type="submit">Search</button>}
+          </div>
+        </form>
+        {/* requests is currently hardcoded but later will get it from global state */}
+        <h3>requests: {requests} / 60</h3>
+      </Wrapper>
+    </section>
+  )
+}
 ```
 
 ---

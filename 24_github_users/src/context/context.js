@@ -14,8 +14,72 @@ const GithubProvider = ({ children }) => {
   const [repos, setRepos] = useState(mockRepos)
   const [followers, setFollowers] = useState(mockFollowers)
 
+  // to check remaining requests
+  const [requests, setRequests] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
+
+  // TODO: error
+
+  //^ TYPE 1 - setup
+
+  // check rate limit (remaining requests)
+  // const checkRateLimit = async () => {
+  //   const result = await axios(`${rootUrl}/rate_limit`)
+  //   console.log(result)
+  // }
+  // useEffect(() => {
+  //   console.log('hey app loaded')
+  //   checkRateLimit()
+  // }, [])
+
+  //^ TYPE 2 - setup
+
+  // check rate limit (remaining requests)
+  // const checkRateLimit = () => {
+  //   axios(`${rootUrl}/rate_limit`)
+  //     .then((result) => {
+  //       console.log(result)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  // }
+  // useEffect(() => {
+  //   checkRateLimit()
+  // }, [])
+
+  //^ TYPE 3 - setup - similar to type 2 (inisde the function itself)
+  // useEffect(() => {
+  //   axios(`${rootUrl}/rate_limit`)
+  //     .then((result) => {
+  //       console.log(result)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  // }, [])
+
+  //^ TYPE 4 - setup - similar to type 3, but put cb outside of useEffect and give it a name called checkRateLimit
+  const checkRateLimit = () => {
+    axios(`${rootUrl}/rate_limit`)
+      .then(({ data }) => {
+        let {
+          rate: { remaining },
+        } = data
+        setRequests(remaining)
+        if (remaining === 0) {
+          // throw an error
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  useEffect(checkRateLimit, [])
+
   return (
-    <GithubContext.Provider value={{ githubUser, repos, followers }}>
+    <GithubContext.Provider value={{ githubUser, repos, followers, requests }}>
       {children}
     </GithubContext.Provider>
   )
