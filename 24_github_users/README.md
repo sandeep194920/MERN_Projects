@@ -18,6 +18,7 @@ _Starter Project, Commit ID_- `a993b413d2c24f7de7669834aa6061303a016cbb`
 - `reduce` function to calculate number of times an item occurs in an array of objects
 - How to sort an object / How to convert object values into array for sorting purpose
 - Alternative setup of useEffect - `useEffect(cbFunction, dependencyArray)`
+- How to use `gif` as loading spinner?
 
 ---
 
@@ -320,6 +321,18 @@ const checkRateLimit = () => {
 }
 
 useEffect(checkRateLimit, [])
+```
+
+---
+
+### How to use `gif` as loading spinner?
+
+```js
+import loadingImage from '../images/preloader.gif'
+
+// ...jsx
+;<img src={loadingImage} alt="loading_spinner" className="loading-img" />
+// ...jsx
 ```
 
 ---
@@ -3811,6 +3824,227 @@ const ErrorWrapper = styled.article`
   }
 `
 export default Search
+```
+
+---
+
+#### 28. Let's display loading spinner now when data is fetched
+
+`24_github_users/src/pages/Dashboard.js`
+`24_github_users/src/components/Search.js`
+`24_github_users/src/context/context.js`
+
+Where to show loading spinner?
+![show loading here](./readmeImages/showLoadingSpinner.png)
+
+Also, we will have to hide the search button when loading
+
+Search button should be shown when requests > 0 and also when loading is false. Else we need to hide it
+
+```js
+{
+  requests > 0 && !isLoading && <button type="submit">Search</button>
+}
+```
+
+In `context.js` it looks like this
+
+```js
+const searchGithubUser = async (user) => {
+  toggleError() // ---> if need to switch off the errror by calling this so that the error won't stay this for next call even if user exists in next call
+  setIsLoading(true)
+  const response = await axios(`${rootUrl}/users/${user}`).catch((err) => {
+    console.log(err)
+  }) // avoid try catch so directly catching here. But we don't use then, instead use await
+
+  // if we enter user that doesn't exist then we don't get response. It will be undefined
+  if (response) {
+    setGithubUser(response.data)
+    // MORE LOGIC COMING UP HERE
+  } else {
+    toggleError(true, `there is no user with the username - ${user}`)
+  }
+  checkRateLimit() // we check rate limit as well in case if it is not updated yet due to this user call
+  setIsLoading(false)
+}
+```
+
+**Dashboard.js**
+
+```js
+import React from 'react'
+// importing this way in single line is possible because of index.js inside /components
+import { Info, Repos, User, Search, Navbar } from '../components'
+import loadingImage from '../images/preloader.gif'
+import { useGlobalContext } from '../context/context'
+const Dashboard = () => {
+  const { isLoading } = useGlobalContext()
+  if (isLoading) {
+    return (
+      <main>
+        <Navbar />
+        <Search />
+        <img src={loadingImage} alt="loading_spinner" className="loading-img" />
+      </main>
+    )
+  }
+  return (
+    <main>
+      <Navbar />
+      <Search />
+      <Info />
+      <User />
+      <Repos />
+    </main>
+  )
+}
+
+export default Dashboard
+```
+
+**Search.js**
+
+```js
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import { MdSearch } from 'react-icons/md'
+import { useGlobalContext } from '../context/context'
+const Search = () => {
+  const { requests, error, searchGithubUser, isLoading } = useGlobalContext()
+  const [user, setUser] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (user) {
+      // if user is empty then we  will not reach here so basically won't do anything in that case
+      searchGithubUser(user)
+    }
+  }
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        {error.show && (
+          <ErrorWrapper>
+            <p>{error.msg}</p>
+          </ErrorWrapper>
+        )}
+        <form onSubmit={handleSubmit}>
+          <div className="form-control">
+            <MdSearch />
+            <input
+              type="text"
+              placeholder="enter github user"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
+            />
+            {/*SEARCH BUTTON*/}
+            {requests > 0 && !isLoading && (
+              <button type="submit">Search</button>
+            )}
+          </div>
+        </form>
+        {/* requests is currently hardcoded but later will get it from global state */}
+        <h3>requests: {requests} / 60</h3>
+      </Wrapper>
+    </section>
+  )
+}
+```
+
+**context.js**
+
+```js
+import React, { useState, useEffect, createContext, useContext } from 'react'
+import mockUser from './mockData/mockUser'
+import mockRepos from './mockData/mockRepos'
+import mockFollowers from './mockData/mockFollowers'
+import axios from 'axios'
+
+const rootUrl = 'https://api.github.com'
+
+const GithubContext = createContext()
+
+const GithubProvider = ({ children }) => {
+  // github user state is the user we get from mockData / the user we search for (not the user who is logged in)
+  const [githubUser, setGithubUser] = useState(mockUser)
+  const [repos, setRepos] = useState(mockRepos)
+  const [followers, setFollowers] = useState(mockFollowers)
+
+  // to check remaining requests
+  const [requests, setRequests] = useState(0)
+  // loading
+  const [isLoading, setIsLoading] = useState(false)
+  // error
+  const [error, setError] = useState({ show: false, msg: '' })
+
+  const checkRateLimit = () => {
+    axios(`${rootUrl}/rate_limit`)
+      .then(({ data }) => {
+        let {
+          rate: { remaining },
+        } = data
+        setRequests(remaining)
+        if (remaining === 0) {
+          // throw an error
+          toggleError(true, 'Sorry, you have exceeded hourly rate limit!')
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  useEffect(checkRateLimit, [])
+
+  // error function
+  function toggleError(show = false, msg = '') {
+    setError({ show, msg })
+  }
+
+  // when user is searched in search bar and enter is clicked, we need to get the data from this API endpoint -  https://api.github.com/users/wesbos
+
+  const searchGithubUser = async (user) => {
+    toggleError() // ---> if need to switch off the errror by calling this so that the error won't stay this for next call even if user exists in next call
+    setIsLoading(true)
+    const response = await axios(`${rootUrl}/users/${user}`).catch((err) => {
+      console.log(err)
+    }) // avoid try catch so directly catching here. But we don't use then, instead use await
+
+    // if we enter user that doesn't exist then we don't get response. It will be undefined
+    if (response) {
+      setGithubUser(response.data)
+      // MORE LOGIC COMING UP HERE
+    } else {
+      toggleError(true, `there is no user with the username - ${user}`)
+    }
+    checkRateLimit()
+    setIsLoading(false)
+  }
+
+  return (
+    <GithubContext.Provider
+      value={{
+        githubUser,
+        repos,
+        followers,
+        requests,
+        error,
+        searchGithubUser,
+        isLoading,
+      }}
+    >
+      {children}
+    </GithubContext.Provider>
+  )
+}
+
+// custom hook that starts with use
+const useGlobalContext = () => {
+  return useContext(GithubContext)
+}
+
+export { GithubProvider, useGlobalContext }
 ```
 
 ---

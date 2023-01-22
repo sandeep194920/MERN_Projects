@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { MdSearch } from 'react-icons/md'
 import { useGlobalContext } from '../context/context'
 const Search = () => {
-  const { requests, error, searchGithubUser } = useGlobalContext()
+  const { requests, error, searchGithubUser, isLoading } = useGlobalContext()
   const [user, setUser] = useState('')
 
   const handleSubmit = (e) => {
@@ -31,7 +31,9 @@ const Search = () => {
               value={user}
               onChange={(e) => setUser(e.target.value)}
             />
-            {requests > 0 && <button type="submit">Search</button>}
+            {requests > 0 && !isLoading && (
+              <button type="submit">Search</button>
+            )}
           </div>
         </form>
         {/* requests is currently hardcoded but later will get it from global state */}

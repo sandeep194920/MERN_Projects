@@ -49,7 +49,7 @@ const GithubProvider = ({ children }) => {
 
   const searchGithubUser = async (user) => {
     toggleError() // ---> if need to switch off the errror by calling this so that the error won't stay this for next call even if user exists in next call
-    // setIsLoading(true) // ---> we will work on loading later
+    setIsLoading(true)
     const response = await axios(`${rootUrl}/users/${user}`).catch((err) => {
       console.log(err)
     }) // avoid try catch so directly catching here. But we don't use then, instead use await
@@ -61,6 +61,8 @@ const GithubProvider = ({ children }) => {
     } else {
       toggleError(true, `there is no user with the username - ${user}`)
     }
+    checkRateLimit()
+    setIsLoading(false)
   }
 
   return (
@@ -72,6 +74,7 @@ const GithubProvider = ({ children }) => {
         requests,
         error,
         searchGithubUser,
+        isLoading,
       }}
     >
       {children}
