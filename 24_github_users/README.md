@@ -2859,3 +2859,157 @@ export default Repos
 ```
 
 ---
+
+#### 24. All charts are done, so let's now work on Search component
+
+`24_github_users/src/pages/Dashboard.js`
+`24_github_users/src/components/Search.js`
+
+Let's code Search bar now and call it inside `Dashboard`. We will have a handleSubmit method so that, the search only triggers when we click the button and not when we type in the search
+
+**Dashboard**
+
+```js
+import React from 'react'
+// importing this way in single line is possible because of index.js inside /components
+import { Info, Repos, User, Search, Navbar } from '../components'
+import loadingImage from '../images/preloader.gif'
+import { GithubContext } from '../context/context'
+const Dashboard = () => {
+  return (
+    <main>
+      {/* <Navbar></Navbar>*/}
+      <Search />
+      <Info />
+      <User />
+      <Repos />
+    </main>
+  )
+}
+
+export default Dashboard
+```
+
+**Search**
+
+```js
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import { MdSearch } from 'react-icons/md'
+import { GithubContext } from '../context/context'
+const Search = () => {
+  const [user, setUser] = useState('sdaf')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // if user is empty then we will not do anything
+    if (user) {
+      // MORE LOGIC COMING UP HERE
+    }
+  }
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        <form onSubmit={handleSubmit}>
+          <div className="form-control">
+            <MdSearch />
+            <input
+              type="text"
+              placeholder="enter github user"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
+            />
+            <button type="submit">Search</button>
+          </div>
+        </form>
+        {/* requests is currently hardcoded but later will get it from global state */}
+        <h3>requests: 60 / 60</h3>
+      </Wrapper>
+    </section>
+  )
+}
+
+const Wrapper = styled.div`
+  position: relative;
+  display: grid;
+  gap: 1rem 1.75rem;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr max-content;
+    align-items: center;
+    h3 {
+      padding: 0 0.5rem;
+    }
+  }
+  .form-control {
+    background: var(--clr-white);
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 0.5rem;
+    border-radius: 5px;
+    padding: 0.5rem;
+    input {
+      border-color: transparent;
+      outline-color: var(--clr-grey-10);
+      letter-spacing: var(--spacing);
+      color: var(--clr-grey-3);
+      padding: 0.25rem 0.5rem;
+    }
+    input::placeholder {
+      color: var(--clr-grey-3);
+      text-transform: capitalize;
+      letter-spacing: var(--spacing);
+    }
+    button {
+      border-radius: 5px;
+      border-color: transparent;
+      padding: 0.25rem 0.5rem;
+      text-transform: capitalize;
+      letter-spacing: var(--spacing);
+      background: var(--clr-primary-5);
+      color: var(--clr-white);
+      transition: var(--transition);
+      cursor: pointer;
+      &:hover {
+        background: var(--clr-primary-8);
+        color: var(--clr-primary-1);
+      }
+    }
+    svg {
+      color: var(--clr-grey-5);
+    }
+    input,
+    button,
+    svg {
+      font-size: 1.3rem;
+    }
+    @media (max-width: 800px) {
+      button,
+      input,
+      svg {
+        font-size: 0.85rem;
+      }
+    }
+  }
+  h3 {
+    margin-bottom: 0;
+    color: var(--clr-grey-5);
+    font-weight: 400;
+  }
+`
+const ErrorWrapper = styled.article`
+  position: absolute;
+  width: 90vw;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  text-transform: capitalize;
+  p {
+    color: red;
+    letter-spacing: var(--spacing);
+  }
+`
+export default Search
+```
+
+---

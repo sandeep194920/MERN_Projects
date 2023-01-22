@@ -237,6 +237,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Get first five values of sorted array`
 - `Javascript object properties arranged in ascending order if the props are numbers`
 - `Sort, Slice and Reverse an array. Slice first and last five elements of array`
+- `Search functionality when enter button is pressed`
 
 ## Handy Tools
 
