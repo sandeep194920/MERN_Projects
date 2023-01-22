@@ -235,6 +235,8 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `reduce function to calculate number of times an item occurs in an array of objects. forEach vs reduce to achieve same result`
 - `How to sort an object / How to convert object values into array for sorting purpose`
 - `Get first five values of sorted array`
+- `Javascript object properties arranged in ascending order if the props are numbers`
+- `Sort, Slice and Reverse an array. Slice first and last five elements of array`
 
 ## Handy Tools
 

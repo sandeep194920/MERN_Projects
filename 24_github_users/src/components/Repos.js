@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { GithubContext, useGlobalContext } from '../context/context'
-import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts'
+import { useGlobalContext } from '../context/context'
+import { Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts'
 const Repos = () => {
   const { repos } = useGlobalContext()
   /* repos is an array of objects. Each object will have a property called language set to any language like this 
@@ -152,31 +152,50 @@ const Repos = () => {
 
   // -------------------------
 
-  // HARDCODED DATA
+  //^ Most poupular Repos and Most forked Repos from mock repos
 
-  const chartData = [
-    {
-      label: 'HTML',
-      value: '13',
+  let { stars, forks } = repos.reduce(
+    (total, item) => {
+      const { stargazers_count, name, forks } = item
+      // this could have been total.stars[name] as well as it doesn't matter because we are just interested in value of stars object which is  { label: name, value: stargazers_count }. We are going to get only values and sort it as before
+
+      // BUT IF WE DON'T WANT TO SORT LIKE BEFORE, the reason we use stargazers_count here is because, the keys are stargazers_count and they are arranged in ascending order (refer to "How to sort an object / How to convert object values into array for sorting purpose" question). After getting the values, we could reverse it and get first five values
+      total.stars[stargazers_count] = { label: name, value: stargazers_count }
+      total.forks[forks] = { label: name, value: forks }
+      return total
     },
     {
-      label: 'CSS',
-      value: '23',
-    },
-    {
-      label: 'Javascript',
-      value: '80',
-    },
-  ]
+      stars: {},
+      forks: {},
+    }
+  )
+
+  // THIS IS FIRST WAY TO GET FIRST 5 STARS LIKE BEFORE
+
+  // stars = Object.values(stars)
+  //   .sort((a, b) => b.value - a.value)
+  //   .slice(0, 5)
+
+  // THIS IS SECOND WAY TO GET FIRST 5 STARS - AS WE NOW HAVE KEYS (numbers) SORTED AUTOMATICALLY, AND THAT IS THE REASON WE ARE USING total.stars[stargazers_count]
+
+  stars = Object.values(stars).slice(-5) // get's last five values
+  stars = stars.reverse() // reverses the array
+
+  /*
+  above two lines could have been in a single line
+  stars = Object.values(stars).slice(-5).reverse()
+  */
+
+  forks = Object.values(forks).slice(-5).reverse()
 
   return (
     <section className="section">
       <Wrapper className="section-center">
         {/* <ExampleChart data={chartData} /> */}
-        <Pie3D data={mostUsedLanguages} />
-        <Column3D data={chartData} /> {/* chartData - hardCoded data */}
-        <Doughnut2D data={mostPopularLanguages} />
-        <Bar3D data={chartData} /> {/* chartData - hardCoded data */}
+        {/* <Pie3D data={mostUsedLanguages} /> */}
+        {/* <Column3D data={stars} /> */}
+        {/* <Doughnut2D data={mostPopularLanguages} /> */}
+        {/* <Bar3D data={forks} /> */}
       </Wrapper>
     </section>
   )
