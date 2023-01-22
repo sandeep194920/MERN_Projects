@@ -3538,3 +3538,279 @@ export default Search
 ```
 
 ---
+
+#### 27. Now that all our components are hooked up, let's now call real API when searched for a user
+
+`24_github_users/src/context/context.js` -> setup function to call data from API
+`24_github_users/src/components/Search.js` -> call that function in context when user is searched
+
+This is the API URL to get the user when we search for a user and click enter
+
+- [Get User](https://api.github.com/users/wesbos) - `https://api.github.com/users/wesbos`
+
+If the user is not present for example when you query non existing user like this `https://api.github.com/users/wesbossadfdsf` we get back this response
+
+```json
+{
+  "message": "Not Found",
+  "documentation_url": "https://docs.github.com/rest/reference/users#get-a-user"
+}
+```
+
+So when we call the api to get user, either we get correct user data or we don't get the data. So let's write a function to fetch the data
+
+```js
+// when user is searched in search bar and enter is clicked, we need to get the data from this API endpoint -  https://api.github.com/users/wesbos
+
+const searchGithubUser = async (user) => {
+  toggleError() // ---> if need to switch off the errror by calling this so that the error won't stay this for next call even if user exists in next call
+
+  // setIsLoading(true) // ---> we will work on loading later
+  const response = await axios(`${rootUrl}/users/${user}`).catch((err) => {
+    console.log(err)
+  }) // avoid try catch so directly catching here. But we don't use then, instead use await
+
+  // if we enter user that doesn't exist then we don't get response. It will be undefined
+  if (response) {
+    setGithubUser(response.data)
+    // MORE LOGIC COMING UP HERE
+  } else {
+    toggleError(true, `there is no user with the username - ${user}`)
+  }
+}
+```
+
+It looks like this now
+
+_When existing user is searched_
+
+![existing user searched](./readmeImages/searchAPIWorks.png)
+
+_When non-existing user is searched_
+
+![existing user searched](./readmeImages/errorSearch.png)
+
+Full Code here
+
+**context.js**
+
+```js
+import React, { useState, useEffect, createContext, useContext } from 'react'
+import mockUser from './mockData/mockUser'
+import mockRepos from './mockData/mockRepos'
+import mockFollowers from './mockData/mockFollowers'
+import axios from 'axios'
+
+const rootUrl = 'https://api.github.com'
+
+const GithubContext = createContext()
+
+const GithubProvider = ({ children }) => {
+  // github user state is the user we get from mockData / the user we search for (not the user who is logged in)
+  const [githubUser, setGithubUser] = useState(mockUser)
+  const [repos, setRepos] = useState(mockRepos)
+  const [followers, setFollowers] = useState(mockFollowers)
+
+  // to check remaining requests
+  const [requests, setRequests] = useState(0)
+  // loading
+  const [isLoading, setIsLoading] = useState(false)
+  // error
+  const [error, setError] = useState({ show: false, msg: '' })
+
+  const checkRateLimit = () => {
+    axios(`${rootUrl}/rate_limit`)
+      .then(({ data }) => {
+        let {
+          rate: { remaining },
+        } = data
+        setRequests(remaining)
+        if (remaining === 0) {
+          // throw an error
+          toggleError(true, 'Sorry, you have exceeded hourly rate limit!')
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  useEffect(checkRateLimit, [])
+
+  // error function
+  function toggleError(show = false, msg = '') {
+    setError({ show, msg })
+  }
+
+  // when user is searched in search bar and enter is clicked, we need to get the data from this API endpoint -  https://api.github.com/users/wesbos
+
+  const searchGithubUser = async (user) => {
+    toggleError() // ---> if need to switch off the errror by calling this so that the error won't stay this for next call even if user exists in next call
+    // setIsLoading(true) // ---> we will work on loading later
+    const response = await axios(`${rootUrl}/users/${user}`).catch((err) => {
+      console.log(err)
+    }) // avoid try catch so directly catching here. But we don't use then, instead use await
+
+    // if we enter user that doesn't exist then we don't get response. It will be undefined
+    if (response) {
+      setGithubUser(response.data)
+      // MORE LOGIC COMING UP HERE
+    } else {
+      toggleError(true, `there is no user with the username - ${user}`)
+    }
+  }
+
+  return (
+    <GithubContext.Provider
+      value={{
+        githubUser,
+        repos,
+        followers,
+        requests,
+        error,
+        searchGithubUser,
+      }}
+    >
+      {children}
+    </GithubContext.Provider>
+  )
+}
+
+// custom hook that starts with use
+const useGlobalContext = () => {
+  return useContext(GithubContext)
+}
+
+export { GithubProvider, useGlobalContext }
+```
+
+**Search.js**
+
+```js
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import { MdSearch } from 'react-icons/md'
+import { useGlobalContext } from '../context/context'
+const Search = () => {
+  const { requests, error, searchGithubUser } = useGlobalContext()
+  const [user, setUser] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (user) {
+      // if user is empty then we  will not reach here so basically won't do anything in that case
+      searchGithubUser(user)
+    }
+  }
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        {error.show && (
+          <ErrorWrapper>
+            <p>{error.msg}</p>
+          </ErrorWrapper>
+        )}
+        <form onSubmit={handleSubmit}>
+          <div className="form-control">
+            <MdSearch />
+            <input
+              type="text"
+              placeholder="enter github user"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
+            />
+            {requests > 0 && <button type="submit">Search</button>}
+          </div>
+        </form>
+        {/* requests is currently hardcoded but later will get it from global state */}
+        <h3>requests: {requests} / 60</h3>
+      </Wrapper>
+    </section>
+  )
+}
+
+const Wrapper = styled.div`
+  position: relative;
+  display: grid;
+  gap: 1rem 1.75rem;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr max-content;
+    align-items: center;
+    h3 {
+      padding: 0 0.5rem;
+    }
+  }
+  .form-control {
+    background: var(--clr-white);
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 0.5rem;
+    border-radius: 5px;
+    padding: 0.5rem;
+    input {
+      border-color: transparent;
+      outline-color: var(--clr-grey-10);
+      letter-spacing: var(--spacing);
+      color: var(--clr-grey-3);
+      padding: 0.25rem 0.5rem;
+    }
+    input::placeholder {
+      color: var(--clr-grey-3);
+      text-transform: capitalize;
+      letter-spacing: var(--spacing);
+    }
+    button {
+      border-radius: 5px;
+      border-color: transparent;
+      padding: 0.25rem 0.5rem;
+      text-transform: capitalize;
+      letter-spacing: var(--spacing);
+      background: var(--clr-primary-5);
+      color: var(--clr-white);
+      transition: var(--transition);
+      cursor: pointer;
+      &:hover {
+        background: var(--clr-primary-8);
+        color: var(--clr-primary-1);
+      }
+    }
+    svg {
+      color: var(--clr-grey-5);
+    }
+    input,
+    button,
+    svg {
+      font-size: 1.3rem;
+    }
+    @media (max-width: 800px) {
+      button,
+      input,
+      svg {
+        font-size: 0.85rem;
+      }
+    }
+  }
+  h3 {
+    margin-bottom: 0;
+    color: var(--clr-grey-5);
+    font-weight: 400;
+  }
+`
+const ErrorWrapper = styled.article`
+  position: absolute;
+  width: 90vw;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  text-transform: capitalize;
+  p {
+    color: red;
+    letter-spacing: var(--spacing);
+  }
+`
+export default Search
+```
+
+---

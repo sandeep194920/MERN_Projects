@@ -45,9 +45,34 @@ const GithubProvider = ({ children }) => {
     setError({ show, msg })
   }
 
+  // when user is searched in search bar and enter is clicked, we need to get the data from this API endpoint -  https://api.github.com/users/wesbos
+
+  const searchGithubUser = async (user) => {
+    toggleError() // ---> if need to switch off the errror by calling this so that the error won't stay this for next call even if user exists in next call
+    // setIsLoading(true) // ---> we will work on loading later
+    const response = await axios(`${rootUrl}/users/${user}`).catch((err) => {
+      console.log(err)
+    }) // avoid try catch so directly catching here. But we don't use then, instead use await
+
+    // if we enter user that doesn't exist then we don't get response. It will be undefined
+    if (response) {
+      setGithubUser(response.data)
+      // MORE LOGIC COMING UP HERE
+    } else {
+      toggleError(true, `there is no user with the username - ${user}`)
+    }
+  }
+
   return (
     <GithubContext.Provider
-      value={{ githubUser, repos, followers, requests, error }}
+      value={{
+        githubUser,
+        repos,
+        followers,
+        requests,
+        error,
+        searchGithubUser,
+      }}
     >
       {children}
     </GithubContext.Provider>

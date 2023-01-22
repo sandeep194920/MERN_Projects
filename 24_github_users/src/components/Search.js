@@ -3,13 +3,15 @@ import styled from 'styled-components'
 import { MdSearch } from 'react-icons/md'
 import { useGlobalContext } from '../context/context'
 const Search = () => {
-  const { requests, error } = useGlobalContext()
+  const { requests, error, searchGithubUser } = useGlobalContext()
   const [user, setUser] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
     if (user) {
       // if user is empty then we  will not reach here so basically won't do anything in that case
+      searchGithubUser(user)
     }
   }
   return (
