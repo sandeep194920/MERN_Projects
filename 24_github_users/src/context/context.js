@@ -51,13 +51,48 @@ const GithubProvider = ({ children }) => {
     toggleError() // ---> if need to switch off the errror by calling this so that the error won't stay this for next call even if user exists in next call
     setIsLoading(true)
     const response = await axios(`${rootUrl}/users/${user}`).catch((err) => {
-      console.log(err)
+      console.log('the error is', err)
     }) // avoid try catch so directly catching here. But we don't use then, instead use await
 
     // if we enter user that doesn't exist then we don't get response. It will be undefined
     if (response) {
       setGithubUser(response.data)
-      // MORE LOGIC COMING UP HERE
+
+      // Let's now get repos and followers
+      const { login, followers_url } = response.data
+
+      //& repos - https://api.github.com/users/john-smilga/repos?per_page=100
+      axios(`${rootUrl}/users/${login}/repos?per_page=100`)
+        .then((response) => {
+          setRepos(response.data)
+        })
+        .catch((e) => console.log(e))
+
+      //& followers - https://api.github.com/users/john-smilga/followers?per_page=100
+
+      // axios(`${rootUrl}/users/${login}/followers?per_page=100`)
+      //   .then((response) => console.log(response))
+      //   .catch((e) => console.log(e))
+
+      //The above commented is same as below
+      /*
+
+      axios(`${followers_url}?per_page=100`)
+        .then((response) => {
+          setFollowers(response.data)
+        })
+        .catch((e) => console.log(e))
+        
+      */
+
+      // Alternatively we can write as below
+
+      try {
+        const { data: followers } = await axios(`${followers_url}?per_page=100`)
+        setFollowers(followers)
+      } catch (err) {
+        console.log(err)
+      }
     } else {
       toggleError(true, `there is no user with the username - ${user}`)
     }
