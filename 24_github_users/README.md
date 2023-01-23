@@ -4308,23 +4308,27 @@ await Promise.allSettled([
 
 ![promise rejected](./readmeImages/promiseError.png)
 
+While there are other Promise options, the good part about `Promise.allSettled` is that it waits until all promises (axios calls) are resolved even if one or two out of the calls fail.
+
 The code looks like this
 
 ```js
 await Promise.allSettled([
   axios(`${rootUrl}/users/${login}/reposs?per_page=100`),
   axios(`${followers_url}?per_page=100`),
-]).then((results) => {
-  // we know that the first one in array will be repos and second one will be followers, so we can destructure it like this
-  const [repos, followers] = results
-  const status = 'fulfilled'
-  if (repos.status === status) {
-    setRepos(repos.value.data)
-  }
-  if (followers.status === status) {
-    setFollowers(followers.value.data)
-  }
-})
+])
+  .then((results) => {
+    // we know that the first one in array will be repos and second one will be followers, so we can destructure it like this
+    const [repos, followers] = results
+    const status = 'fulfilled'
+    if (repos.status === status) {
+      setRepos(repos.value.data)
+    }
+    if (followers.status === status) {
+      setFollowers(followers.value.data)
+    }
+  })
+  .catch((e) => console.log(e))
 ```
 
 Full code of **context.js**
@@ -4414,17 +4418,19 @@ const GithubProvider = ({ children }) => {
       await Promise.allSettled([
         axios(`${rootUrl}/users/${login}/repos?per_page=100`),
         axios(`${followers_url}?per_page=100`),
-      ]).then((results) => {
-        // we know that the first one in array will be repos and second one will be followers, so we can destructure it like this
-        const [repos, followers] = results
-        const status = 'fulfilled'
-        if (repos.status === status) {
-          setRepos(repos.value.data)
-        }
-        if (followers.status === status) {
-          setFollowers(followers.value.data)
-        }
-      })
+      ])
+        .then((results) => {
+          // we know that the first one in array will be repos and second one will be followers, so we can destructure it like this
+          const [repos, followers] = results
+          const status = 'fulfilled'
+          if (repos.status === status) {
+            setRepos(repos.value.data)
+          }
+          if (followers.status === status) {
+            setFollowers(followers.value.data)
+          }
+        })
+        .catch((e) => console.log(e))
     } else {
       toggleError(true, `there is no user with the username - ${user}`)
     }
