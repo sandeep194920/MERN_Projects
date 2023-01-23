@@ -61,38 +61,38 @@ const GithubProvider = ({ children }) => {
       // Let's now get repos and followers
       const { login, followers_url } = response.data
 
-      //& repos - https://api.github.com/users/john-smilga/repos?per_page=100
+      /*
+      & repos - https://api.github.com/users/john-smilga/repos?per_page=100
       axios(`${rootUrl}/users/${login}/repos?per_page=100`)
         .then((response) => {
           setRepos(response.data)
         })
         .catch((e) => console.log(e))
 
-      //& followers - https://api.github.com/users/john-smilga/followers?per_page=100
-
-      // axios(`${rootUrl}/users/${login}/followers?per_page=100`)
-      //   .then((response) => console.log(response))
-      //   .catch((e) => console.log(e))
-
-      //The above commented is same as below
-      /*
+      & followers - https://api.github.com/users/john-smilga/followers?per_page=100
 
       axios(`${followers_url}?per_page=100`)
         .then((response) => {
           setFollowers(response.data)
         })
         .catch((e) => console.log(e))
-        
-      */
+    */
 
-      // Alternatively we can write as below
-
-      try {
-        const { data: followers } = await axios(`${followers_url}?per_page=100`)
-        setFollowers(followers)
-      } catch (err) {
-        console.log(err)
-      }
+      // COMMENTING ABOVE CODE AS WE USE PROMISE.ALLSETTLED()
+      await Promise.allSettled([
+        axios(`${rootUrl}/users/${login}/repos?per_page=100`),
+        axios(`${followers_url}?per_page=100`),
+      ]).then((results) => {
+        // we know that the first one in array will be repos and second one will be followers, so we can destructure it like this
+        const [repos, followers] = results
+        const status = 'fulfilled'
+        if (repos.status === status) {
+          setRepos(repos.value.data)
+        }
+        if (followers.status === status) {
+          setFollowers(followers.value.data)
+        }
+      })
     } else {
       toggleError(true, `there is no user with the username - ${user}`)
     }

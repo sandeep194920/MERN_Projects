@@ -239,6 +239,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Sort, Slice and Reverse an array. Slice first and last five elements of array`
 - `Search functionality when enter button is pressed`
 - `Alternative setup of useEffect ` `useEffect(cbFunction, dependencyArray)`
+- `Promise.allSettled() - to call independent API calls at once`
 
 ## Handy Tools
 
