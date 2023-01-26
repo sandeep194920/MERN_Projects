@@ -4464,3 +4464,75 @@ export { GithubProvider, useGlobalContext }
 ```
 
 ---
+
+#### 31. Let's now setup Authentication. We will use auth0 for this
+
+_Intro to Auth0 and basic setup_
+
+`24_github_users/src/index.js`
+
+- Auth0 dashboard [here](https://manage.auth0.com/dashboard/us/dev-5wz2wjfk/)
+- Login with my github account
+- Create Application
+- Choose : Single Page Web Applications
+- Choose : React
+- Go to Settings Tab
+- Copy/Paste Domain, ClientID - can be public (or use .env)
+- Add Domain -
+  for now http://localhost:3000 (DON'T COPY PASTE FROM URL BAR)
+
+  - Allowed Callback URLs
+  - Allowed Logout URLs
+  - Allowed Web Origins
+  - SAVE CHANGES!!!!!!!!!!!!!!!
+
+  ![auth0 urls](./readmeImages/auth0URLs.png)
+
+- Once you setup the URLs then you can setup the Connections (database, and social)
+
+  - **Database**
+
+  ![auth0 authentications](./readmeImages/auth0Authentication.png)
+
+  - We will create an account for our with DB as well and social (twitter and google)
+
+  ![auth db](./readmeImages/authDB.png)
+
+  ![auth0 settings](./readmeImages/auth0Settings.png)
+
+  - **Social**
+
+  ![auth0 social](./readmeImages/auth0Social.png)
+
+  ![auth0 google](./readmeImages/auth0Google.png)
+
+  ![google enable](./readmeImages/googleEnable.png)
+
+  - Same thing goes for twitter or any other social connections
+
+  - Also once you have the social connection, you can click on `Try connection` button and it asks you for username password of that social account (let it be google or fb and so on). Once you are authenticated then it will show you the creds like this which means that it is working fine and you can start development
+
+  ![auth testing connection](./readmeImages/tryConnection.png)
+
+- Now once this is all done, we will need to think about how we need to setup Auth0. For this, docs can help us. Here's the steps to find the docs link (this might change in future, but you get an idea)
+
+  ![auth0 docs](./readmeImages/auth0docs1.png)
+
+  ![auth0 docs search](./readmeImages/auth0docs2.png)
+
+  ![auth0 docs link](./readmeImages/docsLink.png.png)
+
+  Here's the link below
+
+  - [React SDK Docs](https://auth0.com/docs/libraries/auth0-react) - Main docs for react
+  - [REACT SDK API Docs](https://auth0.github.io/auth0-react/) - API docs for react. This link is present in the above Main docs, so you can toggle back and forth for the info
+
+- Install Auth0 SDK in your app using `npm install @auth0/auth0-react`
+
+- Then setup the URLS in the dashboard like this and make sure you **save!!!**
+
+_At any point you need more info about Auth0, just visit [John's udemy course video 337](https://www.udemy.com/course/react-tutorial-and-projects-course/learn/lecture/21055066#questions)_
+
+- Let's follow the main docs and add `Auth0Provider` to our `index.js` page
+
+---

@@ -217,7 +217,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 - `Starter Project Files`
 - `Flow of the app in README of this project`
-- `Authentication - auth0, facebook and google authentication`
+- `Authentication - auth0, facebook and google authentication - auth0 explained`
 - `External API - No API key required` - [Github users api](https://api.github.com/users/john-smilga/followers?per_page=100)
 - `Styled Components for specific components + Global CSS as other projects`
 - `index.js to combine files`

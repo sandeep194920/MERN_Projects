@@ -4,13 +4,21 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { GithubProvider } from './context/context'
+import { Auth0Provider } from '@auth0/auth0-react'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
+// We could have added domain and clientId inside .env file, but just leaving it here for now
 root.render(
   <React.StrictMode>
-    <GithubProvider>
-      <App />
-    </GithubProvider>
+    <Auth0Provider
+      domain="dev-5wz2wjfk.us.auth0.com"
+      clientId="HmN3Dr40ZmjzNP69NxfbuIe9Y1ceMeSp"
+      redirectUri={window.location.origin}
+    >
+      <GithubProvider>
+        <App />
+      </GithubProvider>
+    </Auth0Provider>
   </React.StrictMode>
 )
 
