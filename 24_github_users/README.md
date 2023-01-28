@@ -5049,10 +5049,4 @@ Here we have hardcoded `isUser`, but in next video we will see how we can use `a
 
 ---
 
-```
-
-```
-
-```
-
-```
+`
