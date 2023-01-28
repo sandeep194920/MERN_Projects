@@ -4703,3 +4703,81 @@ export default Navbar
 ```
 
 ---
+
+#### 33. Conditionally show and hide Login and Logout button
+
+`24_github_users/src/components/Navbar.js`
+
+Now that we have added Login and Logout, and we know **when a user logs in**, initially the
+
+- `isLoading` will be `true`
+- `user` will be `undefined`
+- `isAuthenticated` will be `false`
+
+and when the `user` is available from auth0 (**after some time**),
+
+- `isLoading` will be `false`
+- `user` will be an `object`
+- `isAuthenticated` will be `true`
+
+Based on this, when `isAuthenticated` is `true` we can hide the Login button. Else if `isAuthenticated` is `false` then it means logout button can be hidden and only login should be shown.
+
+**Note that** the Login Logout button is next to each other just for now. Later once we add wrapper then Login will be in the /login page and Logout button will be on Navbar.
+
+So now that we understood everything, let's setup functionality in Navbar where, if user is logged in then we should display his email and the Logout button.
+
+We can check like this `const isUser = isAuthenticated && user` to know if user is present or not. I know that just we could check for `isAuthenticated` but just a double protection as we are showing user in navbar.
+
+This is what it looks like now
+
+![conditional login](./readmeImages/conditionalLogin.png)
+
+**Navbar.js**
+
+```js
+import React from 'react'
+import styled from 'styled-components'
+import { useAuth0 } from '@auth0/auth0-react'
+
+const Navbar = () => {
+  // using isLoading and error just to show how they look here. Later we will use wrapper as told in step 32 heading.
+  const { isAuthenticated, loginWithRedirect, logout, user, isLoading, error } =
+    useAuth0()
+
+  console.log({ isAuthenticated, user, isLoading, error })
+
+  const isUser = isAuthenticated && user
+
+  if (isUser) {
+  }
+
+  return (
+    <Wrapper>
+      {isUser && user.picture && <img src={user.picture} alt={user.name} />}
+      {/* just an extra step of checking for user.name. It is obvious that it will be available but still want to be safer */}
+      {isUser && user.name && (
+        <h4>
+          Welcome <strong>{user.name.toUpperCase()}</strong>
+        </h4>
+      )}
+
+      {isUser ? (
+        <button onClick={() => logout({ returnTo: window.location.origin })}>
+          {/* for logout, we need to say where we need to go back to after logging out  */}
+          Logout
+        </button>
+      ) : (
+        <button onClick={loginWithRedirect}>Login</button>
+      )}
+    </Wrapper>
+  )
+}
+
+export default Navbar
+```
+
+At any point you want to check your users, you can do in auth0
+
+![auth0 users](./readmeImages/auth0Users.png)
+
+---
