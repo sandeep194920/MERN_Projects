@@ -19,6 +19,7 @@ _Starter Project, Commit ID_- `a993b413d2c24f7de7669834aa6061303a016cbb`
 - How to sort an object / How to convert object values into array for sorting purpose
 - Alternative setup of useEffect - `useEffect(cbFunction, dependencyArray)`
 - How to use `gif` as loading spinner?
+- React-router `render` prop and `Redirect` - an alternative way to display underlying route, especially for protected route
 
 ---
 
@@ -337,6 +338,92 @@ import loadingImage from '../images/preloader.gif'
 
 ---
 
+### React-router `render` prop and `Redirect` - an alternative way to display underlying route, especially for protected route
+
+Let's say we have a route like this
+
+```js
+<Route path="/testingRenderprop">
+  <div>
+    <h1>This is render prop route</h1>
+  </div>
+</Route>
+```
+
+and when you visit `/testingRenderprop` you will see this
+
+![no render prop yet](./readmeImages/noRenderProp.png)
+
+Using `render prop` we could write the above route like this
+
+```js
+<Route
+  path="/testingRenderprop"
+  // we are returning the route
+  render={() => (
+    <div>
+      <h1>This is render prop route</h1>
+    </div>
+  )}
+/>
+```
+
+OR with return statement like this
+
+```js
+<Route
+  path="/testingRenderprop"
+  render={() => {
+    return (
+      <div>
+        <h1>This is render prop route</h1>
+      </div>
+    )
+  }}
+/>
+```
+
+Now, why do we need to use `render` prop? To conditionally show some route. If `condition A` show `route A` else show or `redirect` to `route B` like below
+
+```js
+
+const day='monday'
+
+// ....
+<Route
+  path="/testingRenderprop"
+  render={() => {
+    return day === 'monday' ? (
+      <h1>Today is Monday</h1>
+    ) : (
+      <h3>Today is not Monday</h3>
+    )
+  }}
+/>
+
+```
+
+Let's say we need to redirect to /monday if the day is monday
+
+````js
+
+const day='monday'
+
+// ....
+<Route
+  path="/testingRenderprop"
+  render={() => {
+    return day === 'monday' ? (
+      <Redirect to="/monday" />
+    ) : (
+      <h3>Today is not Monday</h3>
+    )
+  }}
+/>
+
+
+---
+
 ---
 
 ## Flow of the app
@@ -376,7 +463,7 @@ function App() {
     </Router>
   )
 }
-```
+````
 
 - We will add `Error` later
 
@@ -4779,5 +4866,187 @@ export default Navbar
 At any point you want to check your users, you can do in auth0
 
 ![auth0 users](./readmeImages/auth0Users.png)
+
+---
+
+#### 34. Let's now restrict access to the Dashboard (Private Route). Only logged in users can see the Dashboard. So we will have a separate page for login
+
+`24_github_users/src/pages/PrivateRoute.js`
+`24_github_users/src/App.js`
+
+We will setup a private route for Dashboard. Initially things look like this
+
+**_App.js_**
+
+```js
+import React from 'react'
+import { Dashboard, Login, PrivateRoute, AuthWrapper, Error } from './pages'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+function App() {
+  return (
+    <Router>
+      {/* Switch matches the first matching route. Note that * would be the second match to any route generally as it matches everything like /, /login, /about, /noroute and so on */}
+      <Switch>
+        <Route path="/" exact>
+          <Dashboard></Dashboard>
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+
+        {/* Default route to show error page if none of the above routes match */}
+        <Route path="*">
+          <Error />
+        </Route>
+      </Switch>
+    </Router>
+  )
+}
+
+export default App
+```
+
+**_PrivateRoute.js_**
+
+```js
+import React from 'react'
+import { Route, Redirect } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
+
+const PrivateRoute = () => {
+  return <h2>private route component</h2>
+}
+export default PrivateRoute
+```
+
+So in this case since we want to protect the `Dashboard route`, we will wrap that into `PrivateRoute`.
+
+In that Private route we will check if we have logged in and if not we will kickback user to other route which is unprotected like /login page
+
+Let's start simple. We need to convert
+
+THIS (in `App.js`)
+
+```js
+<Route path="/" exact>
+  <Dashboard></Dashboard>
+</Route>
+```
+
+TO THIS
+
+```js
+<PrivateRoute path="/" exact>
+  <Dashboard></Dashboard>
+</PrivateRoute>
+```
+
+`PrivateRoute` exactly does the same what `Route` did
+
+`PrivateRoute.js` is like this
+
+```js
+import React from 'react'
+import { Route, Redirect } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
+
+const PrivateRoute = ({ children, ...rest }) => {
+  // return (
+  //   <Route path="/" exact>
+  //     {children}
+  //   </Route>
+  // )
+
+  // path="/" exact ---> these two are the rest props, so we can write it now like this
+
+  return <Route {...rest}>{children}</Route>
+}
+export default PrivateRoute
+```
+
+Now, if user is logged in, then we need to show what we are showing now which is `Dashboard` else we need to redirect the user. Look here we need to conditionally show a route and if that condition fails then we need to show or redirect to other route.
+
+We can do this using react-router's render prop. Take a look at this first [Learn render prop working explained above. Click on this]() to know how render prop works and then proceed once learned.
+
+So using render prop the above can be written like this
+
+```js
+const PrivateRoute = ({ children, ...rest }) => {
+  console.log('rest is', rest) // this will be exact and path that we passed into private route
+  return (
+    <Route
+      {...rest}
+      render={() => {
+        return children
+      }}
+    />
+  )
+}
+export default PrivateRoute
+```
+
+Now let's say if `isUser = true` then we show Dashboard, else we will redirect to /login
+
+```js
+import React from 'react'
+import { Route, Redirect } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
+
+const PrivateRoute = ({ children, ...rest }) => {
+  const isUser = true // we will later get this from auth0
+  console.log('rest is', rest) // this will be exact and path that we passed into private route
+  return (
+    <Route
+      {...rest}
+      render={() => {
+        return isUser ? children : <Redirect to="/login" />
+      }}
+    />
+  )
+}
+export default PrivateRoute
+```
+
+If you set `isUser` to `false` then it will always redirect to /login and you can never see the Dashboard. Hence this is a protected route.
+
+Full code for _PrivateRoute.js_ is above
+Full ccode for **App.js** below
+
+```js
+import React from 'react'
+import { Dashboard, Login, PrivateRoute, AuthWrapper, Error } from './pages'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+function App() {
+  return (
+    <Router>
+      {/* Switch matches the first matching route. Note that * would be the second match to any route generally as it matches everything like /, /login, /about, /noroute and so on */}
+      <Switch>
+        {/* <Route path="/" exact>
+          <Dashboard></Dashboard>
+        </Route> */}
+
+        <PrivateRoute path="/" exact>
+          <Dashboard></Dashboard>
+        </PrivateRoute>
+
+        <Route path="/login">
+          <Login />
+        </Route>
+
+        {/* Default route to show error page if none of the above routes match */}
+        <Route path="*">
+          <Error />
+        </Route>
+      </Switch>
+    </Router>
+  )
+}
+
+export default App
+```
+
+Here we have hardcoded `isUser`, but in next video we will see how we can use `auth0` to get `user`
 
 ---

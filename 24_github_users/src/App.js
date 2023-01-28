@@ -7,9 +7,14 @@ function App() {
     <Router>
       {/* Switch matches the first matching route. Note that * would be the second match to any route generally as it matches everything like /, /login, /about, /noroute and so on */}
       <Switch>
-        <Route path="/" exact>
+        {/* <Route path="/" exact>
           <Dashboard></Dashboard>
-        </Route>
+        </Route> */}
+
+        <PrivateRoute path="/" exact>
+          <Dashboard></Dashboard>
+        </PrivateRoute>
+
         <Route path="/login">
           <Login />
         </Route>

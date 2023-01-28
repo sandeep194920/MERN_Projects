@@ -240,6 +240,8 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Search functionality when enter button is pressed`
 - `Alternative setup of useEffect ` `useEffect(cbFunction, dependencyArray)`
 - `Promise.allSettled() - to call independent API calls at once`
+- `react-router render prop`
+- `react-router Redirect`
 
 ## Handy Tools
 
