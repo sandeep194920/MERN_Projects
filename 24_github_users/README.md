@@ -5009,7 +5009,7 @@ export default PrivateRoute
 If you set `isUser` to `false` then it will always redirect to /login and you can never see the Dashboard. Hence this is a protected route.
 
 - Full code for **PrivateRoute.js** is above
-- Full ccode for **App.js** below
+- Full code for **App.js** below
 
 ```js
 import React from 'react'
