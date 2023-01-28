@@ -405,10 +405,8 @@ const day='monday'
 
 Let's say we need to redirect to /monday if the day is monday
 
-````js
-
+```js
 const day='monday'
-
 // ....
 <Route
   path="/testingRenderprop"
@@ -420,7 +418,7 @@ const day='monday'
     )
   }}
 />
-
+```
 
 ---
 
@@ -463,7 +461,7 @@ function App() {
     </Router>
   )
 }
-````
+```
 
 - We will add `Error` later
 
@@ -1802,8 +1800,8 @@ import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts'
 const Repos = () => {
   const { repos } = useGlobalContext()
 
-  /* repos is an array of objects. Each object will have a property called language set to any language like this 
-  
+  /* repos is an array of objects. Each object will have a property called language set to any language like this
+
   repos = [
     {...otherProps, language:'javascript'},
     {...otherProps, language:'HTML'},
@@ -2207,8 +2205,8 @@ import { GithubContext, useGlobalContext } from '../context/context'
 import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts'
 const Repos = () => {
   const { repos } = useGlobalContext()
-  /* repos is an array of objects. Each object will have a property called language set to any language like this 
-  
+  /* repos is an array of objects. Each object will have a property called language set to any language like this
+
   repos = [
     {...otherProps, language:'javascript'},
     {...otherProps, language:'HTML'},
@@ -2435,8 +2433,8 @@ import { GithubContext, useGlobalContext } from '../context/context'
 import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts'
 const Repos = () => {
   const { repos } = useGlobalContext()
-  /* repos is an array of objects. Each object will have a property called language set to any language like this 
-  
+  /* repos is an array of objects. Each object will have a property called language set to any language like this
+
   repos = [
     {...otherProps, language:'javascript'},
     {...otherProps, language:'HTML'},
@@ -2825,8 +2823,8 @@ import { useGlobalContext } from '../context/context'
 import { Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts'
 const Repos = () => {
   const { repos } = useGlobalContext()
-  /* repos is an array of objects. Each object will have a property called language set to any language like this 
-  
+  /* repos is an array of objects. Each object will have a property called language set to any language like this
+
   repos = [
     {...otherProps, language:'javascript'},
     {...otherProps, language:'HTML'},
@@ -4179,7 +4177,7 @@ const searchGithubUser = async (user) => {
           setFollowers(response.data)
         })
         .catch((e) => console.log(e))
-        
+
       */
 
     // Alternatively we can write as below
@@ -4285,7 +4283,7 @@ const GithubProvider = ({ children }) => {
           setFollowers(response.data)
         })
         .catch((e) => console.log(e))
-        
+
       */
 
       // Alternatively we can write as below
@@ -5050,3 +5048,11 @@ export default App
 Here we have hardcoded `isUser`, but in next video we will see how we can use `auth0` to get `user`
 
 ---
+
+```
+
+```
+
+```
+
+```
