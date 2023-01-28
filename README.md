@@ -242,6 +242,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Promise.allSettled() - to call independent API calls at once`
 - `react-router render prop`
 - `react-router Redirect`
+- `auth0 wrapper gotchas`
 
 ## Handy Tools
 

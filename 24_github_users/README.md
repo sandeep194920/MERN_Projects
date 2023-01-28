@@ -5048,3 +5048,104 @@ export default App
 Here we have hardcoded `isUser`, but in next video we will see how we can use `auth0` to get `user`
 
 ---
+
+#### 35. [auth0 wrapper gotchas] Let's explore the problem we face with Auth0 without a wrapper
+
+So from where we left of in our previous task, the `PrivateRoute.js`
+
+```js
+const PrivateRoute = ({ children, ...rest }) => {
+  const isUser = false // we will later get this from auth0
+  console.log('rest is', rest) // this will be exact and path that we passed into private route
+  return (
+    <Route
+      {...rest}
+      render={() => {
+        return isUser ? children : <Redirect to="/login" />
+      }}
+    />
+  )
+}
+```
+
+Let's use real user from auth0 instead of hardcoded one
+
+```js
+const { isAuthenticated, user } = useAuth0()
+const isUser = isAuthenticated && user
+```
+
+The full file of **PrivateRoute.js**
+
+```js
+const PrivateRoute = ({ children, ...rest }) => {
+  const { isAuthenticated, user } = useAuth0()
+
+  // const isUser = false // we will later get this from auth0
+  const isUser = isAuthenticated && user
+
+  console.log('rest is', rest) // this will be exact and path that we passed into private route
+  return (
+    <Route
+      {...rest}
+      render={() => {
+        return isUser ? children : <Redirect to="/login" />
+      }}
+    />
+  )
+}
+```
+
+Now that when we are not logged in, it shows Login page (which we [configured in previous step 34](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/24_github_users/24_github_users#34-lets-now-restrict-access-to-the-dashboard-private-route-only-logged-in-users-can-see-the-dashboard-so-we-will-have-a-separate-page-for-login)) let's add `loginWithRedirect` function to login button in /login page and try if that works.
+
+The **Login.js** page looks like this
+
+```js
+import React from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
+import styled from 'styled-components'
+import loginImg from '../images/login-img.svg'
+const Login = () => {
+  const { loginWithRedirect } = useAuth0()
+
+  return (
+    <Wrapper>
+      <div className="container">
+        <img src={loginImg} alt="github user" />
+        <h1>github user</h1>
+        {/* TODO: We will implement the login functionality later once the button is clicked */}
+        <button className="btn" onClick={loginWithRedirect}>
+          Login
+        </button>
+      </div>
+    </Wrapper>
+  )
+}
+```
+
+**but it doesn't work.** Why what happens? and How it doesn't work?
+
+Step 1 - Click on Login / Signup button
+
+![login button](./readmeImages/LoginPage.png)
+
+Step 2 - It should take you to Auth0 login page and then click on Google
+
+![click on login button](./readmeImages/loginWithGoogle.png)
+
+Step 3 - We expect Dashboard page to be shown BUT it kicks us back to Login page again
+
+![shows same login page](./readmeImages/samePageShown.png)
+
+How to make it work?
+
+- The problem currently is that, when user clicks the Login button and logs in, it is not instantaneous. `auth0` takes some time to get the user's info from `auth0` db.
+- Until that time auth0 keeps loading state in true
+- But in our app, we are not using this `loading` provided by `auth0` (inside a wrapper) and immediately try to show Dashboard when auth0 is in loading state. That is the reason the current setup doesn't work.
+- To make it work we need to use wrapper provided by auth0 where we check loading and error, and once the loading is false then we can get the user from auth0. So the idea is we need to wrap our app inside this wrapper like this
+
+![wrap our app](./readmeImages/wrapOurApp.png)
+
+I had briefly explained this in [Step 32](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/24_github_users/24_github_users#32-lets-now-setup-login-and-logout-functionality---note-this-should-be-the-next-step-technically-as-we-havent-wrapped-our-app-in-a-wrapper-and-utilized-isloading-and-iserror-yet-but-will-just-do-that-once-we-understand-why-that-is-required)
+
+---
