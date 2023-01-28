@@ -4569,3 +4569,137 @@ reportWebVitals()
 ```
 
 ---
+
+#### 32. Let's now setup Login and Logout functionality - NOTE: THIS SHOULD BE THE NEXT STEP TECHNICALLY AS WE HAVEN'T WRAPPED OUR APP IN A WRAPPER AND UTILIZED ISLOADING AND ISERROR YET, but will just do that once we understand why that is required.
+
+`24_github_users/src/components/Navbar.js`
+
+App -> Dashboard -> Navbar -> inside this -> login button
+
+![auth isLoading and isError step](./readmeImages/isLoadingStep.png)
+
+As explained in the docs, we will use `loginWithRedirect` to log our users in.
+
+For now, let's put our `Login button` in `Navbar` in `Dashboard` and once we wire up things we can set it in `/login` page. `Logout` button stays on navbar anyways.
+
+We have this code now in `Navbar.js`
+
+```js
+const Navbar = () => {
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0()
+
+  return (
+    <Wrapper>
+      <button onClick={loginWithRedirect}>Login</button>
+    </Wrapper>
+  )
+}
+```
+
+With this minimal setup, this is what we see
+
+![auth0 login button](./readmeImages/auth0loginbutton.png)
+
+![auth0 login page](./readmeImages/auth0loginSignup.png)
+
+Once we signup it takes us back to Dashboard itself which is `localhost:3000/`. Note that they don't send verification email once we signup so we are good here.
+
+Now we have logged in. To test that let's console log a few things. But even before that, let's also add logout so that it would be easy to test what are the values when logged in and logged out.
+
+```js
+return(
+    {/* for logout, we need to say where we need to go back to after logging out - origin is where we came from which is / */}
+    <button onClick={() => logout({ returnTo: window.location.origin })}>
+      Logout
+    </button>
+)
+```
+
+Let's now add some console logs
+
+```js
+const Navbar = () => {
+  // using isLoading and error just to show how they look here. Later we will use wrapper as told in step 32 heading.
+  const { isAuthenticated, loginWithRedirect, logout, user, isLoading, error } =
+    useAuth0()
+
+  console.log({ isAuthenticated, user, isLoading, error })
+  return (
+    <Wrapper>
+      <button onClick={loginWithRedirect}>Login</button>
+      {/* for logout, we need to say where we need to go back to after logging out */}
+      <button onClick={() => logout({ returnTo: window.location.origin })}>
+        Logout
+      </button>
+    </Wrapper>
+  )
+}
+```
+
+This is what we see
+
+![login functionality](./readmeImages/authLoginFunction.png)
+
+It takes some time to login the user, hence we need a wrapper with `isLoading` and `error` checks like auth0 suggests. We will do it in next task. Let's now logout the user
+
+![logout functionality](./readmeImages/auth0Logout.png)
+
+**Navbar.js**
+
+```js
+import React from 'react'
+import styled from 'styled-components'
+import { useAuth0 } from '@auth0/auth0-react'
+
+const Navbar = () => {
+  // using isLoading and error just to show how they look here. Later we will use wrapper as told in step 32 heading.
+  const { isAuthenticated, loginWithRedirect, logout, user, isLoading, error } =
+    useAuth0()
+
+  console.log({ isAuthenticated, user, isLoading, error })
+  return (
+    <Wrapper>
+      <button onClick={loginWithRedirect}>Login</button>
+      {/* for logout, we need to say where we need to go back to after logging out */}
+      <button onClick={() => logout({ returnTo: window.location.origin })}>
+        Logout
+      </button>
+    </Wrapper>
+  )
+}
+
+const Wrapper = styled.nav`
+  padding: 1.5rem;
+  margin-bottom: 4rem;
+  background: var(--clr-white);
+  text-align: center;
+  display: grid;
+  grid-template-columns: auto auto 100px;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  h4 {
+    margin-bottom: 0;
+    font-weight: 400;
+  }
+  img {
+    width: 35px !important;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  button {
+    background: transparent;
+    border: transparent;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    letter-spacing: var(--spacing);
+    color: var(--clr-grey-5);
+    cursor: pointer;
+  }
+`
+
+export default Navbar
+```
+
+---

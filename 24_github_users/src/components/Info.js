@@ -6,7 +6,7 @@ import { FiUsers, FiUserPlus } from 'react-icons/fi'
 
 const UserInfo = () => {
   const { githubUser } = useGlobalContext()
-  console.log(githubUser)
+  // console.log(githubUser)
   const { public_repos, followers, following, public_gists } = githubUser
 
   // since each item (like public_repos, followers and so on) will have different icons, let's create an object

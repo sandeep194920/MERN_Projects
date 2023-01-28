@@ -127,7 +127,7 @@ const Repos = () => {
       return { ...item, value: item.stars }
     })
 
-  console.log(mostPopularLanguages)
+  // console.log(mostPopularLanguages)
 
   //* mostPopularLanguages looks like this now. NOTE: Chart will look for value prop so we put stars is in values using map above
   /*
