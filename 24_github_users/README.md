@@ -4967,7 +4967,7 @@ export default PrivateRoute
 
 Now, if user is logged in, then we need to show what we are showing now which is `Dashboard` else we need to redirect the user. Look here we need to conditionally show a route and if that condition fails then we need to show or redirect to other route.
 
-We can do this using react-router's render prop. Take a look at this first [Learn render prop working explained above. Click on this]() to know how render prop works and then proceed once learned.
+We can do this using react-router's render prop. Take a look at this first [Learn render prop working explained above. Click on this](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/24_github_users/24_github_users#react-router-render-prop-and-redirect---an-alternative-way-to-display-underlying-route-especially-for-protected-route) to know how render prop works and then proceed once learned.
 
 So using render prop the above can be written like this
 
