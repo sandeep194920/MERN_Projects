@@ -221,6 +221,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `External API - No API key required` - [Github users api](https://api.github.com/users/john-smilga/followers?per_page=100)
 - `Styled Components for specific components + Global CSS as other projects`
 - `index.js to combine files`
+- `Pages folder - for displaying react router pages, and Components folder - for components inside those pages`
 - `using mockData - as we will run out of the requests (60 per hour) otherwise - this mockData is same as real github api data. Even though we don't have API key, it tracks our IP Address, so we will run out of requests`
 - `loading gif`
 - `react-router (v5 to v6 like other apps)`
@@ -247,6 +248,26 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `replace render prop with Navigate in react-router-6`
 - `netlify build - not building locally like other projects - so this is second way`
 - `COMPLETE THIS PROJECT IN 38 STEPS`
+
+25. [E-Commerce App]()
+
+- `Starter Project Files`
+- `Things we can learn AND Complete app workflow` - [can be found here](https://app.gitbook.com/s/-MVEiPUp08kYt33g51v7/~/changes/WyUcfQnPZUiZB2OSVFLR/projects/e-commerce-project-react)
+- `Authentication - auth0 - similar to 24-Github-users project`
+- `assets folder for images in src folder - other images from API`
+- `dotenv package`
+- `External API - No API key required. I have already built this API, but can use John's API for this` - [API Link]()
+- `Stripe API for payment`
+- `react-router (v5 to v6 like other apps)`
+- `Styled Components for specific components + Global CSS as other projects`
+- `axios`
+- `useContext hook - no redux`
+- `Using these contexts in index.js and wrap the app with multiple contexts unlike other apps where we had wrapped our app with single context`
+- `useReducer hook - for state management (for better structure)`
+- `Multiple contexts and reducers - so that we don't jam everything in one place - Each context will utilize a particular reducer`
+- `Pages folder - for displaying react router pages, and Components folder - for components inside those pages`
+- `util functions - to reuse some functionality`
+- `Navbar, Sidebar, Header, Footer and Modal`
 
 ## Handy Tools
 
