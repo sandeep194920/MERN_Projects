@@ -5445,3 +5445,9 @@ export default PrivateRoute
 ```
 
 ---
+
+#### 38. CONGRATS ON COMPLETING THE PROJECT. Let's now deploy it to netlify
+
+You can refer [15-cocktail-search app](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/15_cocktail_search#how-to-solve-netlify-react-router-issue) to solve netlify + react-router gotcha
+
+---
