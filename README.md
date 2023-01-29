@@ -243,6 +243,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `react-router render prop`
 - `react-router Redirect`
 - `auth0 wrapper gotchas`
+- `auth0 social links login gotchas`
 
 ## Handy Tools
 

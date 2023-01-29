@@ -4,27 +4,29 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <Router>
-      {/* Switch matches the first matching route. Note that * would be the second match to any route generally as it matches everything like /, /login, /about, /noroute and so on */}
-      <Switch>
-        {/* <Route path="/" exact>
+    <AuthWrapper>
+      <Router>
+        {/* Switch matches the first matching route. Note that * would be the second match to any route generally as it matches everything like /, /login, /about, /noroute and so on */}
+        <Switch>
+          {/* <Route path="/" exact>
           <Dashboard></Dashboard>
         </Route> */}
 
-        <PrivateRoute path="/" exact>
-          <Dashboard></Dashboard>
-        </PrivateRoute>
+          <PrivateRoute path="/" exact>
+            <Dashboard></Dashboard>
+          </PrivateRoute>
 
-        <Route path="/login">
-          <Login />
-        </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
 
-        {/* Default route to show error page if none of the above routes match */}
-        <Route path="*">
-          <Error />
-        </Route>
-      </Switch>
-    </Router>
+          {/* Default route to show error page if none of the above routes match */}
+          <Route path="*">
+            <Error />
+          </Route>
+        </Switch>
+      </Router>
+    </AuthWrapper>
   )
 }
 

@@ -5051,6 +5051,9 @@ Here we have hardcoded `isUser`, but in next video we will see how we can use `a
 
 #### 35. [auth0 wrapper gotchas] Let's explore the problem we face with Auth0 without a wrapper
 
+`24_github_users/src/pages/PrivateRoute.js`
+`24_github_users/src/pages/Login.js`
+
 So from where we left of in our previous task, the `PrivateRoute.js`
 
 ```js
@@ -5147,5 +5150,99 @@ How to make it work?
 ![wrap our app](./readmeImages/wrapOurApp.png)
 
 I had briefly explained this in [Step 32](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/24_github_users/24_github_users#32-lets-now-setup-login-and-logout-functionality---note-this-should-be-the-next-step-technically-as-we-havent-wrapped-our-app-in-a-wrapper-and-utilized-isloading-and-iserror-yet-but-will-just-do-that-once-we-understand-why-that-is-required)
+
+---
+
+#### 36. Let's add auth0 wrapper to make the auth0 work
+
+`24_github_users/src/pages/AuthWrapper.js`
+`24_github_users/src/App.js`
+
+**App.js**
+
+```js
+import React from 'react'
+import { Dashboard, Login, PrivateRoute, AuthWrapper, Error } from './pages'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+function App() {
+  return (
+    <AuthWrapper>
+      <Router>
+        {/* Switch matches the first matching route. Note that * would be the second match to any route generally as it matches everything like /, /login, /about, /noroute and so on */}
+        <Switch>
+          {/* <Route path="/" exact>
+          <Dashboard></Dashboard>
+        </Route> */}
+
+          <PrivateRoute path="/" exact>
+            <Dashboard></Dashboard>
+          </PrivateRoute>
+
+          <Route path="/login">
+            <Login />
+          </Route>
+
+          {/* Default route to show error page if none of the above routes match */}
+          <Route path="*">
+            <Error />
+          </Route>
+        </Switch>
+      </Router>
+    </AuthWrapper>
+  )
+}
+
+export default App
+```
+
+**AuthWrapper.js**
+
+```js
+import React from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
+import loadingGif from '../images/preloader.gif'
+import styled from 'styled-components'
+function AuthWrapper({ children }) {
+  const { isLoading, error } = useAuth0()
+  if (isLoading) {
+    return (
+      <Wrapper>
+        <img src={loadingGif} alt="spinner" />
+      </Wrapper>
+    )
+  }
+  if (error) {
+    return <div>Oops... {error.message}</div>
+  }
+
+  // return { ...children }
+  // OR
+  return <>{children}</>
+}
+
+const Wrapper = styled.section`
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  img {
+    width: 150px;
+  }
+`
+
+export default AuthWrapper
+```
+
+The login works now. Once the user logs in, a loading spinner is shown (based on auth0 isLoading) and then once it loads and isLoading is true and we have a user, the Dashboard is shown.
+
+But there is one gotcha when you login with social link (Google or Twitter), but works fine when login with email and password.
+
+- When you login with email and password, you will be logged in. Then navigate to any other route like `/hello`. You will see error page as this route doesn't exist. Then you navigate to `/`, you will still be logged in so you will see dashboard (no problems here)
+
+- When you login with social link (google or twitter), you will be logged in. Then navigate to any other route like `/hello`. You will see error page as this route doesn't exist. Then you navigate to `/`, YOU WILL BE LOGGED OUT so you WON'T see dashboard but you will see `/login` page.
+
+To solve this problem we have to set `cachedLocation` to `localStorage` as suggested in [`auth0` docs](https://auth0.github.io/auth0-react/interfaces/Auth0ProviderOptions.html#cacheLocation)
+
+UPDATED: THIS IS NO LONGER A PROBLEM AND WE DON'T NEED `cacheLocation="localstorage"` EVEN WITH SOCIAL LINKS. I GUESS AUTH0 CHANGED IT.
 
 ---
