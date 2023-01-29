@@ -12,4 +12,4 @@ This project contains user registration and login functionality where user can r
 - Cart page - User can add products to cart and then checkout if logged in (Protected route)
 - Stripe payment method - Where we use stripe API to make a payment and then checkout
 
-_Starter Project, Commit ID_- ``
+_Starter Project, Commit ID_- `a67783a5c95c19a5ba74c50643c4d8130e672f55`
