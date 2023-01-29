@@ -244,6 +244,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `react-router Redirect`
 - `auth0 wrapper gotchas`
 - `auth0 social links login gotchas`
+- `replace render prop with Navigate in react-router-6`
 
 ## Handy Tools
 

@@ -1,30 +1,39 @@
 import React from 'react'
 import { Dashboard, Login, PrivateRoute, AuthWrapper, Error } from './pages'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
+    // <AuthWrapper>
+    //   <Router>
+    //     <Routes>
+    //       <PrivateRoute path="/" exact>
+    //         <Dashboard></Dashboard>
+    //       </PrivateRoute>
+    //       <Route path="/login">
+    //         <Login />
+    //       </Route>
+    //       <Route path="*">
+    //         <Error />
+    //       </Route>
+    //     </Routes>
+    //   </Router>
+    // </AuthWrapper>
+
     <AuthWrapper>
       <Router>
-        {/* Switch matches the first matching route. Note that * would be the second match to any route generally as it matches everything like /, /login, /about, /noroute and so on */}
-        <Switch>
-          {/* <Route path="/" exact>
-          <Dashboard></Dashboard>
-        </Route> */}
-
-          <PrivateRoute path="/" exact>
-            <Dashboard></Dashboard>
-          </PrivateRoute>
-
-          <Route path="/login">
-            <Login />
-          </Route>
-
-          {/* Default route to show error page if none of the above routes match */}
-          <Route path="*">
-            <Error />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route path="login" element={<Login />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
       </Router>
     </AuthWrapper>
   )

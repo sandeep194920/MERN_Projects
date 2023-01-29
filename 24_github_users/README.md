@@ -5246,3 +5246,202 @@ To solve this problem we have to set `cachedLocation` to `localStorage` as sugge
 UPDATED: THIS IS NO LONGER A PROBLEM AND WE DON'T NEED `cacheLocation="localstorage"` EVEN WITH SOCIAL LINKS. I GUESS AUTH0 CHANGED IT.
 
 ---
+
+#### 37. Let's convert react-router-5 to react-router-6
+
+`24_github_users/src/App.js`
+`24_github_users/src/pages/PrivateRoute.js`
+
+Install react-router-6
+
+`npm install react-router-dom@6`
+
+**_Before migration the files are like this_**
+
+**App.js**
+
+```js
+import React from 'react'
+import { Dashboard, Login, PrivateRoute, AuthWrapper, Error } from './pages'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+function App() {
+  return (
+    <AuthWrapper>
+      <Router>
+        {/* Switch matches the first matching route. Note that * would be the second match to any route generally as it matches everything like /, /login, /about, /noroute and so on */}
+        <Switch>
+          {/* <Route path="/" exact>
+          <Dashboard></Dashboard>
+        </Route> */}
+
+          <PrivateRoute path="/" exact>
+            <Dashboard></Dashboard>
+          </PrivateRoute>
+
+          <Route path="/login">
+            <Login />
+          </Route>
+
+          {/* Default route to show error page if none of the above routes match */}
+          <Route path="*">
+            <Error />
+          </Route>
+        </Switch>
+      </Router>
+    </AuthWrapper>
+  )
+}
+
+export default App
+```
+
+**PrivateRoute.js**
+
+```js
+import React from 'react'
+import { Route, Redirect } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
+
+const PrivateRoute = ({ children, ...rest }) => {
+  const { isAuthenticated, user } = useAuth0()
+
+  // const isUser = false // we will later get this from auth0
+  const isUser = isAuthenticated && user
+
+  console.log('rest is', rest) // this will be exact and path that we passed into private route
+  return (
+    <Route
+      {...rest}
+      render={() => {
+        return isUser ? children : <Redirect to="/login" />
+      }}
+    />
+  )
+}
+export default PrivateRoute
+```
+
+_Changes we need to do_
+
+In `App.js`
+
+- replace `Switch` with `Routes`
+- use `element` prop on `Route` and assign it to component you want to render
+- this would be for private route
+
+```js
+<Route
+  path="/"
+  element={
+    <PrivateRoute>
+      <Dashboard />
+    </PrivateRoute>
+  }
+/>
+```
+
+In `PrivateRoute.js`
+
+- no more `render` prop, so am happy about that. Instead we use `Navigate` component that we get from `react-router-6`
+- The new code in PrivateRoute looks this way
+
+```js
+const PrivateRoute = ({ children }) => {
+  const { isAuthenticated, user } = useAuth0()
+  const isUser = isAuthenticated && user
+
+  if (!isUser) {
+    return <Navigate to="/login" />
+  }
+
+  return { children }
+}
+```
+
+**_After migration the files are like this_**
+
+**App.js**
+
+```js
+import React from 'react'
+import { Dashboard, Login, PrivateRoute, AuthWrapper, Error } from './pages'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
+function App() {
+  return (
+    // <AuthWrapper>
+    //   <Router>
+    //     <Routes>
+    //       <PrivateRoute path="/" exact>
+    //         <Dashboard></Dashboard>
+    //       </PrivateRoute>
+    //       <Route path="/login">
+    //         <Login />
+    //       </Route>
+    //       <Route path="*">
+    //         <Error />
+    //       </Route>
+    //     </Routes>
+    //   </Router>
+    // </AuthWrapper>
+
+    <AuthWrapper>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </Router>
+    </AuthWrapper>
+  )
+}
+
+export default App
+```
+
+**PrivateRoute.js**
+
+```js
+import React from 'react'
+import { Navigate } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
+
+// const PrivateRoute = ({ children, ...rest }) => {
+//   const { isAuthenticated, user } = useAuth0()
+//   const isUser = isAuthenticated && user
+//   return (
+//     <Route
+//       {...rest}
+//       render={() => {
+//         return isUser ? children : <Redirect to="/login" />
+//       }}
+//     />
+//   )
+// }
+
+const PrivateRoute = ({ children }) => {
+  const { isAuthenticated, user } = useAuth0()
+  const isUser = isAuthenticated && user
+
+  if (!isUser) {
+    return <Navigate to="/login" />
+  }
+
+  // return children
+  // OR
+  return <>{children}</>
+}
+
+export default PrivateRoute
+```
+
+---
