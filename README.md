@@ -211,6 +211,42 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Form - select tag`
 - `Shuffle an array and Math random`
 
+### Large-scale Projects (Include authentication)
+
+24. [Github users](https://24-github-users.netlify.app)
+
+- `Starter Project Files`
+- `Flow of the app in README of this project`
+- `Authentication - auth0, facebook and google authentication - auth0 explained`
+- `External API - No API key required` - [Github users api](https://api.github.com/users/john-smilga/followers?per_page=100)
+- `Styled Components for specific components + Global CSS as other projects`
+- `index.js to combine files`
+- `using mockData - as we will run out of the requests (60 per hour) otherwise - this mockData is same as real github api data. Even though we don't have API key, it tracks our IP Address, so we will run out of requests`
+- `loading gif`
+- `react-router (v5 to v6 like other apps)`
+- `react-router private/protected route`
+- `react-router-5 Switch vs Exact explained`
+- `images used - not in public folder but inside src/images folder`
+- `useContext hook - no redux`
+- `axios`
+- `creating an array of objects by adding icon and text for each item - githubUser - UserInfo file`
+- `semantic HTML - using <header> in Card.js - would be better for SEO`
+- [Fusion Charts library](https://www.fusioncharts.com/)
+- `reduce function to calculate number of times an item occurs in an array of objects. forEach vs reduce to achieve same result`
+- `How to sort an object / How to convert object values into array for sorting purpose`
+- `Get first five values of sorted array`
+- `Javascript object properties arranged in ascending order if the props are numbers`
+- `Sort, Slice and Reverse an array. Slice first and last five elements of array`
+- `Search functionality when enter button is pressed`
+- `Alternative setup of useEffect ` `useEffect(cbFunction, dependencyArray)`
+- `Promise.allSettled() - to call independent API calls at once`
+- `react-router render prop`
+- `react-router Redirect`
+- `auth0 wrapper gotchas`
+- `auth0 social links login gotchas`
+- `replace render prop with Navigate in react-router-6`
+- `netlify build - not building locally like other projects - so this is second way`
+
 ## Handy Tools
 
 1. [To get tints and shades of a selected colour](https://maketintsandshades.com/)
@@ -222,3 +258,5 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 7. [Create gradient videos for background like stripe](https://codesandbox.io/s/bxnsx?file=/src/App.js:0-617) - [Refer stripe.com](https://stripe.com/en-ca)
 8. [Clip Image](https://bennettfeely.com/clippy/)
 9. [Design Tool-tips](https://blog.logrocket.com/creating-beautiful-tooltips-with-only-css/)
+10. [Nice Images and Art](https://undraw.co/)
+11. [Fusion Charts library](https://www.fusioncharts.com/)
