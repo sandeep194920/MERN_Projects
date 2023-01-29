@@ -213,7 +213,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 
 ### Large-scale Projects (Include authentication)
 
-24. [Github users]()
+24. [Github users](https://24-github-users.netlify.app)
 
 - `Starter Project Files`
 - `Flow of the app in README of this project`
@@ -245,6 +245,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `auth0 wrapper gotchas`
 - `auth0 social links login gotchas`
 - `replace render prop with Navigate in react-router-6`
+- `netlify build - not building locally like other projects - so this is second way`
 
 ## Handy Tools
 

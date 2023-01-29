@@ -1,6 +1,6 @@
 # Project details
 
-[Github Users]()
+[Github Users](https://24-github-users.netlify.app)
 
 ## Details
 
@@ -5448,6 +5448,34 @@ export default PrivateRoute
 
 #### 38. CONGRATS ON COMPLETING THE PROJECT. Let's now deploy it to netlify
 
-You can refer [15-cocktail-search app](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/15_cocktail_search#how-to-solve-netlify-react-router-issue) to solve netlify + react-router gotcha
+`24_github_users/.gitignore`
+`24_github_users/package.json`
+
+Steps to deploy
+
+- You can refer [15-cocktail-search app](https://github.com/sandeep194920/React_MUI_Express_Projects/tree/master/15_cocktail_search#how-to-solve-netlify-react-router-issue) to solve netlify + react-router gotcha
+
+- In other projects I used to run `npm run build` locally and push it to github (commenting `build` in `.gitignore`)
+- This is a bigger project so it would take time to push build folder. Instead we will directly build on netlify and not create `build` folder locally.
+- To achieve this, make sure `/build` is uncommented in `.gitignore` file
+- In `package.json` in `scripts` replace
+
+```json
+    "build": "react-scripts build",
+```
+
+TO
+
+```json
+    "build": "CI= react-scripts build",
+```
+
+- On netlify, the build command would be `npm run build`
+
+![netlify build](./readmeImages/netlifyDeploy.png)
+
+- In `Auth0` dashboard `Application` section, in URLs, along with localhost URLs, add the netlify URLs as well
+
+![auth0 application dashboard](./readmeImages/auth0applicationDashboard.png)
 
 ---
