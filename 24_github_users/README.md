@@ -5478,4 +5478,6 @@ TO
 
 ![auth0 application dashboard](./readmeImages/auth0applicationDashboard.png)
 
+**_CONGRATS ON COMPLETING THE PROJECT!!!!_**
+
 ---
