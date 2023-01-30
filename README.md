@@ -256,7 +256,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Authentication - auth0 - similar to 24-Github-users project`
 - `assets folder for images in src folder - other images from API`
 - `dotenv package`
-- `External API - No API key required. I have already built this API, but can use John's API for this` - [API Link]()
+- `External API - No API key required. I have already built this API, but can use John's API for this` - [API Link]() `This api is just the products route in one of the e-commerce api built in node course`
 - `Stripe API for payment`
 - `react-router (v5 to v6 like other apps)`
 - `Styled Components for specific components + Global CSS as other projects`

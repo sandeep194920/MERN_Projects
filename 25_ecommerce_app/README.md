@@ -13,3 +13,5 @@ This project contains user registration and login functionality where user can r
 - Stripe payment method - Where we use stripe API to make a payment and then checkout
 
 _Starter Project, Commit ID_- `a67783a5c95c19a5ba74c50643c4d8130e672f55`
+
+##### Notes [found here](https://app.gitbook.com/s/-MVEiPUp08kYt33g51v7/projects/e-commerce-project-react)
