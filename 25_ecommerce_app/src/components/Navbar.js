@@ -9,7 +9,32 @@ import { useProductsContext } from '../context/products_context'
 import { useUserContext } from '../context/user_context'
 
 const Nav = () => {
-  return <h4>navbar</h4>
+  return (
+    <NavContainer>
+      <div className="nav-center">
+        <div className="nav-header">
+          <Link to="/">
+            <img src={logo} alt="comfy sloth" />
+          </Link>
+          <button type="button" className="nav-toggle">
+            <FaBars />
+          </button>
+        </div>
+        {/* nav-links will also be re-used in Sidebar */}
+        <ul className="nav-links">
+          {links.map((link) => {
+            const { id, text, url } = link
+            return (
+              <li key={id}>
+                <Link to={url}>{text}</Link>
+              </li>
+            )
+          })}
+        </ul>
+        <CartButtons />
+      </div>
+    </NavContainer>
+  )
 }
 
 const NavContainer = styled.nav`
@@ -47,6 +72,7 @@ const NavContainer = styled.nav`
   .cart-btn-wrapper {
     display: none;
   }
+  // nav-toggle will be hidden on small screen and will be display only if we have a minimum of 992px wide screen
   @media (min-width: 992px) {
     .nav-toggle {
       display: none;

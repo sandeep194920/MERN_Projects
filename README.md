@@ -268,6 +268,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Pages folder - for displaying react router pages, and Components folder - for components inside those pages`
 - `util functions - to reuse some functionality`
 - `Navbar, Sidebar, Header, Footer and Modal`
+- `Image (Logo) inside react-router Link`
 
 ## Handy Tools
 

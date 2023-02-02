@@ -9,7 +9,35 @@ import CartButtons from './CartButtons'
 import { useUserContext } from '../context/user_context'
 
 const Sidebar = () => {
-  return <h4>sidebar</h4>
+  // later we will use context value for isOpen, for now lets hardcode this
+  const isOpen = true
+  return (
+    <SidebarContainer>
+      {/* two ways to write the className conditionally (commenting out one) */}
+      {/* <aside className={`${isOpen ? 'sidebar show-sidebar' : 'sidebar'}`}> */}
+      <aside className={`sidebar ${isOpen && 'show-sidebar'}`}>
+        <div className="sidebar-header">
+          <img src={logo} alt="comfy sloth" className="logo" />
+          <button type="button" className="close-btn">
+            <FaTimes />
+          </button>
+        </div>
+        <ul className="links">
+          {links.map(({ id, text, url }) => {
+            return (
+              <li key={id}>
+                <Link to={url}>{text}</Link>
+              </li>
+            )
+          })}
+          <li>
+            <Link to="/checkout">Checkout</Link>
+          </li>
+        </ul>
+        <CartButtons />
+      </aside>
+    </SidebarContainer>
+  )
 }
 
 const SidebarContainer = styled.div`
