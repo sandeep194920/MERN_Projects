@@ -10,15 +10,16 @@ import { useUserContext } from '../context/user_context'
 
 const Sidebar = () => {
   // later we will use context value for isOpen, for now lets hardcode this
-  const isOpen = true
+  // const isOpen = true
+  const { closeSidebar, isSidebarOpen } = useProductsContext()
   return (
     <SidebarContainer>
       {/* two ways to write the className conditionally (commenting out one) */}
       {/* <aside className={`${isOpen ? 'sidebar show-sidebar' : 'sidebar'}`}> */}
-      <aside className={`sidebar ${isOpen && 'show-sidebar'}`}>
+      <aside className={`sidebar ${isSidebarOpen && 'show-sidebar'}`}>
         <div className="sidebar-header">
           <img src={logo} alt="comfy sloth" className="logo" />
-          <button type="button" className="close-btn">
+          <button type="button" onClick={closeSidebar} className="close-btn">
             <FaTimes />
           </button>
         </div>
@@ -26,12 +27,17 @@ const Sidebar = () => {
           {links.map(({ id, text, url }) => {
             return (
               <li key={id}>
-                <Link to={url}>{text}</Link>
+                {/* we need to close the sidebar when any of the links is clicked */}
+                <Link to={url} onClick={closeSidebar}>
+                  {text}
+                </Link>
               </li>
             )
           })}
           <li>
-            <Link to="/checkout">Checkout</Link>
+            <Link to="/checkout" onClick={closeSidebar}>
+              Checkout
+            </Link>
           </li>
         </ul>
         <CartButtons />
