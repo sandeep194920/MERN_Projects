@@ -269,6 +269,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `util functions - to reuse some functionality`
 - `Navbar, Sidebar, Header, Footer and Modal`
 - `Image (Logo) inside react-router Link`
+- `Service to send subscription emails`
 
 ## Handy Tools
 
