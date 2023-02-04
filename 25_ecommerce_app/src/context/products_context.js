@@ -15,6 +15,11 @@ import {
 
 const initialState = {
   isSidebarOpen: false,
+  products_loading: false, // loading for all products. We will soon add loading for single product
+  products_error: false,
+  products: [], // this is shown on the products page
+  featured_products: [], // this is shown on the home page
+  // 3 more props to come next. loading, error and product props - for singleProduct
 }
 
 const ProductsContext = React.createContext()
@@ -29,6 +34,23 @@ export const ProductsProvider = ({ children }) => {
   const closeSidebar = () => {
     dispatch({ type: SIDEBAR_CLOSE })
   }
+
+  // fetch products
+  const fetchProducts = async (url) => {
+    dispatch({ type: GET_PRODUCTS_BEGIN }) // this is to set the loading to true
+    try {
+      const response = await axios.get(url)
+      const products = response.data
+      dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products }) // this is to set products array and also featured products and then loading to false
+    } catch (error) {
+      dispatch({ type: GET_PRODUCTS_ERROR }) // this sets loading to false and error to true for products
+    }
+  }
+
+  // fetch the products once and show the featured ones to HomePage. Show all products in /products page
+  useEffect(() => {
+    fetchProducts(url)
+  }, [])
 
   return (
     <ProductsContext.Provider value={{ ...state, openSidebar, closeSidebar }}>
