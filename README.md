@@ -274,6 +274,8 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `useHistory hook - to navigate to different page`
 - `Stars to display customer reviews(Manual and programatic approach). Ternary operator inside ternary operator`
 - `Setting colors dynamically in SingleCart page for product's colors with style and className`
+- `Sort, Filter and Search for products`
+- `Communicating between different contexts - Products context talking to Filter context in this app`
 
 ## Handy Tools
 
