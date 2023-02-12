@@ -1,12 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-const PageHero = ({ title }) => {
+// the page hero for single product will be a bit different.
+
+/* For Products ----> Home / Products
+   For Single Product -----> Home / Products / Chair
+*/
+
+// to achieve the above let's do a conditional logic using product prop. If it exists then it is for single product
+const PageHero = ({ title, product }) => {
   return (
     <Wrapper>
       <div className="section-center">
         <h3>
-          <Link to="/">Home </Link> / {title}
+          <Link to="/">Home </Link>/{' '}
+          {product && <Link to="/products">Products /</Link>}
+          {title}
         </h3>
       </div>
     </Wrapper>

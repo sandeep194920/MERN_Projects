@@ -16,8 +16,11 @@ const products_reducer = (state, action) => {
   if (action.type === SIDEBAR_CLOSE) {
     return { ...state, isSidebarOpen: false }
   }
+
+  // products and featured products
+
   if (action.type === GET_PRODUCTS_BEGIN) {
-    return { ...state, products_loading: true }
+    return { ...state, products_loading: true, products_error: false } // setting up products error to be false just in case if it was true last time
   }
   if (action.type === GET_PRODUCTS_SUCCESS) {
     const products = action.payload
@@ -25,6 +28,7 @@ const products_reducer = (state, action) => {
     return {
       ...state,
       products_loading: false,
+      products_error: false,
       products,
       featured_products,
     }
@@ -32,6 +36,32 @@ const products_reducer = (state, action) => {
   if (action.type === GET_PRODUCTS_ERROR) {
     return { ...state, products_loading: false, products_error: true }
   }
+
+  // single product
+
+  if (action.type === GET_SINGLE_PRODUCT_BEGIN) {
+    return {
+      ...state,
+      single_product_loading: true,
+      single_product_error: false, // setting up products error to be false just in case if it was true last time
+    }
+  }
+  if (action.type === GET_SINGLE_PRODUCT_SUCCESS) {
+    return {
+      ...state,
+      single_product_loading: false,
+      single_product_error: false,
+      single_product: action.payload,
+    }
+  }
+  if (action.type === GET_SINGLE_PRODUCT_ERROR) {
+    return {
+      ...state,
+      single_product_loading: false,
+      single_product_error: true,
+    }
+  }
+
   throw new Error(`No Matching "${action.type}" - action type`)
 }
 

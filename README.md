@@ -270,6 +270,10 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Navbar, Sidebar, Header, Footer and Modal`
 - `Image (Logo) inside react-router Link`
 - `Service to send subscription emails`
+- `Format price - cents to dollars`
+- `useHistory hook - to navigate to different page`
+- `Stars to display customer reviews(Manual and programatic approach). Ternary operator inside ternary operator`
+- `Setting colors dynamically in SingleCart page for product's colors with style and className`
 
 ## Handy Tools
 

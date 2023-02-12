@@ -1,8 +1,28 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-const ProductImages = () => {
-  return <h4>product images</h4>
+const ProductImages = ({ images = [{ url: '' }] }) => {
+  // initially images will be empty so setting a default here to [] and adding first prop with url = '' as we are using it below
+  const [mainImage, setMainImage] = useState(images[0])
+
+  return (
+    <Wrapper>
+      <img src={mainImage.url} alt="main" />
+      <div className="gallery">
+        {images.map((image, index) => {
+          return (
+            <img
+              onClick={() => setMainImage(images[index])}
+              key={index}
+              src={image.url}
+              alt={image.filename}
+              className={`${image.url === mainImage.url ? 'active' : null}`} // to set the active class on image to show which one is the main image currently
+            />
+          )
+        })}
+      </div>
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.section`

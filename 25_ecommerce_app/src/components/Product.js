@@ -15,7 +15,8 @@ const Product = ({ image, name, price, id }) => {
       </div>
       <footer>
         <h5>{name}</h5>
-        <p>{price}</p>
+        {/* formatPrice() function gives back the currency symbol as well so we don't have to place it here */}
+        <p>{formatPrice(price)}</p>
       </footer>
     </Wrapper>
   )
