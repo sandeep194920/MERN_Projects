@@ -16,6 +16,7 @@ const initialState = {
   filtered_products: [],
   all_products: [],
   grid_view: true,
+  sort: 'price-lowest',
 }
 
 const FilterContext = React.createContext()
@@ -23,14 +24,35 @@ const FilterContext = React.createContext()
 export const FilterProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { products } = useProductsContext()
-  // console.log('The products are', products)
+
+  const setGridView = () => {
+    dispatch({ type: SET_GRIDVIEW })
+  }
+
+  const setListView = () => {
+    dispatch({ type: SET_LISTVIEW })
+  }
+
+  // updateSort triggers when we change the select input
+  const updateSort = (e) => {
+    // const name = e.target.name // for demonstration. We will use this later
+    const value = e.target.value
+    dispatch({ type: UPDATE_SORT, payload: value })
+  }
+
+  // when sort is clicked, first the updateSort is called and then  the below useEffect will run to change the products as per the sort
+  useEffect(() => {
+    dispatch({ type: SORT_PRODUCTS })
+  }, [products, state.sort])
 
   useEffect(() => {
     dispatch({ type: LOAD_PRODUCTS, payload: products })
   }, [products])
 
   return (
-    <FilterContext.Provider value={{ ...state }}>
+    <FilterContext.Provider
+      value={{ ...state, setGridView, setListView, updateSort }}
+    >
       {children}
     </FilterContext.Provider>
   )

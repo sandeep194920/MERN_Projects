@@ -276,6 +276,8 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Setting colors dynamically in SingleCart page for product's colors with style and className`
 - `Sort, Filter and Search for products`
 - `Communicating between different contexts - Products context talking to Filter context in this app`
+- `Select tag with options to select from drop-down`
+- `localeCompare to compare two strings inside sort`
 
 ## Handy Tools
 
