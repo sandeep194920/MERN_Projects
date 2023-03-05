@@ -248,6 +248,7 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `replace render prop with Navigate in react-router-6`
 - `netlify build - not building locally like other projects - so this is second way`
 - `COMPLETE THIS PROJECT IN 38 STEPS`
+- `input type="range" for the price`
 
 25. [E-Commerce App]()
 
@@ -278,6 +279,12 @@ Some projects will have unit tests implemented to it in `React Testing Library` 
 - `Communicating between different contexts - Products context talking to Filter context in this app`
 - `Select tag with options to select from drop-down`
 - `localeCompare to compare two strings inside sort`
+- `Controlled inputs for objects where we set a single function for setting multiple properties (dynamic key in object)`
+- `When we use both SORT and FILTERS, first we need to filter the products and then only sort that (more info in filter_context)`
+- `Get unique values from the array of values`
+- `[Filters Component] Using textContent (instead of value) for button - for Filters inside filter_context`
+- `[Filters Component] Using data-set property to select colors in Filter`
+- `use e.target.value on text; e.target.textContent on button; And on all other components do data-set prop`
 
 ## Handy Tools
 

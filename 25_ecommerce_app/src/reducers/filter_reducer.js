@@ -11,10 +11,29 @@ import {
 
 const filter_reducer = (state, action) => {
   if (action.type === LOAD_PRODUCTS) {
+    // 1st way to get max price from products array
+    /*
+    const maxPricedProduct = [...action.payload].reduce((acc, cur) => {
+      if (acc.price > cur.price) {
+        cur = acc
+      }
+      return cur
+    }, 0) 
+     */
+
+    // 2nd way to get max price from products array
+    let maxPrice = [...action.payload].map((p) => p.price) // price array
+    maxPrice = Math.max(...maxPrice)
+
     return {
       ...state,
       all_products: [...action.payload], // spreading out values are extemely important here so that we are deep copying now. In that way both all_products and filtered_products point to different memory location. During filtering the products we just modify the filtered_products and don't touch all_products
       filtered_products: [...action.payload],
+      filters: {
+        ...state.filters,
+        max_price: maxPrice,
+        price: maxPrice,
+      },
     }
   }
 
@@ -31,6 +50,8 @@ const filter_reducer = (state, action) => {
       grid_view: false,
     }
   }
+
+  // SORT
 
   if (action.type === UPDATE_SORT) {
     return {
@@ -61,6 +82,38 @@ const filter_reducer = (state, action) => {
     return {
       ...state,
       filtered_products: tempProducts,
+    }
+  }
+
+  // FILTERS
+
+  if (action.type === UPDATE_FILTERS) {
+    const { name, value } = action.payload
+    return {
+      ...state,
+      filters: {
+        ...state.filters,
+        [name]: value,
+      },
+    }
+  }
+
+  if (action.type === FILTER_PRODUCTS) {
+    return { ...state }
+  }
+
+  if (action.type === CLEAR_FILTERS) {
+    return {
+      ...state,
+      filters: {
+        ...state.filters,
+        text: '',
+        category: 'all',
+        company: 'all',
+        color: 'all',
+        price: state.filters.max_price,
+        shipping: false,
+      },
     }
   }
 

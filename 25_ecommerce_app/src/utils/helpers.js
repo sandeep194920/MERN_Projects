@@ -6,4 +6,13 @@ export const formatPrice = (number) => {
   return formattedNumber // it automatically adds the currency representation (Adds $ at the beginning)
 }
 
-export const getUniqueValues = () => {}
+export const getUniqueValues = (data, type) => {
+  let unique = data.map((item) => item[type])
+  // type companies and categories are arrays. But color type is array of arrays.
+  // So we need to flatten if they are colors
+  if (type === 'colors') {
+    unique = unique.flat()
+  }
+
+  return ['all', ...new Set(unique)]
+}
